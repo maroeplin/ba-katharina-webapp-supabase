@@ -3,9 +3,23 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 
+import { useEffect } from 'react'
+import supabase from '@/utils/supabase-client'
+
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+
+  /*hier soll gecheckt werden, ob der User eingelogged ist und zwar, wenn die Page geladen wurde (sofort, wenn das component geladen wurde)
+  
+  useEffect(argument1, argument2) 
+  useEffect(() => { }, [])
+  
+  */
+  useEffect(() => {
+      
+  }, [])
+
   return (
     <>
       <Head>
@@ -15,7 +29,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h1 className='text-3xl'>hello</h1>
+        <div className='w-1/3 pt-48 m-auto text-center'>
+          <h1 className='text-4xl font-light'>Herzlich Willkommen zurück!</h1>
+        </div>
       </main>
     </>
   )

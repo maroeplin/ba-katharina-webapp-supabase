@@ -1,14 +1,16 @@
+import { useRouter } from "next/router";
 import { useState } from "react";
 import supabase from "@/utils/supabase-client";
 
-export default function Signup() {
+export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
-  async function signUpWithEmail() {
+  async function signInWithEmail() {
     try {
       if (email && password) {
-        const response = await supabase.auth.signUp({
+        const response = await supabase.auth.signInWithPassword({
           email: email,
           password: password,
         });
@@ -18,6 +20,8 @@ export default function Signup() {
         //data field
         const userId = response.data.user?.id
         console.log('userId: ', userId);
+        //zurück zur Startseite
+        router.push('/')
       }
     } catch {}
   }
@@ -60,7 +64,7 @@ export default function Signup() {
         <button
           type="button"
           className="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 mt-4"
-          onClick={signUpWithEmail}
+          onClick={signInWithEmail}
         >
           Purple
         </button>
