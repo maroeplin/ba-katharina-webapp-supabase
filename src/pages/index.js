@@ -1,16 +1,20 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
+import Head from "next/head";
+import Image from "next/image";
+import { Inter } from "next/font/google";
+import styles from "@/styles/Home.module.css";
 
-import { useEffect, useState } from 'react'
-import supabase from '@/utils/supabase-client'
+import { useEffect, useState } from "react";
+import supabase from "@/utils/supabase-client";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const [ isAuthenticated, setIsAuthenticated ] = useState(false);
-  const [userId, setUserId] = useState('')
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userId, setUserId] = useState("");
+
+  const [stimmung, setStimmung] = useState("");
+  const [datum, setDatum] = useState("");
+  const [beschreibung, setBeschreibung] = useState("");
 
   /*hier soll gecheckt werden, ob der User eingelogged ist und zwar, wenn die Page geladen wurde (sofort, wenn das component geladen wurde)
   
@@ -19,21 +23,38 @@ export default function Home() {
   
   */
   useEffect(() => {
-      const getUser = async() => {
-        const user = await supabase.auth.getUser();
-        //mit dem log bekommt man den user als JSON-Objekt angezeigt
-        console.log('user', user)
+    const getUser = async () => {
+      const user = await supabase.auth.getUser();
+      //mit dem log bekommt man den user als JSON-Objekt angezeigt
+      console.log("user", user);
 
-        //hier wird gecheckt, ob der User überhaupt authentifiziert ist
-        if(user) {
-          const userId = user.data.user?.id;
-          setIsAuthenticated(true);
-          setUserId(userId);
-        }
-      };
+      //hier wird gecheckt, ob der User überhaupt authentifiziert ist
+      if (user) {
+        const userId = user.data.user?.id;
+        setIsAuthenticated(true);
+        setUserId(userId);
+      }
+    };
 
-      getUser();
-  }, [])
+    getUser();
+  }, []);
+
+  const addNewLink = async () => {
+    try {
+      if (stimmung && datum && beschreibung) {
+        const { data, error } = await supabase.from("stimmung").insert({
+          stimmung: stimmung,
+          datum: datum,
+          user_id: userId,
+          beschreibung: beschreibung,
+        });
+        if (error) throw error;
+        console.log("data", data);
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
 
   return (
     <>
@@ -44,20 +65,60 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div className='w-1/3 pt-48 m-auto text-center'>
-          <h1 className='text-4xl font-light'>Herzlich Willkommen zurück!</h1>
-          <h2 className='text-4xl font-semibold'></h2>
+        <div className="w-1/3 pt-48 m-auto text-center">
+          <h1 className="text-4xl font-light">Herzlich Willkommen zurück!</h1>
+          <h2 className="text-4xl font-semibold"></h2>
 
-          <button
-          type="button"
-          className="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 mt-4"
+          {isAuthenticated && (
+            <>
+            
+            <div className="w-full mt-8">
+            <input
+              type="text"
+              name="datum"
+              id="datum"
+              className="block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              placeholder="Datum"
+              onChange={(e) => setDatum(e.target.value)}
+            ></input>
+            </div>
+
+            <div className="w-full mt-1">
+            <input
+              type="text"
+              name="stimmung"
+              id="stimmung"
+              className="block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              placeholder="Stimmung"
+              onChange={(e) => setStimmung(e.target.value)}
+            ></input>
+            </div>
+
+            <div className="w-full mt-1 mb-4">
+            <input
+              type="text"
+              name="beschreibung"
+              id="beschreibung"
+              className="block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              placeholder="Beschreibung"
+              onChange={(e) => setBeschreibung(e.target.value)}
+            ></input>
+            </div>
+
          
-        >
-          Meine Stimmung eintragen
-        </button>
-        
+            
+            <button
+              type="button"
+              className="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 mt-4"
+              onClick={addNewLink}
+            >
+              Eintrag erstellen
+            </button>
+            </>
+          )}
+          
         </div>
       </main>
     </>
-  )
+  );
 }
