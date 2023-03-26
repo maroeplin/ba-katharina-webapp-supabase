@@ -3,12 +3,14 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import supabase from '@/utils/supabase-client'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const [ isAuthenticated, setIsAuthenticated ] = useState(false);
+  const [userId, setUserId] = useState('')
 
   /*hier soll gecheckt werden, ob der User eingelogged ist und zwar, wenn die Page geladen wurde (sofort, wenn das component geladen wurde)
   
@@ -17,7 +19,20 @@ export default function Home() {
   
   */
   useEffect(() => {
-      
+      const getUser = async() => {
+        const user = await supabase.auth.getUser();
+        //mit dem log bekommt man den user als JSON-Objekt angezeigt
+        console.log('user', user)
+
+        //hier wird gecheckt, ob der User überhaupt authentifiziert ist
+        if(user) {
+          const userId = user.data.user?.id;
+          setIsAuthenticated(true);
+          setUserId(userId);
+        }
+      };
+
+      getUser();
   }, [])
 
   return (
@@ -31,6 +46,16 @@ export default function Home() {
       <main>
         <div className='w-1/3 pt-48 m-auto text-center'>
           <h1 className='text-4xl font-light'>Herzlich Willkommen zurück!</h1>
+          <h2 className='text-4xl font-semibold'></h2>
+
+          <button
+          type="button"
+          className="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 mt-4"
+         
+        >
+          Meine Stimmung eintragen
+        </button>
+        
         </div>
       </main>
     </>
