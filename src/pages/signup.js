@@ -28,16 +28,22 @@ export default function Signup() {
 
 
   return (
-    <div className="w-1/3 max-w-6xl pt-32 m-auto">
+    <div className="w-2/3 max-w-6xl pt-32 m-auto md:w-1/3">
 
     {!isRegistered ? (
       <>
-      <label
+
+      <h1 className="pb-8 text-2xl text-center">Vielen Dank, dass du bei dem Versuch <span className="font-bold">XYZ</span> teilnehmen möchtest.
+      </h1>
+      
+      <h2 className="pb-8 text-center">Mit deiner Mobilnummer und einem Passwort kannst du dich registrieren.</h2>
+
+      <labels
       htmlFor="phone"
       className="block mt-4 text-sm font-medium text-gray-700"
     >
       Mobilnummer
-    </label>
+    </labels>
     <div className="w-full ">
       <input
         type="phone"
