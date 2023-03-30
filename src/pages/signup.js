@@ -77,7 +77,7 @@ export default function Signup() {
     
       </> ):( 
         <div className="pt-24">
-          <h1 className="text-2xl text-center">Vielen Dank für die Registrierung. Du erhältst deinen <span className="font-bold">Anmelde-Code mit einer SMS</span>   <span role="img" aria-label="done">✅</span>an deine Mobilnummer gesendet.</h1>
+          <h1 className="text-2xl text-center">Vielen Dank für die Registrierung. Du erhältst deinen <span className="font-bold">Anmelde-Code mit einer SMS</span>.   <span role="img" aria-label="done">✅</span></h1>
         
         </div>
         )
