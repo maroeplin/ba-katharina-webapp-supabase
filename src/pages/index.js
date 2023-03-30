@@ -16,6 +16,9 @@ export default function Home() {
   const [datum, setDatum] = useState("");
   const [beschreibung, setBeschreibung] = useState("");
 
+  //in den folgenden Hook kommt das object aus der Datenbank
+  const [stimmungObjekt , setStimmungObjekt] = useState([]);
+
   /*hier soll gecheckt werden, ob der User eingelogged ist und zwar, wenn die Page geladen wurde (sofort, wenn das component geladen wurde)
   
   useEffect(argument1, argument2) 
@@ -39,6 +42,28 @@ export default function Home() {
     getUser();
   }, []);
 
+  useEffect(() => {
+    const getLinks = async () => {
+      try {
+      const { data, error } = await supabase
+        .from("stimmung")
+        .select("beschreibung, datum")
+        .eq("user_id", userId);
+
+        if(error) throw error;
+        
+        console.log("data: ", data)
+        setStimmungObjekt(data)
+      } catch(error) {
+        console.log("error: ", error)
+      }
+    };
+    if(userId) {
+      getLinks()
+    }
+    //sobald sich der Value in den brackets von useEffect ändert, wird der Code Block darüber ausgeführt (der Block wird jedes Mal recalled)
+  }, [userId, beschreibung]);
+
   const addNewLink = async () => {
     try {
       if (stimmung && datum && beschreibung) {
@@ -50,6 +75,9 @@ export default function Home() {
         });
         if (error) throw error;
         console.log("data", data);
+        if(stimmungObjekt) {
+          setStimmungObjekt([...data, ...setStimmungObjekt])
+        }
       }
     } catch (error) {
       console.log("error", error);
@@ -67,56 +95,70 @@ export default function Home() {
       <main>
         <div className="w-1/3 pt-48 m-auto text-center">
           <h1 className="text-4xl font-light">Herzlich Willkommen zurück!</h1>
+        
           <h2 className="text-4xl font-semibold"></h2>
 
           {isAuthenticated && (
             <>
-            
-            <div className="w-full mt-8">
-            <input
-              type="text"
-              name="datum"
-              id="datum"
-              className="block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-              placeholder="Datum"
-              onChange={(e) => setDatum(e.target.value)}
-            ></input>
-            </div>
+              <div className="w-full mt-8">
+                <input
+                  type="text"
+                  name="datum"
+                  id="datum"
+                  className="block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  placeholder="Datum"
+                  onChange={(e) => setDatum(e.target.value)}
+                ></input>
+              </div>
 
-            <div className="w-full mt-1">
-            <input
-              type="text"
-              name="stimmung"
-              id="stimmung"
-              className="block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-              placeholder="Stimmung"
-              onChange={(e) => setStimmung(e.target.value)}
-            ></input>
-            </div>
+              <div className="w-full mt-1">
+                <input
+                  type="text"
+                  name="stimmung"
+                  id="stimmung"
+                  className="block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  placeholder="Stimmung"
+                  onChange={(e) => setStimmung(e.target.value)}
+                ></input>
+              </div>
 
-            <div className="w-full mt-1 mb-4">
-            <input
-              type="text"
-              name="beschreibung"
-              id="beschreibung"
-              className="block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-              placeholder="Beschreibung"
-              onChange={(e) => setBeschreibung(e.target.value)}
-            ></input>
-            </div>
+              <div className="w-full mt-1 mb-4">
+                <input
+                  type="text"
+                  name="beschreibung"
+                  id="beschreibung"
+                  className="block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  placeholder="Beschreibung"
+                  onChange={(e) => setBeschreibung(e.target.value)}
+                ></input>
+              </div>
 
-         
-            
-            <button
-              type="button"
-              className="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 mt-4"
-              onClick={addNewLink}
-            >
-              Eintrag erstellen
-            </button>
+              <button
+                type="button"
+                className="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 mt-4"
+                onClick={addNewLink}
+              >
+                Eintrag erstellen
+              </button>
+
+         <section>
+          {stimmungObjekt.length > 0 && (
+            <div className="justify-center m-auto mt-12">
+              {stimmungObjekt.map((object,index) => {
+                return(
+                <div key={index} className="p-4 mb-4 rounded-md shadow-xl bg-lime-300 w-96 ">
+                  {object.beschreibung}
+                </div>
+                )
+              })}
+              {console.log("stimmungObjekt", {stimmungObjekt})}
+            </div>
+          )}
+
+          </section>    
+           
             </>
           )}
-          
         </div>
       </main>
     </>
