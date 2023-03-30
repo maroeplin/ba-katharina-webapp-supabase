@@ -29,32 +29,35 @@ export default function Login() {
   }
 
   return (
-    <div className="w-1/3 max-w-6xl pt-32 m-auto">
+    <div className="items-center content-center justify-center w-1/3 max-w-6xl pt-32 m-auto text-center">
       {!isRegistered ? (
         <>
-          <h1 className="pb-8 text-2xl text-center">
-            Bitte dein <span className="font-bold">SMS-Token</span> eingeben und
-            deinen Account aktivieren.
-          </h1>
+
+<div className="pt-24 pb-8">
+          <h1 className="text-2xl text-center">Vielen Dank für die Registrierung. Du erhältst deinen <span className="font-bold">Anmelde-Code mit einer SMS</span>.   <span role="img" aria-label="done">✅</span></h1>
+        
+        </div>
+
+       
           <label
             htmlFor="token"
-            className="block mt-4 text-sm font-medium text-gray-700"
+            className="block mt-4 text-sm font-medium text-left text-gray-700"
           >
-            Token
+            Anmelde-Code
           </label>
           <div className="w-full mt-1">
             <input
               type="token"
               name="token"
               id="token"
-              className="block w-full pt-2 pb-2 pl-2 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              className="block w-full pt-2 pb-2 pl-2 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 mt-8focus:ring-indigo-500"
               placeholder="••••••"
               onChange={(e) => setToken(e.target.value)}
             ></input>
           </div>
           <button
             type="button"
-            className="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 mt-4"
+            className="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 m-auto mt-8"
             onClick={loginWithToken}
           >
             Account aktivieren

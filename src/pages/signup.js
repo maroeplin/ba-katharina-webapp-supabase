@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 import supabase from "@/utils/supabase-client";
 export default function Signup() {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [isRegistered, setIsRegistered] = useState(false);
+  const router = useRouter();
   
   async function signUpWithPhone() {
     try {
@@ -20,6 +22,7 @@ export default function Signup() {
         const userId = response.data.user?.id
         setIsRegistered(true);
         console.log('userId: ', userId);
+        router.push("/login")
       }
      
     } catch {}
