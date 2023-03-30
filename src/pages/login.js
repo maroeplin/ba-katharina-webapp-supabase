@@ -29,16 +29,18 @@ export default function Login() {
   }
 
   return (
-    <div className="items-center content-center justify-center w-1/3 max-w-6xl pt-32 m-auto text-center">
+    <div className="items-center content-center justify-center w-2/3 max-w-6xl pt-32 m-auto text-center md:w-1/3 md:max-w-1/3">
       {!isRegistered ? (
         <>
-
-<div className="pt-24 pb-8">
-          <h1 className="text-2xl text-center">Vielen Dank für die Registrierung. Du erhältst deinen <span className="font-bold">Anmelde-Code mit einer SMS</span>.   <span role="img" aria-label="done">✅</span></h1>
-        
-        </div>
-
-       
+          <div className="pt-24 pb-8 md:w-full">
+            <h1 className="text-2xl text-center">
+              Vielen Dank für die Registrierung. Du erhältst deinen{" "}
+              <span className="font-bold">Anmelde-Code mit einer SMS</span>.{" "}
+              <span role="img" aria-label="done">
+                ✅
+              </span>
+            </h1>
+          </div>
           <label
             htmlFor="token"
             className="block mt-4 text-sm font-medium text-left text-gray-700"
@@ -63,10 +65,17 @@ export default function Login() {
             Account aktivieren
           </button>{" "}
         </>
-      ) :  <div className="pt-24">
-      <h1 className="text-2xl text-center">Du hast deinen Account aktiviert. <span className="font-bold">Zu meinem Dashboard</span>.   <span role="img" aria-label="done">✅</span></h1>
-    
-    </div>}
+      ) : (
+        <div className="pt-24">
+          <h1 className="text-2xl text-center">
+            Du hast deinen Account aktiviert.{" "}
+            <span className="font-bold">Zu meinem Dashboard</span>.{" "}
+            <span role="img" aria-label="done">
+              ✅
+            </span>
+          </h1>
+        </div>
+      )}
     </div>
   );
 }
