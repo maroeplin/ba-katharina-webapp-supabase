@@ -70,7 +70,7 @@ export default function Home() {
       if (stimmung && datum && beschreibung) {
         const { data, error } = await supabase.from("stimmung").insert({
           stimmung: stimmung,
-          datum: datum,
+  
           user_id: userId,
           beschreibung: beschreibung,
         });

@@ -10,10 +10,9 @@ export default function Login() {
   async function loginWithToken() {
     try {
       if (token) {
+        
         const response = await supabase.auth.verifyOtp({
-          phone: phone,
-          token: token,
-          type: "sms",
+          token: token
         });
         //error field
         if (response.error) throw response.error;
@@ -21,9 +20,10 @@ export default function Login() {
         //data field
         const userId = response.data.user?.id;
         console.log("userId: ", userId);
+        console.log("User wurde authentifiziert.");
         setIsRegistered(true);
         //zurück zur Startseite
-        router.push("/");
+        router.push("/index");
       }
     } catch {}
   }
@@ -63,13 +63,14 @@ export default function Login() {
             onClick={loginWithToken}
           >
             Account aktivieren
-          </button>{" "}
+          </button>
+
         </>
       ) : (
         <div className="pt-24">
           <h1 className="text-2xl text-center">
-            Du hast deinen Account aktiviert.{" "}
-            <span className="font-bold">Zu meinem Dashboard</span>.{" "}
+            Du hast deinen Account aktiviert.
+            <span className="font-bold">Zu meinem Dashboard</span>.
             <span role="img" aria-label="done">
               ✅
             </span>
