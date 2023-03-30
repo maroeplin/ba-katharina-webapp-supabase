@@ -5,6 +5,7 @@ import styles from "@/styles/Home.module.css";
 
 import { useEffect, useState } from "react";
 import supabase from "@/utils/supabase-client";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +18,7 @@ export default function Home() {
   const [beschreibung, setBeschreibung] = useState("");
 
   //in den folgenden Hook kommt das object aus der Datenbank
-  const [stimmungObjekt , setStimmungObjekt] = useState([]);
+  const [stimmungObjekt, setStimmungObjekt] = useState([]);
 
   /*hier soll gecheckt werden, ob der User eingelogged ist und zwar, wenn die Page geladen wurde (sofort, wenn das component geladen wurde)
   
@@ -45,21 +46,21 @@ export default function Home() {
   useEffect(() => {
     const getLinks = async () => {
       try {
-      const { data, error } = await supabase
-        .from("stimmung")
-        .select("beschreibung, datum")
-        .eq("user_id", userId);
+        const { data, error } = await supabase
+          .from("stimmung")
+          .select("beschreibung, datum")
+          .eq("user_id", userId);
 
-        if(error) throw error;
-        
-        console.log("data: ", data)
-        setStimmungObjekt(data)
-      } catch(error) {
-        console.log("error: ", error)
+        if (error) throw error;
+
+        console.log("data: ", data);
+        setStimmungObjekt(data);
+      } catch (error) {
+        console.log("error: ", error);
       }
     };
-    if(userId) {
-      getLinks()
+    if (userId) {
+      getLinks();
     }
     //sobald sich der Value in den brackets von useEffect ändert, wird der Code Block darüber ausgeführt (der Block wird jedes Mal recalled)
   }, [userId, beschreibung]);
@@ -75,8 +76,8 @@ export default function Home() {
         });
         if (error) throw error;
         console.log("data", data);
-        if(stimmungObjekt) {
-          setStimmungObjekt([...data, ...setStimmungObjekt])
+        if (stimmungObjekt) {
+          setStimmungObjekt([...data, ...setStimmungObjekt]);
         }
       }
     } catch (error) {
@@ -94,11 +95,11 @@ export default function Home() {
       </Head>
       <main>
         <div className="w-1/3 pt-48 m-auto text-center">
-          <h1 className="text-4xl font-light">Herzlich Willkommen zurück!</h1>
-        
+          <h1 className="text-4xl font-light">Herzlich Willkommen!</h1>
+
           <h2 className="text-4xl font-semibold"></h2>
 
-          {isAuthenticated && (
+          {!isAuthenticated ? (
             <>
               <div className="w-full mt-8">
                 <input
@@ -141,23 +142,43 @@ export default function Home() {
                 Eintrag erstellen
               </button>
 
-         <section>
-          {stimmungObjekt.length > 0 && (
-            <div className="justify-center m-auto mt-12">
-              {stimmungObjekt.map((object,index) => {
-                return(
-                <div key={index} className="p-4 mb-4 rounded-md shadow-xl bg-lime-300 w-96 ">
-                  {object.beschreibung}
-                </div>
-                )
-              })}
-              {console.log("stimmungObjekt", {stimmungObjekt})}
-            </div>
-          )}
-
-          </section>    
-           
+              <section>
+                {stimmungObjekt.length > 0 && (
+                  <div className="justify-center m-auto mt-12">
+                    {stimmungObjekt.map((object, index) => {
+                      return (
+                        <div
+                          key={index}
+                          className="p-4 mb-4 rounded-md shadow-xl bg-lime-300 w-96 "
+                        >
+                          {object.beschreibung}
+                        </div>
+                      );
+                    })}
+                    {console.log("stimmungObjekt", { stimmungObjekt })}
+                  </div>
+                )}
+              </section>
             </>
+          ) : (
+            <div className="grid pt-8 m-auto">
+              <Link href="/signup">
+              <button
+                type="button"
+                className="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-10 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 mt-4"
+              >
+                Registrieren
+              </button>
+              </Link>
+              <Link href="/login" className="mt-4 mb-2">
+                <button
+                  type="button"
+                  className="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-10 py-2.5 text-centerdark:bg-purple-400 dark:hover:bg-purple-700 dark:focus:ring-purple-900 "
+                >
+                  Login
+                </button>
+              </Link>
+            </div>
           )}
         </div>
       </main>

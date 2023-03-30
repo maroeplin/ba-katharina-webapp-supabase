@@ -3,7 +3,7 @@ import supabase from "@/utils/supabase-client";
 export default function Signup() {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
-  const [isRegistered, setIsRegistered] = useState("");
+  const [isRegistered, setIsRegistered] = useState(false);
   
   async function signUpWithPhone() {
     try {
@@ -50,7 +50,7 @@ export default function Signup() {
         name="phone"
         id="phone"
         className="block w-full pt-2 pb-2 pl-2 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-        placeholder="+111 1111 1111"
+        placeholder="+49111 1111 1111"
         onChange={(e) => setPhone(e.target.value)}
       ></input>
       </div>
