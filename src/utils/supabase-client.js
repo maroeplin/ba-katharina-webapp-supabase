@@ -2,8 +2,8 @@
 import { createClient } from "@supabase/supabase-js";
 
 // wenn der value links = 0 ist, dann vergib den rechten value (ein leerer String)
-const supabaseUrl = "https://kwxufazzlocqpiahmkwd.supabase.co" ?? ''
-const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt3eHVmYXp6bG9jcXBpYWhta3dkIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Nzk3NDc4MTUsImV4cCI6MTk5NTMyMzgxNX0.ixFeq4YR1FrK4CpKN6sYlUeqp8pGlcTewTKflmWR8DA" ?? ''
+const supabaseUrl = "https://qonjmkccfrmtvyqblrdc.supabase.co" ?? ''
+const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFvbmpta2NjZnJtdHZ5cWJscmRjIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODAxNzcxNTcsImV4cCI6MTk5NTc1MzE1N30.m5CHW8FBOJvqVKY1bLYOKaBuFgfbku-hRfN1m6DywKg" ?? ''
 
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
