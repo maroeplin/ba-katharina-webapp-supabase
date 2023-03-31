@@ -70,7 +70,8 @@ export default function Signup() {
         type="password"
         name="password"
         id="password"
-        className="block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+        
+        className={password.length <= 6 ? ("block w-full border border-gray-200 rounded-md shadow-sm focus:border-red-500 focus:ring-red-500") : ("block w-full border border-teal-400 rounded-md shadow-sm focus:border-teal-500 focus:ring-teal-500")}
         placeholder="•••••••••"
         onChange={(e) => setPassword(e.target.value)}
       ></input>
