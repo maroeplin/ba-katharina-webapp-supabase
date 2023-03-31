@@ -151,6 +151,7 @@ export default function Dashboard() {
               </div>
 
               <section className="bg-gray-100">
+                {/* 
                 <div className="justify-center w-full m-auto mt-12 text-center">
                   {datenset.map((object, index) => {
                     return (
@@ -164,6 +165,7 @@ export default function Dashboard() {
                   })}
                   {console.log("Datenset", { datenset })}
                 </div>
+                */}
               </section>
 
 
