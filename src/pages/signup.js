@@ -45,7 +45,7 @@ export default function Signup() {
       htmlFor="phone"
       className="block mt-4 text-sm font-medium text-gray-700"
     >
-      Mobilnummer
+      Mobilnummer <br/><span className="text-gray-400">Ländervorwahl +49</span>
     </labels>
     <div className="w-full ">
       <input
@@ -53,7 +53,7 @@ export default function Signup() {
         name="phone"
         id="phone"
         className="block w-full pt-2 pb-2 pl-2 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-        placeholder="+49111 1111 1111"
+        placeholder="+49 111 1111 1111"
         onChange={(e) => setPhone(e.target.value)}
       ></input>
       </div>
