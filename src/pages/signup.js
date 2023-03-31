@@ -41,7 +41,9 @@ export default function Signup() {
       if (token) {
         
         const response = await supabase.auth.verifyOtp({
-          token
+          phone: phone,
+          token: token,
+          type: 'sms'
         });
         //error field
         if (response.error) throw response.error;
@@ -105,7 +107,7 @@ export default function Signup() {
         id="password"
         title="Das Passwort sollte mindestens 6 Zeichen lang sein."
         required
-        minlength="13"
+        minlength="6"
 
         className={password?.length <= 6 ? ("block w-full border border-gray-200 rounded-md shadow-sm focus:border-red-500 focus:ring-red-500") : ("block w-full border border-teal-400 rounded-md shadow-sm focus:border-teal-500 focus:ring-teal-500")}
         placeholder="•••••••••"
@@ -115,7 +117,7 @@ export default function Signup() {
       
       <button
         type="button"
-        className="text-white bg-teal-400 hover:bg-teal-700 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-teal-400 dark:hover:bg-teal-700 dark:focus:ring-purple-900 mt-4"
+        className="text-white bg-teal-400 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-teal-400 dark:hover:bg-teal-700 dark:focus:ring-teal-700 mt-4"
         onClick={signUpWithPhone}
       >
         registrieren
@@ -143,7 +145,7 @@ export default function Signup() {
           </div>
           <button
             type="button"
-            className="text-white bg-teal-400 hover:bg-teal-800 focus:outline-none focus:ring-4 focus:ring-teal-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-teal-400 dark:hover:bg-teal-700 dark:focus:ring-teal-900 m-auto mt-8"
+            className="text-white bg-teal-400 hover:bg-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-teal-400 dark:hover:bg-teal-700 dark:focus:ring-teal-400 m-auto mt-8"
             onClick={loginWithToken}
           >
             Account aktivieren
