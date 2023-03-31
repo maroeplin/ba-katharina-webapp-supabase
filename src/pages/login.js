@@ -4,15 +4,17 @@ import supabase from "@/utils/supabase-client";
 
 export default function Login() {
   const [token, setToken] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("")
   const [isRegistered, setIsRegistered] = useState(false);
   const router = useRouter();
 
-  async function loginWithToken() {
+  async function loginWithPhone() {
     try {
-      if (token) {
-        
-        const response = await supabase.auth.verifyOtp({
-          token
+      if (phone && password) {
+        const response = await supabase.auth.signInWithPassword({
+          phone: phone,
+          password: password,
         });
         //error field
         if (response.error) throw response.error;
@@ -23,7 +25,7 @@ export default function Login() {
         console.log("User wurde authentifiziert.");
         setIsRegistered(true);
         //zurück zur Startseite
-        router.push("/index");
+        router.push("/");
       }
     } catch {}
   }
@@ -33,38 +35,63 @@ export default function Login() {
       {!isRegistered ? (
         <>
           <div className="pt-24 pb-8 md:w-full">
-            <h1 className="text-2xl text-center">
-              Vielen Dank für die Registrierung. Du erhältst deinen{" "}
-              <span className="font-bold">Anmelde-Code mit einer SMS</span>.{" "}
-              <span role="img" aria-label="done">
-                ✅
-              </span>
-            </h1>
+            <h1 className="text-2xl text-center">Login folgt.</h1>
           </div>
+
           <label
-            htmlFor="token"
+            htmlFor="phone"
             className="block mt-4 text-sm font-medium text-left text-gray-700"
           >
-            Anmelde-Code
+            Mobilnummer
           </label>
           <div className="w-full mt-1">
             <input
-              type="token"
-              name="token"
-              id="token"
-              className="block w-full pt-2 pb-2 pl-2 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 mt-8focus:ring-indigo-500"
-              placeholder="••••••"
-              onChange={(e) => setToken(e.target.value)}
+              type="phone"
+              name="phone"
+              id="phone"
+              title="Das Passwort sollte mindestens 6 Zeichen lang sein."
+              required
+              minLength="6"
+              className={
+                password?.length <= 6
+                  ? "block w-full border border-gray-200 rounded-md shadow-sm focus:border-red-500 focus:ring-red-500 p-2"
+                  : "block w-full border border-teal-400 rounded-md shadow-sm focus:border-teal-500 focus:ring-teal-500 p-2"
+              }
+              placeholder="+49 111 1111 1111"
+              onChange={(e) => setPassword(e.target.value)}
+            ></input>
+          </div>
+          <label
+            htmlFor="password"
+            className="block mt-4 text-sm font-medium text-left text-gray-700"
+          >
+            Passwort (min. 6 Zeichen)
+          </label>
+
+          <div className="w-full mt-1">
+            <input
+              type="password"
+              name="password"
+              id="password"
+              title="Das Passwort sollte mindestens 6 Zeichen lang sein."
+              required
+              minLength="6"
+              className={
+                password?.length <= 6
+                  ? "block w-full border border-gray-200 rounded-md shadow-sm focus:border-red-500 focus:ring-red-500"
+                  : "block w-full border border-teal-400 rounded-md shadow-sm focus:border-teal-500 focus:ring-teal-500"
+              }
+              placeholder="•••••••••"
+              onChange={(e) => setPhone(e.target.value)}
             ></input>
           </div>
           <button
             type="button"
-            className="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 m-auto mt-8"
-            onClick={loginWithToken}
+            className="text-white bg-teal-400 hover:bg-bg-teal-700 focus:outline-none focus:ring-4 focus:ring-bg-teal-200 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-teal-400 dark:hover:bg-teal-700 dark:focus:ring-bg-teal-700 m-auto mt-8"
+            onClick={loginWithPhone}
           >
-            Account aktivieren
+            Login
           </button>
-
         </>
       ) : (
         <div className="pt-24">

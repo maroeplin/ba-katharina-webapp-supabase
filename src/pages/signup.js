@@ -88,8 +88,8 @@ export default function Signup() {
         id="phone"
         required
         title="Die Mobilnummer sollte folgendes Schema haben: +49 111 1111 1111"
-        minlength="13"
-        maxlength="14"
+        minLength="13"
+        maxLength="14"
         className="block w-full pt-2 pb-2 pl-2 border border-gray-300 rounded-md shadow-sm focus:border-teal-500 focus:ring-teal-500"
         placeholder="+49 111 1111 1111"
         onChange={(e) => setPhone(e.target.value)}
@@ -110,7 +110,7 @@ export default function Signup() {
         id="password"
         title="Das Passwort sollte mindestens 6 Zeichen lang sein."
         required
-        minlength="6"
+        minLength="6"
 
         className={password?.length <= 6 ? ("block w-full border border-gray-200 rounded-md shadow-sm focus:border-red-500 focus:ring-red-500") : ("block w-full border border-teal-400 rounded-md shadow-sm focus:border-teal-500 focus:ring-teal-500")}
         placeholder="•••••••••"

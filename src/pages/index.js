@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
 
 import { useEffect, useState } from "react";
 import supabase from "@/utils/supabase-client";
@@ -14,7 +13,6 @@ export default function Home() {
   const [userId, setUserId] = useState("");
 
   const [stimmung, setStimmung] = useState("");
-  const [datum, setDatum] = useState("");
   const [beschreibung, setBeschreibung] = useState("");
 
   //in den folgenden Hook kommt das object aus der Datenbank
@@ -47,8 +45,8 @@ export default function Home() {
     const getLinks = async () => {
       try {
         const { data, error } = await supabase
-          .from("stimmung")
-          .select("beschreibung, datum")
+          .from("datenset")
+          .select("beschreibung, stimmung")
           .eq("user_id", userId);
 
         if (error) throw error;
@@ -67,10 +65,10 @@ export default function Home() {
 
   const addNewLink = async () => {
     try {
-      if (stimmung && datum && beschreibung) {
-        const { data, error } = await supabase.from("stimmung").insert({
+      if (stimmung && beschreibung) {
+        const { data, error } = await supabase.from("datenset").insert({
           stimmung: stimmung,
-  
+
           user_id: userId,
           beschreibung: beschreibung,
         });
@@ -85,6 +83,12 @@ export default function Home() {
     }
   };
 
+  async function loginWithToken() {
+    setIsAuthenticated(false);
+  }
+
+  console.log("authentifiziert? ", isAuthenticated);
+
   return (
     <>
       <Head>
@@ -97,30 +101,21 @@ export default function Home() {
         <div className="w-1/3 pt-48 m-auto text-center">
           <h1 className="text-4xl font-light">Herzlich Willkommen!</h1>
 
-          <h2 className="text-4xl font-semibold"></h2>
-
-          {!isAuthenticated ? (
+          {isAuthenticated ? (
             <>
-              <div className="w-full mt-8">
-                <input
-                  type="text"
-                  name="datum"
-                  id="datum"
-                  className="block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                  placeholder="Datum"
-                  onChange={(e) => setDatum(e.target.value)}
-                ></input>
-              </div>
-
-              <div className="w-full mt-1">
-                <input
-                  type="text"
-                  name="stimmung"
+              <div className="grid gap-2 pt-8 m-auto">
+                <select
                   id="stimmung"
+                  name="stimmung"
                   className="block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                   placeholder="Stimmung"
                   onChange={(e) => setStimmung(e.target.value)}
-                ></input>
+                >
+                  <option value="volvo">Volvo XC90</option>
+                  <option value="saab">Saab 95</option>
+                  <option value="mercedes">Mercedes SLK</option>
+                  <option value="audi">Audi TT</option>
+                </select>
               </div>
 
               <div className="w-full mt-1 mb-4">
@@ -133,15 +128,24 @@ export default function Home() {
                   onChange={(e) => setBeschreibung(e.target.value)}
                 ></input>
               </div>
+              <div className="grid grid-rows-2">
+                <button
+                  type="button"
+                  className="text-white dark:bg-teal-400 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2  dark:hover:bg-teal-700 dark:focus:ring-teal-900 mt-4"
+                  onClick={addNewLink}
+                >
+                  Eintrag erstellen
+                </button>
 
-              <button
-                type="button"
-                className="text-white dark:bg-teal-400 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2  dark:hover:bg-teal-700 dark:focus:ring-teal-900 mt-4"
-                onClick={addNewLink}
-              >
-                Eintrag erstellen
-              </button>
-
+                <button
+                  type="button"
+                  className="text-teal-400  hover:bg-bg-teal-700 focus:outline-none focus:ring-4 focus:ring-bg-teal-200  border border-teal-400 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2  dark:hover:bg-teal-700 dark:focus:ring-bg-teal-700 m-auto mt-8"
+                  onClick={loginWithToken}
+                >
+                  Logout
+                </button>
+                
+              </div>
               <section>
                 {stimmungObjekt.length > 0 && (
                   <div className="justify-center m-auto mt-12">
@@ -163,12 +167,12 @@ export default function Home() {
           ) : (
             <div className="grid pt-8 m-auto">
               <Link href="/signup">
-              <button
-                type="button"
-                className="text-white bg-teal-400 hover:bg-teal-700 focus:outline-none focus:ring-4 focus:ring-teal-300 font-medium rounded-full text-sm px-10 py-2.5 text-center mb-2 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-900 mt-4"
-              >
-                Registrieren
-              </button>
+                <button
+                  type="button"
+                  className="text-white bg-teal-400 hover:bg-teal-700 focus:outline-none focus:ring-4 focus:ring-teal-300 font-medium rounded-full text-sm px-10 py-2.5 text-center mb-2 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-900 mt-4"
+                >
+                  Registrieren
+                </button>
               </Link>
               <Link href="/login" className="mt-4 mb-2">
                 <button
