@@ -18,6 +18,8 @@ export default function Home() {
   //in den folgenden Hook kommt das object aus der Datenbank
   const [datenset, setDatenset] = useState([]);
 
+  const [currentUser, setCurrentUser] = useState([])
+
   /*hier soll gecheckt werden, ob der User eingelogged ist und zwar, wenn die Page geladen wurde (sofort, wenn das component geladen wurde)
   
   useEffect(argument1, argument2) 
@@ -32,9 +34,10 @@ export default function Home() {
 
       //hier wird gecheckt, ob der User überhaupt authentifiziert ist
       if (user) {
-        const userId = user.data.user?.id;
+        const userId = user.data?.user?.id;
         setIsAuthenticated(true);
         setUserId(userId);
+        setCurrentUser(user);
       }
     };
 
@@ -63,6 +66,7 @@ export default function Home() {
     //sobald sich der Value in den brackets von useEffect ändert, wird der Code Block darüber ausgeführt (der Block wird jedes Mal recalled)
   }, [userId, beschreibung]);
 
+
   const addNewLink = async () => {
     try {
       if (beschreibung) {
@@ -73,7 +77,7 @@ export default function Home() {
         if (error) throw error;
         console.log("data", data);
         if (datenset) {
-          setDatenset([...data, ...setDatenset]);
+          setDatenset([...datenset, data]);
         }
       }
     } catch (error) {
@@ -86,7 +90,7 @@ export default function Home() {
   }
 
   console.log("authentifiziert? ", isAuthenticated);
-
+  console.log("currentUser: ", currentUser);
   return (
     <>
       <Head>
@@ -99,9 +103,9 @@ export default function Home() {
         <div className="w-1/3 pt-48 m-auto text-center">
           <h1 className="text-4xl font-light">Herzlich Willkommen!</h1>
 
-          {isAuthenticated ? (
+          {!isAuthenticated ? (
             <>
-            {console.log('datensetXX: ', datenset)}
+              {console.log("datensetXX: ", datenset)}
               <div className="grid gap-2 pt-8 m-auto">
                 <select
                   id="stimmung"
@@ -110,10 +114,10 @@ export default function Home() {
                   placeholder="Stimmung"
                   onChange={(e) => setStimmung(e.target.value)}
                 >
-                  <option value="volvo">Volvo XC90</option>
-                  <option value="saab">Saab 95</option>
-                  <option value="mercedes">Mercedes SLK</option>
-                  <option value="audi">Audi TT</option>
+                  <option value="glücklich">Glücklich</option>
+                  <option value="traurig">Traurig</option>
+                  <option value="gestresst">Gestresst</option>
+                  <option value="neutral">Neutral</option>
                 </select>
               </div>
 
@@ -143,30 +147,34 @@ export default function Home() {
                 >
                   Logout
                 </button>
-                
               </div>
-              
+
               <section>
-                <h1> TEST </h1>
-                {datenset.length > 0 && (
-                  <div className="justify-center m-auto mt-12">
-                    {datenset.map((object, index) => {
-                      return (
-                        <div
-                          key={index}
-                          className="p-4 mb-4 rounded-md shadow-xl bg-lime-300 w-96 "
-                        >
-                          {object.beschreibung}
-                        </div>
-                      );
-                    })}
-                    {console.log("Datenset", { datenset })}
-                  </div>
-                )}
+                <div className="justify-center m-auto mt-12">
+                  {datenset.map((object, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className="p-4 mb-4 rounded-md shadow-xl bg-lime-300 w-96 "
+                      >
+                        {object.beschreibung}
+                      </div>
+                    );
+                  })}
+                  {console.log("Datenset", { datenset })}
+                </div>
               </section>
+
+              {currentUser?.data.user.phone != 0 && ( <div className="w-2/3 m-auto mt-8 text-2xl text-center">
+        <h1 className="w-2/3 m-auto mt-4 text-2xl text-center">Test. Du bist authentifiziert und als Beweis </h1>
+        <h2 className="font-semibold">deine Telefonnummer: {currentUser?.data?.user?.phone}</h2>
+        </div> )}
+
+        
             </>
           ) : (
             <div className="grid pt-8 m-auto">
+
               <Link href="/signup">
                 <button
                   type="button"
@@ -186,6 +194,8 @@ export default function Home() {
             </div>
           )}
         </div>
+
+       
       </main>
     </>
   );
