@@ -8,6 +8,8 @@ export default function Signup() {
   const [phone, setPhone] = useState("");
   const [isRegistered, setIsRegistered] = useState(false);
 
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   //authenticate with otp
   const [token, setToken] = useState("");
 
@@ -53,6 +55,7 @@ export default function Signup() {
         console.log("userId: ", userId);
         console.log("User wurde authentifiziert.");
         setIsRegistered(true);
+        setIsAuthenticated(true);
         //zurück zur Startseite
         router.push("/index");
       }
