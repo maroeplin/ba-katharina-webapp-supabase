@@ -31,7 +31,7 @@ export default function Login() {
   }
 
   const backToHome = () => {
-    router.push("/")
+    router.push("/dashboard")
   }
 
   return (
