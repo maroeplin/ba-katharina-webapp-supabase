@@ -73,6 +73,7 @@ export default function Home() {
         const { data, error } = await supabase.from("datenset").insert({
           user_id: userId,
           beschreibung: beschreibung,
+          stimmung: stimmung
         });
         if (error) throw error;
         console.log("data", data);
@@ -107,18 +108,15 @@ export default function Home() {
             <>
               {console.log("datensetXX: ", datenset)}
               <div className="grid gap-2 pt-8 m-auto">
-                <select
-                  id="stimmung"
+            
+                <input
+                  type="text"
                   name="stimmung"
+                  id="stimmung"
                   className="block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                   placeholder="Stimmung"
                   onChange={(e) => setStimmung(e.target.value)}
-                >
-                  <option value="glücklich">Glücklich</option>
-                  <option value="traurig">Traurig</option>
-                  <option value="gestresst">Gestresst</option>
-                  <option value="neutral">Neutral</option>
-                </select>
+                ></input>
               </div>
 
               <div className="w-full mt-1 mb-4">
@@ -157,7 +155,9 @@ export default function Home() {
                         key={index}
                         className="p-4 mb-4 border-b-2"
                       >
-                        {object.beschreibung}
+                        {object.stimmung}
+                       
+
                       </div>
                     );
                   })}
