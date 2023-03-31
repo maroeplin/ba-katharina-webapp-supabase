@@ -136,7 +136,7 @@ export default function Home() {
 
               <button
                 type="button"
-                className="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 mt-4"
+                className="text-white dark:bg-teal-400 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2  dark:hover:bg-teal-700 dark:focus:ring-teal-900 mt-4"
                 onClick={addNewLink}
               >
                 Eintrag erstellen
@@ -165,7 +165,7 @@ export default function Home() {
               <Link href="/signup">
               <button
                 type="button"
-                className="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-10 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 mt-4"
+                className="text-white bg-teal-400 hover:bg-teal-700 focus:outline-none focus:ring-4 focus:ring-teal-300 font-medium rounded-full text-sm px-10 py-2.5 text-center mb-2 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-900 mt-4"
               >
                 Registrieren
               </button>
@@ -173,7 +173,7 @@ export default function Home() {
               <Link href="/login" className="mt-4 mb-2">
                 <button
                   type="button"
-                  className="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-10 py-2.5 text-centerdark:bg-purple-400 dark:hover:bg-purple-700 dark:focus:ring-purple-900 "
+                  className="text-white bg-teal-200 hover:bg-teal-800 focus:outline-none focus:ring-4 focus:ring-teal-300 font-medium rounded-full text-sm px-10 py-2.5 text-centerdark:bg-purple-400 dark:hover:bg-teal-700 dark:focus:ring-teal-900 "
                 >
                   Login
                 </button>

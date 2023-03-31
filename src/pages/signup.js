@@ -63,7 +63,7 @@ export default function Signup() {
         htmlFor="password"
         className="block mt-4 text-sm font-medium text-gray-700"
       >
-        Passwort
+        Passwort (min. 6 Zeichen)
       </label>
       <div className="w-full mt-1">
       <input
@@ -78,7 +78,7 @@ export default function Signup() {
       
       <button
         type="button"
-        className="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 mt-4"
+        className="text-white bg-teal-400 hover:bg-teal-700 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-teal-400 dark:hover:bg-teal-700 dark:focus:ring-purple-900 mt-4"
         onClick={signUpWithPhone}
       >
         registrieren
