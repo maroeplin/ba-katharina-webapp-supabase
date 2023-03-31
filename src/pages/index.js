@@ -16,7 +16,7 @@ export default function Home() {
   const [beschreibung, setBeschreibung] = useState("");
 
   //in den folgenden Hook kommt das object aus der Datenbank
-  const [stimmungObjekt, setStimmungObjekt] = useState([]);
+  const [datenset, setDatenset] = useState([]);
 
   /*hier soll gecheckt werden, ob der User eingelogged ist und zwar, wenn die Page geladen wurde (sofort, wenn das component geladen wurde)
   
@@ -52,7 +52,7 @@ export default function Home() {
         if (error) throw error;
 
         console.log("data: ", data);
-        setStimmungObjekt(data);
+        setDatenset(data);
       } catch (error) {
         console.log("error: ", error);
       }
@@ -65,17 +65,15 @@ export default function Home() {
 
   const addNewLink = async () => {
     try {
-      if (stimmung && beschreibung) {
+      if (beschreibung) {
         const { data, error } = await supabase.from("datenset").insert({
-          stimmung: stimmung,
-
           user_id: userId,
           beschreibung: beschreibung,
         });
         if (error) throw error;
         console.log("data", data);
-        if (stimmungObjekt) {
-          setStimmungObjekt([...data, ...setStimmungObjekt]);
+        if (datenset) {
+          setDatenset([...data, ...setDatenset]);
         }
       }
     } catch (error) {
@@ -103,6 +101,7 @@ export default function Home() {
 
           {isAuthenticated ? (
             <>
+            {console.log('datensetXX: ', datenset)}
               <div className="grid gap-2 pt-8 m-auto">
                 <select
                   id="stimmung"
@@ -146,10 +145,12 @@ export default function Home() {
                 </button>
                 
               </div>
+              
               <section>
-                {stimmungObjekt.length > 0 && (
+                <h1> TEST </h1>
+                {datenset.length > 0 && (
                   <div className="justify-center m-auto mt-12">
-                    {stimmungObjekt.map((object, index) => {
+                    {datenset.map((object, index) => {
                       return (
                         <div
                           key={index}
@@ -159,7 +160,7 @@ export default function Home() {
                         </div>
                       );
                     })}
-                    {console.log("stimmungObjekt", { stimmungObjekt })}
+                    {console.log("Datenset", { datenset })}
                   </div>
                 )}
               </section>
