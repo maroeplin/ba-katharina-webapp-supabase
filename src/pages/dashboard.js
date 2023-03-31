@@ -18,7 +18,7 @@ export default function Dashboard() {
   //in den folgenden Hook kommt das object aus der Datenbank
   const [datenset, setDatenset] = useState([]);
 
-  const [currentUser, setCurrentUser] = useState([])
+  const [currentUser, setCurrentUser] = useState([]);
 
   /*hier soll gecheckt werden, ob der User eingelogged ist und zwar, wenn die Page geladen wurde (sofort, wenn das component geladen wurde)
   
@@ -64,8 +64,7 @@ export default function Dashboard() {
       getLinks();
     }
     //sobald sich der Value in den brackets von useEffect ändert, wird der Code Block darüber ausgeführt (der Block wird jedes Mal recalled)
-  }, [userId, beschreibung]);
-
+  }, [userId, beschreibung, stimmung]);
 
   const addNewLink = async () => {
     try {
@@ -73,12 +72,13 @@ export default function Dashboard() {
         const { data, error } = await supabase.from("datenset").insert({
           user_id: userId,
           beschreibung: beschreibung,
+          stimmung: stimmung,
         });
         if (error) throw error;
         console.log("data", data);
         if (datenset) {
           setDatenset([...datenset, data]);
-          alert("Eintrag wurde in die Datenbank geschrieben.")
+          alert("Eintrag wurde in die Datenbank geschrieben.");
         }
       }
     } catch (error) {
@@ -108,18 +108,14 @@ export default function Dashboard() {
             <>
               {console.log("datensetXX: ", datenset)}
               <div className="grid gap-2 pt-8 m-auto">
-                <select
-                  id="stimmung"
+                <input
+                  type="text"
                   name="stimmung"
+                  id="stimmung"
                   className="block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                   placeholder="Stimmung"
                   onChange={(e) => setStimmung(e.target.value)}
-                >
-                  <option value="glücklich">Glücklich</option>
-                  <option value="traurig">Traurig</option>
-                  <option value="gestresst">Gestresst</option>
-                  <option value="neutral">Neutral</option>
-                </select>
+                ></input>
               </div>
 
               <div className="w-full mt-1 mb-4">
@@ -168,18 +164,17 @@ export default function Dashboard() {
                 */}
               </section>
 
-
+              {/* 
               {currentUser?.data.user.phone != 0 && ( <div className="w-2/3 m-auto mt-8 text-sm text-center">
      
-        <h2 className="font-semibold">Test: deine Telefonnummer: {currentUser?.data?.user?.phone}</h2>
-        </div> )}
+        <h2 className="font-semibold">Test: deine Telefonnummer: {currentUser?.data?.user?.phone}</h2> 
 
-        
+       
+        </div> )}
+      */}
             </>
           )}
         </div>
-
-       
       </main>
     </>
   );

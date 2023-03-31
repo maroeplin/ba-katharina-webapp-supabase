@@ -18,7 +18,7 @@ export default function Home() {
   //in den folgenden Hook kommt das object aus der Datenbank
   const [datenset, setDatenset] = useState([]);
 
-  const [currentUser, setCurrentUser] = useState([])
+  const [currentUser, setCurrentUser] = useState([]);
 
   /*hier soll gecheckt werden, ob der User eingelogged ist und zwar, wenn die Page geladen wurde (sofort, wenn das component geladen wurde)
   
@@ -66,14 +66,13 @@ export default function Home() {
     //sobald sich der Value in den brackets von useEffect ändert, wird der Code Block darüber ausgeführt (der Block wird jedes Mal recalled)
   }, [userId, beschreibung]);
 
-
   const addNewLink = async () => {
     try {
       if (beschreibung) {
         const { data, error } = await supabase.from("datenset").insert({
           user_id: userId,
           beschreibung: beschreibung,
-          stimmung: stimmung
+          stimmung: stimmung,
         });
         if (error) throw error;
         console.log("data", data);
@@ -108,7 +107,6 @@ export default function Home() {
             <>
               {console.log("datensetXX: ", datenset)}
               <div className="grid gap-2 pt-8 m-auto">
-            
                 <input
                   type="text"
                   name="stimmung"
@@ -148,7 +146,7 @@ export default function Home() {
               </div>
 
               <section className="bg-gray-100">
-              {/* 
+                {/* 
                 <div className="justify-center w-full m-auto mt-12 text-center">
                   {datenset.map((object, index) => {
                     return (
@@ -167,16 +165,15 @@ export default function Home() {
                 */}
               </section>
 
-
+              {/* 
               {currentUser?.data.user.phone != 0 && ( <div className="w-2/3 m-auto mt-8 text-sm text-center">
      
         <h2 className="font-semibold">Test: deine Telefonnummer: {currentUser?.data?.user?.phone}</h2>
         </div> )}
-        
+              */}
             </>
           ) : (
             <div className="grid pt-8 m-auto">
-
               <Link href="/signup">
                 <button
                   type="button"
@@ -196,8 +193,6 @@ export default function Home() {
             </div>
           )}
         </div>
-
-       
       </main>
     </>
   );
