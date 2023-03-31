@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import supabase from "@/utils/supabase-client";
 import Link from "next/link";
 
@@ -20,6 +21,7 @@ export default function Dashboard() {
 
   const [currentUser, setCurrentUser] = useState([]);
 
+  const router = useRouter();
   /*hier soll gecheckt werden, ob der User eingelogged ist und zwar, wenn die Page geladen wurde (sofort, wenn das component geladen wurde)
   
   useEffect(argument1, argument2) 
@@ -90,6 +92,12 @@ export default function Dashboard() {
     setIsAuthenticated(false);
   }
 
+  
+  const backToHome = () => {
+    router.push("/")
+  }
+
+
   console.log("authentifiziert? ", isAuthenticated);
   console.log("currentUser: ", currentUser);
   return (
@@ -140,7 +148,7 @@ export default function Dashboard() {
                 <button
                   type="button"
                   className="text-teal-400  hover:bg-bg-teal-700 focus:outline-none focus:ring-4 focus:ring-bg-teal-200  border border-teal-400 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2  dark:hover:bg-teal-700 dark:focus:ring-bg-teal-700 m-auto mt-8"
-                  onClick={loginWithToken}
+                  onClick={backToHome}
                 >
                   Logout
                 </button>

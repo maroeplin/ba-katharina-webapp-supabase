@@ -103,7 +103,7 @@ export default function Home() {
         <div className="w-1/3 pt-48 m-auto text-center">
           <h1 className="text-4xl font-light">Herzlich Willkommen!</h1>
 
-          {isAuthenticated ? (
+          {!isAuthenticated ? (
             <>
               {console.log("datensetXX: ", datenset)}
               <div className="grid gap-2 pt-8 m-auto">

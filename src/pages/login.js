@@ -23,7 +23,7 @@ export default function Login() {
         console.log("User wurde authentifiziert.");
         setIsAuthenticated(true);
         //zurück zur Startseite
-        router.push("/");
+        router.push("/dashboard");
       }
     } catch (error) {
       console.log('error: ', error);
