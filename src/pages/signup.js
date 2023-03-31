@@ -57,7 +57,7 @@ export default function Signup() {
         setIsRegistered(true);
         setIsAuthenticated(true);
         //zurück zur Startseite
-        router.push("/index");
+        router.push("/");
       }
     } catch {}
   }
