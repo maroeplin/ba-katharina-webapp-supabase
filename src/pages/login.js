@@ -12,7 +12,7 @@ export default function Login() {
       if (token) {
         
         const response = await supabase.auth.verifyOtp({
-          token: token
+          token
         });
         //error field
         if (response.error) throw response.error;

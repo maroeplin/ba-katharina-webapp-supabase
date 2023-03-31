@@ -41,12 +41,12 @@ export default function Signup() {
       
       <h2 className="pb-8 text-center">Mit deiner Mobilnummer und einem Passwort kannst du dich registrieren.</h2>
 
-      <labels
+      <label
       htmlFor="phone"
       className="block mt-4 text-sm font-medium text-gray-700"
     >
       Mobilnummer <br/><span className="text-gray-400">Ländervorwahl +49</span>
-    </labels>
+    </label>
     <div className="w-full ">
       <input
         type="phone"
