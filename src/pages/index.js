@@ -149,13 +149,13 @@ export default function Home() {
                 </button>
               </div>
 
-              <section>
-                <div className="justify-center m-auto mt-12">
+              <section className="bg-gray-100">
+                <div className="justify-center w-full m-auto mt-12 text-center">
                   {datenset.map((object, index) => {
                     return (
                       <div
                         key={index}
-                        className="p-4 mb-4 rounded-md shadow-xl bg-lime-300 w-96 "
+                        className="p-4 mb-4 border-b-2"
                       >
                         {object.beschreibung}
                       </div>
@@ -165,11 +165,11 @@ export default function Home() {
                 </div>
               </section>
 
-              {currentUser?.data.user.phone != 0 && ( <div className="w-2/3 m-auto mt-8 text-2xl text-center">
-        <h1 className="w-2/3 m-auto mt-4 text-2xl text-center">Test. Du bist authentifiziert und als Beweis </h1>
-        <h2 className="font-semibold">deine Telefonnummer: {currentUser?.data?.user?.phone}</h2>
-        </div> )}
 
+              {currentUser?.data.user.phone != 0 && ( <div className="w-2/3 m-auto mt-8 text-sm text-center">
+     
+        <h2 className="font-semibold">Test: deine Telefonnummer: {currentUser?.data?.user?.phone}</h2>
+        </div> )}
         
             </>
           ) : (

@@ -78,6 +78,7 @@ export default function Dashboard() {
         console.log("data", data);
         if (datenset) {
           setDatenset([...datenset, data]);
+          alert("Eintrag wurde in die Datenbank geschrieben.")
         }
       }
     } catch (error) {
@@ -103,7 +104,7 @@ export default function Dashboard() {
         <div className="w-1/3 pt-48 m-auto text-center">
           <h1 className="text-4xl font-light">Herzlich Willkommen!</h1>
 
-          {isAuthenticated ? (
+          {isAuthenticated && (
             <>
               {console.log("datensetXX: ", datenset)}
               <div className="grid gap-2 pt-8 m-auto">
@@ -149,13 +150,13 @@ export default function Dashboard() {
                 </button>
               </div>
 
-              <section>
-                <div className="justify-center m-auto mt-12">
+              <section className="bg-gray-100">
+                <div className="justify-center w-full m-auto mt-12 text-center">
                   {datenset.map((object, index) => {
                     return (
                       <div
                         key={index}
-                        className="p-4 mb-4 rounded-md shadow-xl bg-lime-300 w-96 "
+                        className="p-4 mb-4 border-b-2"
                       >
                         {object.beschreibung}
                       </div>
@@ -165,33 +166,14 @@ export default function Dashboard() {
                 </div>
               </section>
 
-              {currentUser?.data.user.phone != 0 && ( <div className="w-2/3 m-auto mt-8 text-2xl text-center">
-        <h1 className="w-2/3 m-auto mt-4 text-2xl text-center">Test. Du bist authentifiziert und als Beweis </h1>
-        <h2 className="font-semibold">deine Telefonnummer: {currentUser?.data?.user?.phone}</h2>
+
+              {currentUser?.data.user.phone != 0 && ( <div className="w-2/3 m-auto mt-8 text-sm text-center">
+     
+        <h2 className="font-semibold">Test: deine Telefonnummer: {currentUser?.data?.user?.phone}</h2>
         </div> )}
 
         
             </>
-          ) : (
-            <div className="grid pt-8 m-auto">
-
-              <Link href="/signup">
-                <button
-                  type="button"
-                  className="text-white bg-teal-400 hover:bg-teal-700 focus:outline-none focus:ring-4 focus:ring-teal-300 font-medium rounded-full text-sm px-10 py-2.5 text-center mb-2 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-900 mt-4"
-                >
-                  Registrieren
-                </button>
-              </Link>
-              <Link href="/login" className="mt-4 mb-2">
-                <button
-                  type="button"
-                  className="text-white bg-teal-200 hover:bg-teal-800 focus:outline-none focus:ring-4 focus:ring-teal-300 font-medium rounded-full text-sm px-10 py-2.5 text-centerdark:bg-purple-400 dark:hover:bg-teal-700 dark:focus:ring-teal-900 "
-                >
-                  Login
-                </button>
-              </Link>
-            </div>
           )}
         </div>
 
