@@ -85,7 +85,7 @@ export default function Signup() {
         title="Die Mobilnummer sollte folgendes Schema haben: +49 111 1111 1111"
         minlength="13"
         maxlength="14"
-        className="block w-full pt-2 pb-2 pl-2 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+        className="block w-full pt-2 pb-2 pl-2 border border-gray-300 rounded-md shadow-sm focus:border-teal-500 focus:ring-teal-500"
         placeholder="+49 111 1111 1111"
         onChange={(e) => setPhone(e.target.value)}
       ></input>
