@@ -62,7 +62,9 @@ export default function Signup() {
     } catch {}
   }
 
-
+  const backToHome = () => {
+    router.push("/");
+  }
 
   return (
     <div className="w-2/3 max-w-6xl pt-32 m-auto md:w-1/3">
@@ -118,14 +120,25 @@ export default function Signup() {
       ></input>
       </div>
       
+      <div className="grid justify-center w-1/2 h-auto gap-1 m-auto md:grid-cols-2">
       <button
         type="button"
-        className="text-white bg-teal-400 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-teal-400 dark:hover:bg-teal-700 dark:focus:ring-teal-700 mt-4"
+        className="text-sm font-medium text-center text-white bg-teal-400 rounded-full hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-purple-300 dark:bg-teal-400 dark:hover:bg-teal-700 dark:focus:ring-teal-700 px-5 py-2.5
+        mb-2 mt-8"
         onClick={signUpWithPhone}
       >
         registrieren
       </button>
-    
+
+      <button
+        type="button"
+        className="text-teal-400  hover:bg-bg-teal-700 border border-teal-400 focus:outline-none focus:ring-4 focus:ring-bg-teal-200 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:hover:bg-teal-700 dark:focus:ring-bg-teal-700 m-auto md:mt-8"
+        onClick={backToHome}
+      >
+        home
+      </button>
+      </div>
+      
       </> ):( 
         <div className="pt-24">
           <h1 className="pb-8 text-2xl text-center">Vielen Dank für die Registrierung. Du erhältst deinen <span className="font-bold">Anmelde-Code mit einer SMS</span>.   <span role="img" aria-label="done">✅</span></h1>

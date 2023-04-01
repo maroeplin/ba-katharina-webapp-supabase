@@ -101,7 +101,7 @@ export default function Home() {
       </Head>
       <main>
         <div className="w-1/3 pt-48 m-auto text-center">
-          <h1 className="text-4xl font-light">Herzlich Willkommen!</h1>
+          <h1 className="text-3xl font-light md:text-4xl">Herzlich Willkommen!</h1>
 
           {!isAuthenticated ? (
             <>
@@ -173,7 +173,7 @@ export default function Home() {
               */}
             </>
           ) : (
-            <div className="grid pt-8 m-auto">
+            <div className="grid pt-8 m-auto ">
               <Link href="/signup">
                 <button
                   type="button"

@@ -91,7 +91,7 @@ export default function Login() {
               onChange={(e) => setPassword(e.target.value)}
             ></input>
           </div>
-          <div className="grid md:grid-cols-2">
+          <div className="grid justify-center w-1/2 h-auto gap-1 m-auto md:grid-cols-2">
           <button
             type="button"
             className="text-white bg-teal-400 hover:bg-bg-teal-700 focus:outline-none focus:ring-4 focus:ring-bg-teal-200 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-teal-400 dark:hover:bg-teal-700 dark:focus:ring-bg-teal-700 m-auto mt-8"
@@ -102,7 +102,7 @@ export default function Login() {
 
           <button
             type="button"
-            className="text-teal-400  hover:bg-bg-teal-700 border border-teal-400 focus:outline-none focus:ring-4 focus:ring-bg-teal-200 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:hover:bg-teal-700 dark:focus:ring-bg-teal-700 m-auto mt-8"
+            className="text-teal-400  hover:bg-bg-teal-700 border border-teal-400 focus:outline-none focus:ring-4 focus:ring-bg-teal-200 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:hover:bg-teal-700 dark:focus:ring-bg-teal-700 m-auto md:mt-8"
             onClick={backToHome}
           >
             Home

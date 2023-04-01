@@ -51,7 +51,7 @@ export default function Dashboard() {
       try {
         const { data, error } = await supabase
           .from("datenset")
-          .select("beschreibung, stimmung")
+          .select("beschreibung, stimmung, created_at")
           .eq("user_id", userId);
 
         if (error) throw error;
@@ -92,11 +92,9 @@ export default function Dashboard() {
     setIsAuthenticated(false);
   }
 
-  
   const backToHome = () => {
-    router.push("/")
-  }
-
+    router.push("/");
+  };
 
   console.log("authentifiziert? ", isAuthenticated);
   console.log("currentUser: ", currentUser);
@@ -116,6 +114,13 @@ export default function Dashboard() {
             <>
               {console.log("datensetXX: ", datenset)}
               <div className="grid gap-2 pt-8 m-auto">
+                <label
+                  htmlFor="phone"
+                  className="block mt-4 text-sm font-medium text-left text-gray-700"
+                >
+                  Wie fühlst du dich gerade?
+                </label>
+
                 <input
                   type="text"
                   name="stimmung"
@@ -127,6 +132,13 @@ export default function Dashboard() {
               </div>
 
               <div className="w-full mt-1 mb-4">
+              <label
+                  htmlFor="phone"
+                  className="block mt-4 text-sm font-medium text-left text-gray-700"
+                >
+                  Wie fühlst du dich gerade?
+                </label>
+                
                 <input
                   type="text"
                   name="beschreibung"
@@ -155,7 +167,7 @@ export default function Dashboard() {
               </div>
 
               <section className="bg-gray-100">
-                {/* 
+             
                 <div className="justify-center w-full m-auto mt-12 text-center">
                   {datenset.map((object, index) => {
                     return (
@@ -163,13 +175,14 @@ export default function Dashboard() {
                         key={index}
                         className="p-4 mb-4 border-b-2"
                       >
-                        {object.beschreibung}
+                        <h1>{object.created_at}</h1>
+                        {object.stimmung}
                       </div>
                     );
                   })}
                   {console.log("Datenset", { datenset })}
                 </div>
-                */}
+               
               </section>
 
               {/* 
