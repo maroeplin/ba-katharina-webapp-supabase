@@ -100,7 +100,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div className="w-auto pt-48 m-auto text-center bg-amber-500">
+        <div className="w-auto pt-48 m-auto text-center ">
           <h1 className="text-3xl font-light md:text-4xl">Herzlich Willkommen!</h1>
 
           {!isAuthenticated ? (
