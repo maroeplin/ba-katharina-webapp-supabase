@@ -79,7 +79,7 @@ export default function Dashboard() {
         if (error) throw error;
         console.log("data", data);
         if (datenset) {
-          setDatenset([...datenset, data]);
+          setDatenset([data, ...datenset]);
           alert("Eintrag wurde in die Datenbank geschrieben.");
         }
       }
@@ -132,13 +132,13 @@ export default function Dashboard() {
               </div>
 
               <div className="w-2/3 m-auto mt-1 mb-4">
-              <label
+                <label
                   htmlFor="phone"
                   className="block mt-4 text-sm font-medium text-left text-gray-700"
                 >
                   Wie fühlst du dich gerade?
                 </label>
-                
+
                 <input
                   type="text"
                   name="beschreibung"
@@ -167,22 +167,20 @@ export default function Dashboard() {
               </div>
 
               <section className="w-2/3 m-auto bg-gray-100">
-             
                 <div className="justify-center w-full m-auto mt-12 text-center">
-                  {datenset.map((object, index) => {
-                    return (
-                      <div
-                        key={index}
-                        className="p-4 mb-4 border-b-2"
-                      >
-                        <h1>{object.created_at}</h1>
-                        {object.stimmung}
-                      </div>
-                    );
-                  })}
+                  {datenset &&
+                    datenset.length > 0 &&
+                    datenset.map((object, index) => {
+                      return (
+                        <div key={index} className="p-4 mb-4 border-b-2">
+                          <h1>{object && object.created_at}</h1>
+                          {object && object.stimmung}
+                        </div>
+                      );
+                    })}
+
                   {console.log("Datenset", { datenset })}
                 </div>
-               
               </section>
 
               {/* 

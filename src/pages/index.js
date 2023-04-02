@@ -104,74 +104,7 @@ export default function Home() {
           <h1 className="text-3xl font-light md:text-4xl">Herzlich Willkommen!</h1>
 
           {!isAuthenticated ? (
-            <>
-              {console.log("datensetXX: ", datenset)}
-              <div className="grid gap-2 pt-8 m-auto">
-                <input
-                  type="text"
-                  name="stimmung"
-                  id="stimmung"
-                  className="block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                  placeholder="Stimmung"
-                  onChange={(e) => setStimmung(e.target.value)}
-                ></input>
-              </div>
-
-              <div className="w-full mt-1 mb-4">
-                <input
-                  type="text"
-                  name="beschreibung"
-                  id="beschreibung"
-                  className="block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                  placeholder="Beschreibung"
-                  onChange={(e) => setBeschreibung(e.target.value)}
-                ></input>
-              </div>
-              <div className="grid grid-rows-2">
-                <button
-                  type="button"
-                  className="text-white dark:bg-teal-400 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2  dark:hover:bg-teal-700 dark:focus:ring-teal-900 mt-4"
-                  onClick={addNewLink}
-                >
-                  Eintrag erstellen
-                </button>
-
-                <button
-                  type="button"
-                  className="text-teal-400  hover:bg-bg-teal-700 focus:outline-none focus:ring-4 focus:ring-bg-teal-200  border border-teal-400 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2  dark:hover:bg-teal-700 dark:focus:ring-bg-teal-700 m-auto mt-8"
-                  onClick={loginWithToken}
-                >
-                  Logout
-                </button>
-              </div>
-
-              <section className="bg-gray-100">
-                {/* 
-                <div className="justify-center w-full m-auto mt-12 text-center">
-                  {datenset.map((object, index) => {
-                    return (
-                      <div
-                        key={index}
-                        className="p-4 mb-4 border-b-2"
-                      >
-                        {object.stimmung}
-                       
-
-                      </div>
-                    );
-                  })}
-                  {console.log("Datenset", { datenset })}
-                </div>
-                */}
-              </section>
-
-              {/* 
-              {currentUser?.data.user.phone != 0 && ( <div className="w-2/3 m-auto mt-8 text-sm text-center">
-     
-        <h2 className="font-semibold">Test: deine Telefonnummer: {currentUser?.data?.user?.phone}</h2>
-        </div> )}
-              */}
-            </>
+            null
           ) : (
             <div className="grid pt-8 m-auto ">
               <Link href="/signup">
