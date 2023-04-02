@@ -79,7 +79,7 @@ export default function Dashboard() {
         if (error) throw error;
         console.log("data", data);
         if (datenset) {
-          setDatenset([data, ...datenset]);
+          setDatenset([ data,...datenset]);
           alert("Eintrag wurde in die Datenbank geschrieben.");
         }
       }
@@ -109,6 +109,15 @@ export default function Dashboard() {
       <main>
         <div className="w-auto max-w-md pt-48 m-auto text-center md:max-w-2xl">
           <h1 className="text-4xl font-light">Herzlich Willkommen!</h1>
+
+          {currentUser && currentUser?.data?.user.phone > 0 && (
+            <div className="w-2/3 m-auto mt-8 text-sm text-center">
+              <h2 className="font-semibold">
+                Deine Telefonnummer:{" "}
+                {currentUser && currentUser?.data?.user?.phone}
+              </h2>
+            </div>
+          )}
 
           {isAuthenticated && (
             <>
@@ -148,10 +157,10 @@ export default function Dashboard() {
                   onChange={(e) => setBeschreibung(e.target.value)}
                 ></input>
               </div>
-              <div className="grid w-2/3 grid-rows-2 m-auto">
+              <div className="grid w-2/3 m-auto md:grid-cols-2">
                 <button
                   type="button"
-                  className="text-white dark:bg-teal-400 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2  dark:hover:bg-teal-700 dark:focus:ring-teal-900 mt-4"
+                  className="px-5 mt-8 mb-2 text-sm font-medium text-center text-white bg-teal-400 rounded-full hover:bg-teal-700 focus:outline-none focus:ring-4 focus:ring-teal-300 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-900 py-2.5"
                   onClick={addNewLink}
                 >
                   Eintrag erstellen
@@ -166,31 +175,24 @@ export default function Dashboard() {
                 </button>
               </div>
 
-              <section className="w-2/3 m-auto bg-gray-100">
-                <div className="justify-center w-full m-auto mt-12 text-center">
+              <section className="w-2/3 m-auto ">
+              <ul  className="grid pt-8 text-gray-400 border-b border-gray-400 md:grid-cols-2">
+                          <li className="pt-4 border-gray-400 md:border-r">Erstellt am</li>
+                          <li className="pt-4 pb-2 border-gray-400 md:border-b-0">Stimmung</li>
+                        </ul>
+
+                <div className="justify-center w-full m-auto text-center">
                   {datenset &&
-                    datenset.length > 0 &&
                     datenset.map((object, index) => {
                       return (
-                        <div key={index} className="p-4 mb-4 border-b-2">
-                          <h1>{object && object.created_at}</h1>
-                          {object && object.stimmung}
-                        </div>
+                        <ul key={index} className="grid border-b border-gray-400 md:grid-cols-2">
+                          <li className="pt-4 border-gray-400 md:border-r">{object && object.created_at}</li>
+                          <li className="pt-4 pb-2 border-gray-400 md:border-b-0">{object && object.stimmung}</li>
+                        </ul>
                       );
                     })}
-
-                  {console.log("Datenset", { datenset })}
                 </div>
               </section>
-
-              {/* 
-              {currentUser?.data.user.phone != 0 && ( <div className="w-2/3 m-auto mt-8 text-sm text-center">
-     
-        <h2 className="font-semibold">Test: deine Telefonnummer: {currentUser?.data?.user?.phone}</h2> 
-
-       
-        </div> )}
-      */}
             </>
           )}
         </div>
