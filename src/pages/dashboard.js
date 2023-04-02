@@ -107,13 +107,13 @@ export default function Dashboard() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div className="w-1/3 pt-48 m-auto text-center">
+        <div className="w-auto max-w-md pt-48 m-auto text-center md:max-w-2xl">
           <h1 className="text-4xl font-light">Herzlich Willkommen!</h1>
 
           {isAuthenticated && (
             <>
               {console.log("datensetXX: ", datenset)}
-              <div className="grid gap-2 pt-8 m-auto">
+              <div className="grid w-2/3 gap-2 pt-8 m-auto">
                 <label
                   htmlFor="phone"
                   className="block mt-4 text-sm font-medium text-left text-gray-700"
@@ -131,7 +131,7 @@ export default function Dashboard() {
                 ></input>
               </div>
 
-              <div className="w-full mt-1 mb-4">
+              <div className="w-2/3 m-auto mt-1 mb-4">
               <label
                   htmlFor="phone"
                   className="block mt-4 text-sm font-medium text-left text-gray-700"
@@ -148,7 +148,7 @@ export default function Dashboard() {
                   onChange={(e) => setBeschreibung(e.target.value)}
                 ></input>
               </div>
-              <div className="grid grid-rows-2">
+              <div className="grid w-2/3 grid-rows-2 m-auto">
                 <button
                   type="button"
                   className="text-white dark:bg-teal-400 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2  dark:hover:bg-teal-700 dark:focus:ring-teal-900 mt-4"
@@ -166,7 +166,7 @@ export default function Dashboard() {
                 </button>
               </div>
 
-              <section className="bg-gray-100">
+              <section className="w-2/3 m-auto bg-gray-100">
              
                 <div className="justify-center w-full m-auto mt-12 text-center">
                   {datenset.map((object, index) => {
