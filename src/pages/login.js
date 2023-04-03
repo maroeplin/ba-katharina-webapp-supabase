@@ -106,10 +106,10 @@ export default function Login() {
               </h1>
             ) : null}
           </div>
-          <div className="grid justify-center w-1/2 h-auto gap-1 m-auto md:grid-cols-2">
+          <div className="flex justify-center w-1/2 h-auto grid-cols-2 gap-8 m-auto felx-wrap">
             <button
               type="button"
-              className="text-white bg-teal-400 hover:bg-bg-teal-700 focus:outline-none focus:ring-4 focus:ring-bg-teal-200 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-teal-400 dark:hover:bg-teal-700 dark:focus:ring-bg-teal-700 m-auto mt-8"
+              className="px-8 py-4 m-auto mt-8 mb-4 font-medium text-center text-white bg-teal-400 rounded-full text-md hover:bg-bg-teal-700 focus:outline-none focus:ring-4 focus:ring-bg-teal-200 dark:bg-teal-400 dark:hover:bg-teal-700 dark:focus:ring-bg-teal-700"
               onClick={loginWithPhone}
             >
               Login
@@ -117,7 +117,7 @@ export default function Login() {
 
             <button
               type="button"
-              className="text-teal-400  hover:bg-bg-teal-700 border border-teal-400 focus:outline-none focus:ring-4 focus:ring-bg-teal-200 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:hover:bg-teal-700 dark:focus:ring-bg-teal-700 m-auto md:mt-8"
+              className="px-8 py-4 m-auto mb-4 text-sm font-medium text-center text-teal-400 border border-teal-400 rounded-full hover:bg-bg-teal-700 focus:outline-none focus:ring-4 focus:ring-bg-teal-200 dark:hover:bg-teal-700 dark:focus:ring-bg-teal-700 md:mt-8"
               onClick={backToHome}
             >
               Home

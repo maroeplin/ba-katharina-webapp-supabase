@@ -120,11 +120,10 @@ export default function Signup() {
       ></input>
       </div>
       
-      <div className="grid justify-center w-1/2 h-auto gap-1 m-auto md:grid-cols-2">
+      <div className="flex justify-center w-1/2 h-auto grid-cols-2 gap-8 m-auto felx-wrap">
       <button
         type="button"
-        className="text-sm font-medium text-center text-white bg-teal-400 rounded-full hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-purple-300 dark:bg-teal-400 dark:hover:bg-teal-700 dark:focus:ring-teal-700 px-5 py-2.5
-        mb-2 mt-8"
+        className="px-8 py-4 mt-8 mb-4 text-sm font-medium text-center text-white bg-teal-400 rounded-full hover:bg-teal-700 focus:outline-none focus:ring-4 focus:ring-teal-300 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-900"
         onClick={signUpWithPhone}
       >
         registrieren
@@ -132,7 +131,7 @@ export default function Signup() {
 
       <button
         type="button"
-        className="text-teal-400  hover:bg-bg-teal-700 border border-teal-400 focus:outline-none focus:ring-4 focus:ring-bg-teal-200 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:hover:bg-teal-700 dark:focus:ring-bg-teal-700 m-auto md:mt-8"
+        className="px-8 py-4 m-auto mb-4 text-sm font-medium text-center text-teal-400 border border-teal-400 rounded-full hover:bg-bg-teal-700 focus:outline-none focus:ring-4 focus:ring-bg-teal-200 dark:hover:bg-teal-700 dark:focus:ring-bg-teal-700 md:mt-8"
         onClick={backToHome}
       >
         home
@@ -154,14 +153,14 @@ export default function Signup() {
               type="token"
               name="token"
               id="token"
-              className="block w-full pt-2 pb-2 pl-2 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 mt-8focus:ring-indigo-500"
+              className="block w-full pt-2 pb-2 pl-2 mt-8 border border-gray-300 rounded-md shadow-sm"
               placeholder="••••••"
               onChange={(e) => setToken(e.target.value)}
             ></input>
           </div>
           <button
             type="button"
-            className="text-white bg-teal-400 hover:bg-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-teal-400 dark:hover:bg-teal-700 dark:focus:ring-teal-400 m-auto mt-8"
+            className="px-10 py-4 m-auto mt-8 mb-4 text-sm font-medium text-center text-white bg-teal-400 rounded-full hover:bg-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-300 dark:bg-teal-400 dark:hover:bg-teal-700 dark:focus:ring-teal-400"
             onClick={loginWithToken}
           >
             Account aktivieren

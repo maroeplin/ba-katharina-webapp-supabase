@@ -103,7 +103,7 @@ export default function Home() {
         <div className="w-auto pt-48 m-auto text-center">
           <h1 className="text-3xl font-light text-center md:text-4xl ">Herzlich Willkommen! </h1>
           <div>
-          <h2 className="w-1/3 pt-8 m-auto text-lg text-center"> Logge dich ein, um an der Befragung teilzunehmen. Falls du noch kein Konto erstellt hast, registriere dich.</h2>
+          <h2 className="w-9/12 pt-8 m-auto text-lg text-center md:w-1/3"> Logge dich ein, um an der Befragung teilzunehmen. Falls du noch kein Konto erstellt hast, registriere dich.</h2>
             
           </div>
          
@@ -115,7 +115,7 @@ export default function Home() {
               <Link href="/signup">
                 <button
                   type="button"
-                  className="text-white bg-teal-400 hover:bg-teal-700 focus:outline-none focus:ring-4 focus:ring-teal-300 font-medium rounded-full text-sm px-10 py-2.5 text-center mb-2 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-900 mt-4"
+                  className="px-10 py-4 mt-4 mb-4 text-sm font-medium text-center text-white bg-teal-400 rounded-full hover:bg-teal-700 focus:outline-none focus:ring-4 focus:ring-teal-300 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-900"
                 >
                   Registrieren
                 </button>
@@ -123,7 +123,7 @@ export default function Home() {
               <Link href="/login" className="mt-4 mb-2">
                 <button
                   type="button"
-                  className="text-white bg-teal-200 hover:bg-teal-800 focus:outline-none focus:ring-4 focus:ring-teal-300 font-medium rounded-full text-sm px-10 py-2.5 text-centerdark:bg-purple-400 dark:hover:bg-teal-700 dark:focus:ring-teal-900 "
+                  className="px-10 py-4 text-sm font-medium text-white bg-teal-200 rounded-full hover:bg-teal-800 focus:outline-none focus:ring-4 focus:ring-teal-300 text-centerdark:bg-purple-400 dark:hover:bg-teal-700 dark:focus:ring-teal-900 "
                 >
                   Login
                 </button>
