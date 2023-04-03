@@ -4,8 +4,11 @@ import supabase from "@/utils/supabase-client";
 
 export default function Login() {
   const [password, setPassword] = useState("");
-  const [phone, setPhone] = useState("")
+  const [phone, setPhone] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  //error check for password
+  const [hasError, setHasError] = useState(false);
   const router = useRouter();
 
   async function loginWithPhone() {
@@ -15,7 +18,13 @@ export default function Login() {
           phone: phone,
           password: password,
         });
-      
+
+        if (response.error) {
+          console.log("Falsches Passwort!");
+          setHasError(true);
+          return;
+        }
+
         console.log("error: ", response.error);
         //data field
         const userId = response.data.user?.id;
@@ -26,17 +35,17 @@ export default function Login() {
         router.push("/dashboard");
       }
     } catch (error) {
-      console.log('error: ', error);
+      console.log("error: ", error);
     }
   }
 
   const backToHome = () => {
-    router.push("/")
-  }
+    router.push("/");
+  };
 
   return (
     <div className="items-center content-center justify-center w-2/3 max-w-6xl pt-32 m-auto text-center md:w-1/3 md:max-w-1/3">
-      {console.log('Authentifiziert?', isAuthenticated)}
+      {console.log("Authentifiziert?", isAuthenticated)}
       {!isAuthenticated ? (
         <>
           <div className="pt-24 pb-8 md:w-full">
@@ -66,7 +75,7 @@ export default function Login() {
               onChange={(e) => setPhone(e.target.value)}
             ></input>
           </div>
-          
+
           <label
             htmlFor="password"
             className="block mt-4 text-sm font-medium text-left text-gray-700"
@@ -90,23 +99,29 @@ export default function Login() {
               placeholder="•••••••••"
               onChange={(e) => setPassword(e.target.value)}
             ></input>
+
+            {hasError ? (
+              <h1 className="pt-2 pb-2 mt-2 font-semibold text-white bg-red-600 rounded-lg">
+                Das eingegebene Passwort war leider falsch.
+              </h1>
+            ) : null}
           </div>
           <div className="grid justify-center w-1/2 h-auto gap-1 m-auto md:grid-cols-2">
-          <button
-            type="button"
-            className="text-white bg-teal-400 hover:bg-bg-teal-700 focus:outline-none focus:ring-4 focus:ring-bg-teal-200 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-teal-400 dark:hover:bg-teal-700 dark:focus:ring-bg-teal-700 m-auto mt-8"
-            onClick={loginWithPhone}
-          >
-            Login
-          </button>
+            <button
+              type="button"
+              className="text-white bg-teal-400 hover:bg-bg-teal-700 focus:outline-none focus:ring-4 focus:ring-bg-teal-200 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-teal-400 dark:hover:bg-teal-700 dark:focus:ring-bg-teal-700 m-auto mt-8"
+              onClick={loginWithPhone}
+            >
+              Login
+            </button>
 
-          <button
-            type="button"
-            className="text-teal-400  hover:bg-bg-teal-700 border border-teal-400 focus:outline-none focus:ring-4 focus:ring-bg-teal-200 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:hover:bg-teal-700 dark:focus:ring-bg-teal-700 m-auto md:mt-8"
-            onClick={backToHome}
-          >
-            Home
-          </button>
+            <button
+              type="button"
+              className="text-teal-400  hover:bg-bg-teal-700 border border-teal-400 focus:outline-none focus:ring-4 focus:ring-bg-teal-200 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:hover:bg-teal-700 dark:focus:ring-bg-teal-700 m-auto md:mt-8"
+              onClick={backToHome}
+            >
+              Home
+            </button>
           </div>
         </>
       ) : (
