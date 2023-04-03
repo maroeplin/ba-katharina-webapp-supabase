@@ -79,7 +79,7 @@ export default function Dashboard() {
         if (error) throw error;
         console.log("data", data);
         if (datenset) {
-          setDatenset([ data,...datenset]);
+          setDatenset([data, ...datenset]);
           alert("Eintrag wurde in die Datenbank geschrieben.");
         }
       }
@@ -109,7 +109,11 @@ export default function Dashboard() {
       <main>
         <div className="w-auto max-w-md pt-48 m-auto text-center md:max-w-2xl">
           <h1 className="text-4xl font-light">Herzlich Willkommen!</h1>
-
+          <ul>
+            <li>Vielen Dank, dass du an meiner Befragung zu deinem verfassungszustand teilnimmst.</li>
+            <li>Nehme dir drei mal am Tag die Zeit und beantworte folgende Fragen ehrlich.</li>
+            <li></li>
+          </ul>
           {currentUser && currentUser?.data?.user.phone > 0 && (
             <div className="w-2/3 m-auto mt-8 text-sm text-center">
               <h2 className="font-semibold">
@@ -123,6 +127,39 @@ export default function Dashboard() {
             <>
               {console.log("datensetXX: ", datenset)}
               <div className="grid w-2/3 gap-2 pt-8 m-auto">
+
+              <label
+                  htmlFor="phone"
+                  className="block mt-4 text-sm font-medium text-left text-gray-700"
+                >
+                  Wochentag
+                </label>
+
+                <select name="cars" id="cars">
+                  <option value="1">Montag</option>
+                  <option value="saab">Dienstag</option>
+                  <option value="mercedes">19 Uhr</option>
+              
+                  <option value="audi"> 10 sehr energiegeladen</option>
+                </select>
+
+                <label
+                  htmlFor="phone"
+                  className="block mt-4 text-sm font-medium text-left text-gray-700"
+                >
+                  Zeitraum
+                </label>
+
+                <select name="cars" id="cars">
+                  <option value="volvo">9 Uhr</option>
+                  <option value="saab">-14 Uhr</option>
+                  <option value="mercedes">19 Uhr</option>
+              
+                </select>
+
+
+                <br/>
+                
                 <label
                   htmlFor="phone"
                   className="block mt-4 text-sm font-medium text-left text-gray-700"
@@ -130,23 +167,144 @@ export default function Dashboard() {
                   Wie fühlst du dich gerade?
                 </label>
 
-                <input
-                  type="text"
-                  name="stimmung"
-                  id="stimmung"
-                  className="block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                  placeholder="Stimmung"
-                  onChange={(e) => setStimmung(e.target.value)}
-                ></input>
+                <select name="cars" id="cars">
+                  <option value="volvo">-10 sehr erschöpft</option>
+                  <option value="saab">-9</option>
+                  <option value="mercedes">-8</option>
+                  <option value="audi">-7</option>
+                  <option value="audi">-6</option>
+                  <option value="audi">-5 erschöpft</option>
+                  <option value="audi">-4</option>
+                  <option value="audi">-3</option>
+                  <option value="audi">-2</option>
+                  <option value="audi">-1</option>
+                  <option value="audi">0 ausgeglichen</option>
+                  <option value="volvo"> 1</option>
+                  <option value="saab"> 2</option>
+                  <option value="mercedes"> 3</option>
+                  <option value="audi"> 4</option>
+                  <option value="audi"> 5 energiegeladen</option>
+                  <option value="audi"> 6</option>
+                  <option value="audi"> 7</option>
+                  <option value="audi"> 8</option>
+                  <option value="audi"> 9</option>
+                  <option value="audi"> 10 sehr energiegeladen</option>
+                </select>
+
+                <label
+                  htmlFor="phone"
+                  className="block mt-4 text-sm font-medium text-left text-gray-700"
+                >
+                  Wie fühlst du dich körperlich?
+                  <br/>
+                  <span className="text-gray-500"> -10 = sehr erschöpft  | 0 = ausgeglichen | 10 = sehr energiegeladen </span>
+                 
+                </label>
+
+                <select name="cars" id="cars">
+                  <option value="volvo">-10</option>
+                  <option value="saab">-9</option>
+                  <option value="mercedes">-8</option>
+                  <option value="audi">-7</option>
+                  <option value="audi">-6</option>
+                  <option value="audi">-5</option>
+                  <option value="audi">-4</option>
+                  <option value="audi">-3</option>
+                  <option value="audi">-2</option>
+                  <option value="audi">-1</option>
+                  <option value="audi">0 ausgeglichen</option>
+                  <option value="volvo"> 1</option>
+                  <option value="saab"> 2</option>
+                  <option value="mercedes"> 3</option>
+                  <option value="audi"> 4</option>
+                  <option value="audi"> 5 glücklick</option>
+                  <option value="audi"> 6</option>
+                  <option value="audi"> 7</option>
+                  <option value="audi"> 8</option>
+                  <option value="audi"> 9</option>
+                  <option value="audi"> 10 sehr glücklich</option>
+                </select>
+
+                <label
+                  htmlFor="phone"
+                  className="block mt-4 text-sm font-medium text-left text-gray-700"
+                >
+                  Wie ist dein geistiger Zustand in diesem Moment?
+                  <br/>
+                  <span className="text-gray-500"> -10 = sehr erschöpft  | 0 = ausgeglichen | 10 = sehr energiegeladen </span>
+                 
+                </label>
+
+                <select name="cars" id="cars">
+                  <option value="volvo">-10 sehr abgelenkt</option>
+                  <option value="saab">-9</option>
+                  <option value="mercedes">-8</option>
+                  <option value="audi">-7</option>
+                  <option value="audi">-6</option>
+                  <option value="audi">-5 abgelenkt</option>
+                  <option value="audi">-4</option>
+                  <option value="audi">-3</option>
+                  <option value="audi">-2</option>
+                  <option value="audi">-1</option>
+                  <option value="audi">0 ausgeglichen</option>
+                  <option value="volvo"> 1</option>
+                  <option value="saab"> 2</option>
+                  <option value="mercedes"> 3</option>
+                  <option value="audi"> 4</option>
+                  <option value="audi"> 5 fokussiert</option>
+                  <option value="audi"> 6</option>
+                  <option value="audi"> 7</option>
+                  <option value="audi"> 8</option>
+                  <option value="audi"> 9</option>
+                  <option value="audi"> 10 sehr fokussiert</option>
+                </select>
+
+                <label
+                  htmlFor="phone"
+                  className="block mt-4 text-sm font-medium text-left text-gray-700"
+                >
+                  Wie gestresst bist du?
+                  <br/>
+                  <span className="text-gray-500"> -10 = sehr gestresst  | 0 = ausgeglichen | 10 = sehr tiefenentspannt/relaxed </span>
+                 
+                </label>
+
+                <select name="cars" id="cars">
+                  <option value="volvo">-10</option>
+                  <option value="saab">-9</option>
+                  <option value="mercedes">-8</option>
+                  <option value="audi">-7</option>
+                  <option value="audi">-6</option>
+                  <option value="audi">-5 abgelenkt</option>
+                  <option value="audi">-4</option>
+                  <option value="audi">-3</option>
+                  <option value="audi">-2</option>
+                  <option value="audi">-1</option>
+                  <option value="audi">0 ausgeglichen</option>
+                  <option value="volvo"> 1</option>
+                  <option value="saab"> 2</option>
+                  <option value="mercedes"> 3</option>
+                  <option value="audi"> 4</option>
+                  <option value="audi"> 5 fokussiert</option>
+                  <option value="audi"> 6</option>
+                  <option value="audi"> 7</option>
+                  <option value="audi"> 8</option>
+                  <option value="audi"> 9</option>
+                  <option value="audi"> 10 sehr fokussiert</option>
+                </select>
+              
               </div>
 
               <div className="w-2/3 m-auto mt-1 mb-4">
+                
                 <label
                   htmlFor="phone"
                   className="block mt-4 text-sm font-medium text-left text-gray-700"
                 >
                   Wie fühlst du dich gerade?
                 </label>
+
+       
 
                 <input
                   type="text"
@@ -157,6 +315,29 @@ export default function Dashboard() {
                   onChange={(e) => setBeschreibung(e.target.value)}
                 ></input>
               </div>
+
+              <div className="w-2/3 m-auto mt-1 mb-4">
+                
+                <label
+                  htmlFor="phone"
+                  className="block mt-4 text-sm font-medium text-left text-gray-700"
+                >
+                  Wie fühlst du dich gerade?
+                </label>
+
+       
+
+                <input
+                  type="text"
+                  name="beschreibung"
+                  id="beschreibung"
+                  className="block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  placeholder="Beschreibung"
+                  onChange={(e) => setBeschreibung(e.target.value)}
+                ></input>
+              </div>
+
+              
               <div className="grid w-2/3 m-auto md:grid-cols-2">
                 <button
                   type="button"
@@ -176,18 +357,29 @@ export default function Dashboard() {
               </div>
 
               <section className="w-2/3 m-auto ">
-              <ul  className="grid pt-8 text-gray-400 border-b border-gray-400 md:grid-cols-2">
-                          <li className="pt-4 border-gray-400 md:border-r">Erstellt am</li>
-                          <li className="pt-4 pb-2 border-gray-400 md:border-b-0">Stimmung</li>
-                        </ul>
+                <ul className="grid pt-8 text-gray-400 border-b border-gray-400 md:grid-cols-2">
+                  <li className="pt-4 border-gray-400 md:border-r">
+                    Erstellt am
+                  </li>
+                  <li className="pt-4 pb-2 border-gray-400 md:border-b-0">
+                    Stimmung
+                  </li>
+                </ul>
 
                 <div className="justify-center w-full m-auto text-center">
                   {datenset &&
                     datenset.map((object, index) => {
                       return (
-                        <ul key={index} className="grid border-b border-gray-400 md:grid-cols-2">
-                          <li className="pt-4 border-gray-400 md:border-r">{object && object.created_at}</li>
-                          <li className="pt-4 pb-2 border-gray-400 md:border-b-0">{object && object.stimmung}</li>
+                        <ul
+                          key={index}
+                          className="grid border-b border-gray-400 md:grid-cols-2"
+                        >
+                          <li className="pt-4 border-gray-400 md:border-r">
+                            {object && object.created_at}
+                          </li>
+                          <li className="pt-4 pb-2 border-gray-400 md:border-b-0">
+                            {object && object.stimmung}
+                          </li>
                         </ul>
                       );
                     })}

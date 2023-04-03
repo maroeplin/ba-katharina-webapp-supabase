@@ -100,8 +100,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div className="w-auto pt-48 m-auto text-center ">
-          <h1 className="text-3xl font-light md:text-4xl">Herzlich Willkommen!</h1>
+        <div className="w-auto pt-48 m-auto text-center">
+          <h1 className="text-3xl font-light text-center md:text-4xl ">Herzlich Willkommen! </h1>
+          <div>
+          <h2 className="w-1/3 pt-8 m-auto text-lg text-center"> Logge dich ein, um an der Befragung teilzunehmen. Falls du noch kein Konto erstellt hast, registriere dich.</h2>
+            
+          </div>
+         
 
           {!isAuthenticated ? (
             null
