@@ -129,31 +129,33 @@ export default function Dashboard() {
               <div className="grid w-2/3 gap-2 pt-8 m-auto">
 
               <label
-                  htmlFor="phone"
+                  htmlFor="wochentag"
                   className="block mt-4 text-sm font-medium text-left text-gray-700"
                 >
                   Wochentag
                 </label>
 
-                <select name="cars" id="cars">
+                <select name="wochentag" id="wochentag" placeholder="Montag">
                   <option value="1">Montag</option>
-                  <option value="saab">Dienstag</option>
-                  <option value="mercedes">19 Uhr</option>
-              
-                  <option value="audi"> 10 sehr energiegeladen</option>
+                  <option value="2">Dienstag</option>
+                  <option value="3">Mittwoch</option>
+                  <option value="4">Donnerstag</option>
+                  <option value="5">Freitag</option>
+                  <option value="6">Samstag</option>
+                  <option value="7">Sonntag</option>
                 </select>
 
                 <label
-                  htmlFor="phone"
+                  htmlFor="zeitraum"
                   className="block mt-4 text-sm font-medium text-left text-gray-700"
                 >
                   Zeitraum
                 </label>
 
-                <select name="cars" id="cars">
-                  <option value="volvo">9 Uhr</option>
-                  <option value="saab">-14 Uhr</option>
-                  <option value="mercedes">19 Uhr</option>
+                <select name="zeitraum" id="zeitraum">
+                  <option value="9 Uhr">9 Uhr</option>
+                  <option value="14 Uhr">14 Uhr</option>
+                  <option value="19 Uhr">19 Uhr</option>
               
                 </select>
 

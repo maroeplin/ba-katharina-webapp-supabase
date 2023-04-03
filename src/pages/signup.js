@@ -93,7 +93,7 @@ export default function Signup() {
         minLength="11"
         maxLength="15"
         className="block w-full pt-2 pb-2 pl-2 border border-gray-300 rounded-md shadow-sm focus:border-teal-500 focus:ring-teal-500"
-        placeholder="+49 111 1111 1111"
+        placeholder="+4911111111111"
         onChange={(e) => setPhone(e.target.value)}
       ></input>
       </div>

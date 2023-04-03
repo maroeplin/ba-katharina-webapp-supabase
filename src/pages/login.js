@@ -71,7 +71,7 @@ export default function Login() {
                   ? "block w-full border border-gray-200 rounded-md shadow-sm focus:border-red-500 focus:ring-red-500 p-2"
                   : "block w-full border border-teal-400 rounded-md shadow-sm focus:border-teal-500 focus:ring-teal-500 p-2"
               }
-              placeholder="+49 111 1111 1111"
+              placeholder="+4911111111111"
               onChange={(e) => setPhone(e.target.value)}
             ></input>
           </div>
