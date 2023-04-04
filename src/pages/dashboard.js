@@ -13,8 +13,14 @@ export default function Dashboard() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userId, setUserId] = useState("");
 
-  const [stimmung, setStimmung] = useState("");
-  const [beschreibung, setBeschreibung] = useState("");
+  const [wochentag, setWochentag] = useState("");
+  const [zeitraum, setZeitraum] = useState("");
+
+  //Fragen
+  const [frage01, setFrage01] = useState("");
+  const [frage02, setFrage02] = useState("");
+  const [frage03, setFrage03] = useState("");
+  const [frage04, setFrage04] = useState("");
 
   //in den folgenden Hook kommt das object aus der Datenbank
   const [datenset, setDatenset] = useState([]);
@@ -50,8 +56,10 @@ export default function Dashboard() {
     const getLinks = async () => {
       try {
         const { data, error } = await supabase
-          .from("datenset")
-          .select("beschreibung, stimmung, created_at")
+          .from("bachelor")
+          .select(
+            "wochentag, zeitraum, frage01, frage02, frage03, frage04, created_at"
+          )
           .eq("user_id", userId);
 
         if (error) throw error;
@@ -66,15 +74,19 @@ export default function Dashboard() {
       getLinks();
     }
     //sobald sich der Value in den brackets von useEffect ändert, wird der Code Block darüber ausgeführt (der Block wird jedes Mal recalled)
-  }, [userId, beschreibung, stimmung]);
+  }, [userId, wochentag, zeitraum, frage01, frage02, frage03, frage04]);
 
   const addNewLink = async () => {
     try {
-      if (beschreibung) {
-        const { data, error } = await supabase.from("datenset").insert({
+      if (wochentag) {
+        const { data, error } = await supabase.from("bachelor").insert({
           user_id: userId,
-          beschreibung: beschreibung,
-          stimmung: stimmung,
+          wochentag: wochentag,
+          zeitraum: zeitraum,
+          frage01: frage01,
+          frage02: frage02,
+          frage03: frage03,
+          frage04: frage04,
         });
         if (error) throw error;
         console.log("data", data);
@@ -110,9 +122,9 @@ export default function Dashboard() {
         <div className="w-auto max-w-md pt-48 m-auto text-center md:max-w-2xl">
           <h1 className="text-4xl font-light">Herzlich Willkommen!</h1>
           <div className="w-2/3 pt-8 pb-6 m-auto text-lg">
-           Vielen Dank, dass du an meiner Befragung zu deinem verfassungszustand teilnimmst.
-            Nimm dir bitte drei Mal am Tag die Zeit und beantworte folgende Fragen ehrlich.
-           
+            Vielen Dank, dass du an meiner Befragung zu deinem
+            Verfassungszustand teilnimmst. Nimm dir bitte drei Mal am Tag die
+            Zeit und beantworte folgende Fragen ehrlich.
           </div>
           {currentUser && currentUser?.data?.user.phone > 0 && (
             <div className="w-2/3 m-auto mt-8 text-sm text-center">
@@ -126,221 +138,232 @@ export default function Dashboard() {
           {isAuthenticated && (
             <>
               {console.log("datensetXX: ", datenset)}
-              <div className="grid w-2/3 gap-2 pt-8 m-auto">
+              <div className="grid w-2/3 pt-8 m-auto">
+                <div className="pb-12">
+                  <div className="grid grid-rows-2">
+                    <label
+                      htmlFor="wochentag"
+                      className="block mt-4 text-sm font-medium text-left text-gray-700"
+                    >
+                      Wochentag
+                    </label>
 
-              <label
-                  htmlFor="wochentag"
-                  className="block mt-4 text-sm font-medium text-left text-gray-700"
-                >
-                  Wochentag
-                </label>
+                    <select
+                      name="wochentag"
+                      id="wochentag"
+                      className="border-gray-300 rounded-md"
+                      placeholder="Montag"
+                      onChange={(e) => setWochentag(e.target.value)}
+                    >
+                      <option value="Montag">Montag</option>
+                      <option value="Dienstag">Dienstag</option>
+                      <option value="Mittwoch">Mittwoch</option>
+                      <option value="Donnerstag">Donnerstag</option>
+                      <option value="Freitag">Freitag</option>
+                      <option value="Samstag">Samstag</option>
+                      <option value="Sonntag">Sonntag</option>
+                    </select>
+                  </div>
 
-                <select name="wochentag" id="wochentag" placeholder="Montag">
-                  <option value="1">Montag</option>
-                  <option value="2">Dienstag</option>
-                  <option value="3">Mittwoch</option>
-                  <option value="4">Donnerstag</option>
-                  <option value="5">Freitag</option>
-                  <option value="6">Samstag</option>
-                  <option value="7">Sonntag</option>
-                </select>
+                  <div className="grid grid-rows-2">
+                    <label
+                      htmlFor="zeitraum"
+                      className="block mt-4 text-sm font-medium text-left text-gray-700"
+                    >
+                      Zeitraum
+                    </label>
 
-                <label
-                  htmlFor="zeitraum"
-                  className="block mt-4 text-sm font-medium text-left text-gray-700"
-                >
-                  Zeitraum
-                </label>
+                    <select
+                      name="zeitraum"
+                      id="zeitraum"
+                      className="border-gray-300 rounded-md"
+                      placeholder="9 Uhr"
+                      onChange={(e) => setZeitraum(e.target.value)}
+                    >
+                      <option value="9 Uhr">9 Uhr</option>
+                      <option value="14 Uhr">14 Uhr</option>
+                      <option value="19 Uhr">19 Uhr</option>
+                    </select>
+                  </div>
+                </div>
 
-                <select name="zeitraum" id="zeitraum">
-                  <option value="9 Uhr">9 Uhr</option>
-                  <option value="14 Uhr">14 Uhr</option>
-                  <option value="19 Uhr">19 Uhr</option>
-              
-                </select>
+                <div className="pb-12">
+                  <label
+                    htmlFor="frage01"
+                    className="block mt-4 text-sm font-medium text-left text-gray-700"
+                  >
+                    Wie fühlst du dich gerade?
+                  </label>
 
+                  <div className="grid grid-cols-3 pt-4 pb-2 text-gray-600">
+                    <div className="text-red-300">-10 = sehr traurig</div>
+                    <div className="text-yellow-400">0 = ausgeglichen</div>
+                    <div className="text-green-400">10 = glücklich</div>
+                  </div>
 
-                <br/>
-                
-                <label
-                  htmlFor="phone"
-                  className="block mt-4 text-sm font-medium text-left text-gray-700"
-                >
-                  Wie fühlst du dich gerade?
-                </label>
+                  <select
+                    name="frage01"
+                    id="frage01"
+                    className="w-full border-gray-300 rounded-md"
+                    onChange={(e) => setFrage01(e.target.value)}
+                  >
+                    <option value="-10">-10</option>
+                    <option value="-9">-9</option>
+                    <option value="-8">-8</option>
+                    <option value="-7">-7</option>
+                    <option value="-6">-6</option>
+                    <option value="-5">-5</option>
+                    <option value="-4">-4</option>
+                    <option value="-3">-3</option>
+                    <option value="-2">-2</option>
+                    <option value="-1">-1</option>
+                    <option value="0">0</option>
+                    <option value="1"> 1</option>
+                    <option value="2"> 2</option>
+                    <option value="3"> 3</option>
+                    <option value="4"> 4</option>
+                    <option value="5"> 5</option>
+                    <option value="6"> 6</option>
+                    <option value="7"> 7</option>
+                    <option value="8"> 8</option>
+                    <option value="9"> 9</option>
+                    <option value="10"> 10</option>
+                  </select>
+                </div>
 
-                <select name="cars" id="cars">
-                  <option value="volvo">-10 sehr erschöpft</option>
-                  <option value="saab">-9</option>
-                  <option value="mercedes">-8</option>
-                  <option value="audi">-7</option>
-                  <option value="audi">-6</option>
-                  <option value="audi">-5 erschöpft</option>
-                  <option value="audi">-4</option>
-                  <option value="audi">-3</option>
-                  <option value="audi">-2</option>
-                  <option value="audi">-1</option>
-                  <option value="audi">0 ausgeglichen</option>
-                  <option value="volvo"> 1</option>
-                  <option value="saab"> 2</option>
-                  <option value="mercedes"> 3</option>
-                  <option value="audi"> 4</option>
-                  <option value="audi"> 5 energiegeladen</option>
-                  <option value="audi"> 6</option>
-                  <option value="audi"> 7</option>
-                  <option value="audi"> 8</option>
-                  <option value="audi"> 9</option>
-                  <option value="audi"> 10 sehr energiegeladen</option>
-                </select>
+                <div className="pb-12">
+                  <label
+                    htmlFor="frage02"
+                    className="block mt-4 text-sm font-medium text-left text-gray-700"
+                  >
+                    Wie fühlst du dich körperlich?
+                  </label>
 
-                <label
-                  htmlFor="phone"
-                  className="block mt-4 text-sm font-medium text-left text-gray-700"
-                >
-                  Wie fühlst du dich körperlich?
-                  <br/>
-                  <span className="text-gray-500"> -10 = sehr erschöpft  | 0 = ausgeglichen | 10 = sehr energiegeladen </span>
-                 
-                </label>
+                  <div className="grid grid-cols-3 pt-4 pb-2 text-gray-600">
+                    <div className="text-red-300">-10 = sehr traurig</div>
+                    <div className="text-yellow-400">0 = ausgeglichen</div>
+                    <div className="text-green-400">10 = glücklich</div>
+                  </div>
 
-                <select name="cars" id="cars">
-                  <option value="volvo">-10</option>
-                  <option value="saab">-9</option>
-                  <option value="mercedes">-8</option>
-                  <option value="audi">-7</option>
-                  <option value="audi">-6</option>
-                  <option value="audi">-5</option>
-                  <option value="audi">-4</option>
-                  <option value="audi">-3</option>
-                  <option value="audi">-2</option>
-                  <option value="audi">-1</option>
-                  <option value="audi">0 ausgeglichen</option>
-                  <option value="volvo"> 1</option>
-                  <option value="saab"> 2</option>
-                  <option value="mercedes"> 3</option>
-                  <option value="audi"> 4</option>
-                  <option value="audi"> 5 glücklick</option>
-                  <option value="audi"> 6</option>
-                  <option value="audi"> 7</option>
-                  <option value="audi"> 8</option>
-                  <option value="audi"> 9</option>
-                  <option value="audi"> 10 sehr glücklich</option>
-                </select>
+                  <select
+                    name="frage02"
+                    id="frage02"
+                    className="w-full border-gray-300 rounded-md"
+                    onChange={(e) => setFrage02(e.target.value)}
+                  >
+                    <option value="-10">-10</option>
+                    <option value="-9">-9</option>
+                    <option value="-8">-8</option>
+                    <option value="-7">-7</option>
+                    <option value="-6">-6</option>
+                    <option value="-5">-5</option>
+                    <option value="-4">-4</option>
+                    <option value="-3">-3</option>
+                    <option value="-2">-2</option>
+                    <option value="-1">-1</option>
+                    <option value="0">0</option>
+                    <option value="1"> 1</option>
+                    <option value="2"> 2</option>
+                    <option value="3"> 3</option>
+                    <option value="4"> 4</option>
+                    <option value="5"> 5</option>
+                    <option value="6"> 6</option>
+                    <option value="7"> 7</option>
+                    <option value="8"> 8</option>
+                    <option value="9"> 9</option>
+                    <option value="10"> 10</option>
+                  </select>
+                </div>
 
-                <label
-                  htmlFor="phone"
-                  className="block mt-4 text-sm font-medium text-left text-gray-700"
-                >
-                  Wie ist dein geistiger Zustand in diesem Moment?
-                  <br/>
-                  <span className="text-gray-500"> -10 = sehr erschöpft  | 0 = ausgeglichen | 10 = sehr energiegeladen </span>
-                 
-                </label>
+                <div className="pb-12">
+                  <label
+                    htmlFor="frage03"
+                    className="block mt-4 text-sm font-medium text-left text-gray-700"
+                  >
+                    Wie ist dein geistiger Zustand in diesem Moment?
+                  </label>
 
-                <select name="cars" id="cars">
-                  <option value="volvo">-10 sehr abgelenkt</option>
-                  <option value="saab">-9</option>
-                  <option value="mercedes">-8</option>
-                  <option value="audi">-7</option>
-                  <option value="audi">-6</option>
-                  <option value="audi">-5 abgelenkt</option>
-                  <option value="audi">-4</option>
-                  <option value="audi">-3</option>
-                  <option value="audi">-2</option>
-                  <option value="audi">-1</option>
-                  <option value="audi">0 ausgeglichen</option>
-                  <option value="volvo"> 1</option>
-                  <option value="saab"> 2</option>
-                  <option value="mercedes"> 3</option>
-                  <option value="audi"> 4</option>
-                  <option value="audi"> 5 fokussiert</option>
-                  <option value="audi"> 6</option>
-                  <option value="audi"> 7</option>
-                  <option value="audi"> 8</option>
-                  <option value="audi"> 9</option>
-                  <option value="audi"> 10 sehr fokussiert</option>
-                </select>
+                  <div className="grid grid-cols-3 pt-4 pb-2 text-gray-600">
+                    <div className="text-red-300">-10 = sehr traurig</div>
+                    <div className="text-yellow-400">0 = ausgeglichen</div>
+                    <div className="text-green-400">10 = glücklich</div>
+                  </div>
 
-                <label
-                  htmlFor="phone"
-                  className="block mt-4 text-sm font-medium text-left text-gray-700"
-                >
-                  Wie gestresst bist du?
-                  <br/>
-                  <span className="text-gray-500"> -10 = sehr gestresst  | 0 = ausgeglichen | 10 = sehr tiefenentspannt/relaxed </span>
-                 
-                </label>
+                  <select
+                    name="frage03"
+                    id="frage03"
+                    className="w-full border-gray-300 rounded-md"
+                    onChange={(e) => setFrage03(e.target.value)}
+                  >
+                    <option value="-10">-10</option>
+                    <option value="-9">-9</option>
+                    <option value="-8">-8</option>
+                    <option value="-7">-7</option>
+                    <option value="-6">-6</option>
+                    <option value="-5">-5</option>
+                    <option value="-4">-4</option>
+                    <option value="-3">-3</option>
+                    <option value="-2">-2</option>
+                    <option value="-1">-1</option>
+                    <option value="0">0</option>
+                    <option value="1"> 1</option>
+                    <option value="2"> 2</option>
+                    <option value="3"> 3</option>
+                    <option value="4"> 4</option>
+                    <option value="5"> 5</option>
+                    <option value="6"> 6</option>
+                    <option value="7"> 7</option>
+                    <option value="8"> 8</option>
+                    <option value="9"> 9</option>
+                    <option value="10"> 10</option>
+                  </select>
+                </div>
 
-                <select name="cars" id="cars">
-                  <option value="volvo">-10</option>
-                  <option value="saab">-9</option>
-                  <option value="mercedes">-8</option>
-                  <option value="audi">-7</option>
-                  <option value="audi">-6</option>
-                  <option value="audi">-5 abgelenkt</option>
-                  <option value="audi">-4</option>
-                  <option value="audi">-3</option>
-                  <option value="audi">-2</option>
-                  <option value="audi">-1</option>
-                  <option value="audi">0 ausgeglichen</option>
-                  <option value="volvo"> 1</option>
-                  <option value="saab"> 2</option>
-                  <option value="mercedes"> 3</option>
-                  <option value="audi"> 4</option>
-                  <option value="audi"> 5 fokussiert</option>
-                  <option value="audi"> 6</option>
-                  <option value="audi"> 7</option>
-                  <option value="audi"> 8</option>
-                  <option value="audi"> 9</option>
-                  <option value="audi"> 10 sehr fokussiert</option>
-                </select>
-              
+                <div className="pb-12">
+                  <label
+                    htmlFor="frage04"
+                    className="block mt-4 text-sm font-medium text-left text-gray-700"
+                  >
+                    Wie gestresst bist du?
+                  </label>
+
+                  <div className="grid grid-cols-3 pt-4 pb-2 text-gray-600">
+                    <div className="text-red-300">-10 = sehr traurig</div>
+                    <div className="text-yellow-400">0 = ausgeglichen</div>
+                    <div className="text-green-400">10 = glücklich</div>
+                  </div>
+
+                  <select
+                    name="frage04"
+                    id="frage04"
+                    className="w-full border-gray-300 rounded-md"
+                    onChange={(e) => setFrage04(e.target.value)}
+                  >
+                    <option value="-10">-10</option>
+                    <option value="-9">-9</option>
+                    <option value="-8">-8</option>
+                    <option value="-7">-7</option>
+                    <option value="-6">-6</option>
+                    <option value="-5">-5</option>
+                    <option value="-4">-4</option>
+                    <option value="-3">-3</option>
+                    <option value="-2">-2</option>
+                    <option value="-1">-1</option>
+                    <option value="0">0</option>
+                    <option value="1"> 1</option>
+                    <option value="2"> 2</option>
+                    <option value="3"> 3</option>
+                    <option value="4"> 4</option>
+                    <option value="5"> 5</option>
+                    <option value="6"> 6</option>
+                    <option value="7"> 7</option>
+                    <option value="8"> 8</option>
+                    <option value="9"> 9</option>
+                    <option value="10"> 10</option>
+                  </select>
+                </div>
               </div>
-
-              <div className="w-2/3 m-auto mt-1 mb-4">
-                
-                <label
-                  htmlFor="phone"
-                  className="block mt-4 text-sm font-medium text-left text-gray-700"
-                >
-                  Wie fühlst du dich gerade?
-                </label>
-
-       
-
-                <input
-                  type="text"
-                  name="beschreibung"
-                  id="beschreibung"
-                  className="block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                  placeholder="Beschreibung"
-                  onChange={(e) => setBeschreibung(e.target.value)}
-                ></input>
-              </div>
-
-              <div className="w-2/3 m-auto mt-1 mb-4">
-                
-                <label
-                  htmlFor="phone"
-                  className="block mt-4 text-sm font-medium text-left text-gray-700"
-                >
-                  Wie fühlst du dich gerade?
-                </label>
-
-       
-
-                <input
-                  type="text"
-                  name="beschreibung"
-                  id="beschreibung"
-                  className="block w-full border border-gray-300 rounded-md shadow-sm "
-                  placeholder="Beschreibung"
-                  onChange={(e) => setBeschreibung(e.target.value)}
-                ></input>
-              </div>
-
-              
-              <div className="grid w-2/3 m-auto md:grid-cols-2">
+              <div className="grid w-2/3 pb-8 m-auto md:grid-cols-2">
                 <button
                   type="button"
                   className="px-8 py-4 mt-8 mb-4 text-sm font-medium text-center text-white bg-teal-400 rounded-full hover:bg-teal-700 focus:outline-none focus:ring-4 focus:ring-teal-300 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-900"
@@ -376,12 +399,22 @@ export default function Dashboard() {
                           key={index}
                           className="grid border-b border-gray-400 md:grid-cols-2"
                         >
-                          <li className="pt-4 border-gray-400 md:border-r">
+                          <dl className="pt-4 border-gray-400 md:border-r">
                             {object && object.created_at}
-                          </li>
-                          <li className="pt-4 pb-2 border-gray-400 md:border-b-0">
-                            {object && object.stimmung}
-                          </li>
+                          </dl>
+                          <dl className="pt-4 pb-2 border-gray-400 md:border-b-0">
+                            {object && object.wochentag}
+                            <br />
+                            {object && object.zeitraum}
+                            <br />
+                            {object && object.frage01}
+                            <br />
+                            {object && object.frage02}
+                            <br />
+                            {object && object.frage03}
+                            <br />
+                            {object && object.frage04}
+                          </dl>
                         </ul>
                       );
                     })}
