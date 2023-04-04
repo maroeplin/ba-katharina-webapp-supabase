@@ -143,7 +143,7 @@ export default function Dashboard() {
                   <div className="grid grid-rows-2">
                     <label
                       htmlFor="wochentag"
-                      className="block mt-4 text-sm font-medium text-left text-gray-700"
+                      className="block mt-4 font-medium text-left text-gray-700 text-md"
                     >
                       Wochentag
                     </label>
@@ -168,7 +168,7 @@ export default function Dashboard() {
                   <div className="grid grid-rows-2">
                     <label
                       htmlFor="zeitraum"
-                      className="block mt-4 text-sm font-medium text-left text-gray-700"
+                      className="block mt-4 font-medium text-left text-md"
                     >
                       Zeitraum
                     </label>
@@ -190,15 +190,15 @@ export default function Dashboard() {
                 <div className="pb-12">
                   <label
                     htmlFor="frage01"
-                    className="block mt-4 text-sm font-medium text-left text-gray-700"
+                    className="block mt-4 font-medium text-left text-gray-700 text-md"
                   >
                     Wie fühlst du dich gerade?
                   </label>
 
-                  <div className="grid grid-cols-3 pt-4 pb-2 text-gray-600">
-                    <div className="text-red-300">-10 = sehr traurig</div>
-                    <div className="text-yellow-400">0 = ausgeglichen</div>
-                    <div className="text-green-400">10 = glücklich</div>
+                  <div className="grid grid-cols-3 pt-4 pb-2 text-gray-400">
+                    <div>-10 = sehr traurig</div>
+                    <div>0 = ausgeglichen</div>
+                    <div>10 = glücklich</div>
                   </div>
 
                   <select
@@ -234,15 +234,15 @@ export default function Dashboard() {
                 <div className="pb-12">
                   <label
                     htmlFor="frage02"
-                    className="block mt-4 text-sm font-medium text-left text-gray-700"
+                    className="block mt-4 font-medium text-left text-gray-700 text-md"
                   >
                     Wie fühlst du dich körperlich?
                   </label>
 
-                  <div className="grid grid-cols-3 pt-4 pb-2 text-gray-600">
-                    <div className="text-red-300">-10 = sehr traurig</div>
-                    <div className="text-yellow-400">0 = ausgeglichen</div>
-                    <div className="text-green-400">10 = glücklich</div>
+                  <div className="grid grid-cols-3 pt-4 pb-2 text-gray-400">
+                    <div>-10 = sehr traurig</div>
+                    <div >0 = ausgeglichen</div>
+                    <div >10 = glücklich</div>
                   </div>
 
                   <select
@@ -278,15 +278,18 @@ export default function Dashboard() {
                 <div className="pb-12">
                   <label
                     htmlFor="frage03"
-                    className="block mt-4 text-sm font-medium text-left text-gray-700"
+                    className="block mt-4 font-medium text-left text-gray-700 text-md"
                   >
                     Wie ist dein geistiger Zustand in diesem Moment?
                   </label>
 
-                  <div className="grid grid-cols-3 pt-4 pb-2 text-gray-600">
-                    <div className="text-red-300">-10 = sehr traurig</div>
-                    <div className="text-yellow-400">0 = ausgeglichen</div>
-                    <div className="text-green-400">10 = glücklich</div>
+                  <div className="grid grid-cols-3 pt-4 pb-2 text-gray-400">
+                    <div>-10 = sehr traurig</div>
+                    <div>0 = ausgeglichen</div>
+                    <div>10 = glücklich</div>
+                  </div>
+                  
+                  <div className="grid grid-cols-3 pb-2 text-gray-600">
                   </div>
 
                   <select
@@ -322,15 +325,15 @@ export default function Dashboard() {
                 <div className="pb-12">
                   <label
                     htmlFor="frage04"
-                    className="block mt-4 text-sm font-medium text-left text-gray-700"
+                    className="block mt-4 font-medium text-left text-gray-700 text-md"
                   >
                     Wie gestresst bist du?
                   </label>
 
-                  <div className="grid grid-cols-3 pt-4 pb-2 text-gray-600">
-                    <div className="text-red-300">-10 = sehr traurig</div>
-                    <div className="text-yellow-400">0 = ausgeglichen</div>
-                    <div className="text-green-400">10 = glücklich</div>
+                  <div className="grid grid-cols-3 pt-4 pb-2 text-gray-400">
+                    <div>-10 = sehr traurig</div>
+                    <div>0 = ausgeglichen</div>
+                    <div>10 = glücklich</div>
                   </div>
 
                   <select
