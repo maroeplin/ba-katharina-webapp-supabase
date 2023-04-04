@@ -24,6 +24,8 @@ export default function Dashboard() {
 
   //in den folgenden Hook kommt das object aus der Datenbank
   const [datenset, setDatenset] = useState([]);
+  //Feedback bei erstelltem Eintrag
+  const [feedback, setFeedback] = useState(false);
 
   const [currentUser, setCurrentUser] = useState([]);
 
@@ -65,7 +67,8 @@ export default function Dashboard() {
         if (error) throw error;
 
         console.log("data: ", data);
-        setDatenset(data);
+        setDatenset(data.reverse());
+        forceUpdate();
       } catch (error) {
         console.log("error: ", error);
       }
@@ -92,7 +95,7 @@ export default function Dashboard() {
         console.log("data", data);
         if (datenset) {
           setDatenset([data, ...datenset]);
-          alert("Eintrag wurde in die Datenbank geschrieben.");
+          setFeedback(true);
         }
       }
     } catch (error) {
@@ -195,12 +198,6 @@ export default function Dashboard() {
                     Wie fühlst du dich gerade?
                   </label>
 
-                  <div className="grid grid-cols-3 pt-4 pb-2 text-gray-400">
-                    <div>-10 = sehr traurig</div>
-                    <div>0 = ausgeglichen</div>
-                    <div>10 = glücklich</div>
-                  </div>
-
                   <select
                     name="frage01"
                     id="frage01"
@@ -229,6 +226,12 @@ export default function Dashboard() {
                     <option value="9"> 9</option>
                     <option value="10"> 10</option>
                   </select>
+
+                  <div className="grid grid-cols-3 pb-2 text-gray-400">
+                    <div>-10 = sehr traurig</div>
+                    <div>0 = ausgeglichen</div>
+                    <div>10 = sehr glücklich</div>
+                  </div>
                 </div>
 
                 <div className="pb-12">
@@ -238,12 +241,6 @@ export default function Dashboard() {
                   >
                     Wie fühlst du dich körperlich?
                   </label>
-
-                  <div className="grid grid-cols-3 pt-4 pb-2 text-gray-400">
-                    <div>-10 = sehr traurig</div>
-                    <div >0 = ausgeglichen</div>
-                    <div >10 = glücklich</div>
-                  </div>
 
                   <select
                     name="frage02"
@@ -273,6 +270,12 @@ export default function Dashboard() {
                     <option value="9"> 9</option>
                     <option value="10"> 10</option>
                   </select>
+
+                  <div className="grid grid-cols-3 pt-4 pb-2 text-gray-400">
+                    <div>-10 = sehr erschöpft</div>
+                    <div>0 = ausgeglichen</div>
+                    <div>10 = sehr energiegeladen</div>
+                  </div>
                 </div>
 
                 <div className="pb-12">
@@ -283,14 +286,7 @@ export default function Dashboard() {
                     Wie ist dein geistiger Zustand in diesem Moment?
                   </label>
 
-                  <div className="grid grid-cols-3 pt-4 pb-2 text-gray-400">
-                    <div>-10 = sehr traurig</div>
-                    <div>0 = ausgeglichen</div>
-                    <div>10 = glücklich</div>
-                  </div>
-                  
-                  <div className="grid grid-cols-3 pb-2 text-gray-600">
-                  </div>
+                  <div className="grid grid-cols-3 pb-2 text-gray-600"></div>
 
                   <select
                     name="frage03"
@@ -320,6 +316,12 @@ export default function Dashboard() {
                     <option value="9"> 9</option>
                     <option value="10"> 10</option>
                   </select>
+
+                  <div className="grid grid-cols-3 pt-4 pb-2 text-gray-400">
+                    <div>-10 = sehr ausgeglichen</div>
+                    <div>0 = ausgeglichen</div>
+                    <div>10 = sehr unkonzentriert</div>
+                  </div>
                 </div>
 
                 <div className="pb-12">
@@ -329,12 +331,6 @@ export default function Dashboard() {
                   >
                     Wie gestresst bist du?
                   </label>
-
-                  <div className="grid grid-cols-3 pt-4 pb-2 text-gray-400">
-                    <div>-10 = sehr traurig</div>
-                    <div>0 = ausgeglichen</div>
-                    <div>10 = glücklich</div>
-                  </div>
 
                   <select
                     name="frage04"
@@ -364,6 +360,12 @@ export default function Dashboard() {
                     <option value="9"> 9</option>
                     <option value="10"> 10</option>
                   </select>
+
+                  <div className="grid grid-cols-3 pt-4 pb-2 text-gray-400">
+                    <div>-10 = sehr gestresst</div>
+                    <div>0 = ausgeglichen</div>
+                    <div>10 = sehr entspannt</div>
+                  </div>
                 </div>
               </div>
               <div className="grid w-2/3 pb-8 m-auto md:grid-cols-2">
@@ -384,13 +386,19 @@ export default function Dashboard() {
                 </button>
               </div>
 
+              {feedback ? (
+                <h1 className="w-2/3 pt-2 pb-2 m-auto mt-2 font-semibold text-white rounded-lg bg-lime-500">
+                  Der Eintrag wurde erstellt
+                </h1>
+              ) : null}
+
               <section className="w-2/3 m-auto ">
                 <ul className="grid pt-8 text-gray-400 border-b border-gray-400 md:grid-cols-2">
                   <li className="pt-4 border-gray-400 md:border-r">
-                    Erstellt am
+                    Fragen
                   </li>
                   <li className="pt-4 pb-2 border-gray-400 md:border-b-0">
-                    Stimmung
+                    Eingaben
                   </li>
                 </ul>
 
@@ -402,21 +410,42 @@ export default function Dashboard() {
                           key={index}
                           className="grid border-b border-gray-400 md:grid-cols-2"
                         >
-                          <dl className="pt-4 border-gray-400 md:border-r">
-                            {object && object.created_at}
+                          <dl className="pt-4 text-left border-gray-400 md:border-r">
+                            <dd className="pt-2 pb-2 bg-gray-100">Wochentag</dd>
+                            <dd className="pt-2 pb-2">Zeitraum</dd>
+                            <dd className="pt-2 pb-2 bg-gray-100">
+                              Wie fühlst du dich gerade?
+                            </dd>
+                            <dd className="pt-2 pb-2">
+                              {" "}
+                              Wie fühlst du dich körperlich?
+                            </dd>
+                            <dd className="pt-2 pb-2 bg-gray-100">
+                              Wie ist dein geistiger Zustand in diesem Moment?
+                            </dd>
+                            <dd className="pt-2 pb-2">
+                              Wie gestresst bist du?
+                            </dd>
                           </dl>
-                          <dl className="pt-4 pb-2 border-gray-400 md:border-b-0">
-                            {object && object.wochentag}
-                            <br />
-                            {object && object.zeitraum}
-                            <br />
-                            {object && object.frage01}
-                            <br />
-                            {object && object.frage02}
-                            <br />
-                            {object && object.frage03}
-                            <br />
-                            {object && object.frage04}
+                          <dl className="px-4 pt-4 pb-2 text-left border-gray-400 md:border-b-0">
+                            <dt className="pt-2 pb-2 ">
+                              {object && object.wochentag}
+                            </dt>
+                            <dd className="pt-2 pb-2">
+                              {object && object.zeitraum}
+                            </dd>
+                            <dd className="pt-2 pb-2">
+                               {object && object.frage01}
+                            </dd>
+                            <dd className="pt-2 pb-2">
+                              {object && object.frage02}
+                            </dd>
+                            <dd className="pt-2 pb-2">
+                              {object && object.frage03}
+                            </dd>
+                            <dd className="pt-2 pb-2">
+                              {object && object.frage04}
+                            </dd>
                           </dl>
                         </ul>
                       );
