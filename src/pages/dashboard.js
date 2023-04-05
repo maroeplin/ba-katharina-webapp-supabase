@@ -405,9 +405,10 @@ export default function Dashboard() {
                       return (
                         <ul
                           key={index}
-                          className="grid border-b border-gray-400 md:grid-cols-2"
+                          className="grid border-b border-gray-400"
                         >
                           <dl className="pt-4 text-left border-gray-400 ">
+                            <dd className="pt-2 pb-2 bg-gray-400">{object && object.created_at}</dd>
                             <dd className="pt-2 pb-2 bg-gray-100">Wochentag</dd>
                             <dt className="pt-2 pb-2 ">
                               {object && object.wochentag}
