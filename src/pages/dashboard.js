@@ -26,6 +26,7 @@ export default function Dashboard() {
   const [datenset, setDatenset] = useState([]);
   //Feedback bei erstelltem Eintrag
   const [feedback, setFeedback] = useState(false);
+  const [missing, setMissing] = useState(false);
 
   const [currentUser, setCurrentUser] = useState([]);
 
@@ -68,7 +69,6 @@ export default function Dashboard() {
 
         console.log("data: ", data);
         setDatenset(data.reverse());
-        forceUpdate();
       } catch (error) {
         console.log("error: ", error);
       }
@@ -79,9 +79,22 @@ export default function Dashboard() {
     //sobald sich der Value in den brackets von useEffect ändert, wird der Code Block darüber ausgeführt (der Block wird jedes Mal recalled)
   }, [userId, wochentag, zeitraum, frage01, frage02, frage03, frage04]);
 
-  const addNewLink = async () => {
+
+  const validateForm = () => {
+    if(!wochentag || !zeitraum || !frage01 || !frage02 || !frage03 || !frage04) {
+      setMissing(true);
+    } else {
+      setMissing(false);
+      return true;
+    }
+  };
+  
+  const addNewLink = async (event) => {
+    event.preventDefault();
+    const isValid = validateForm();
+    if(isValid) {
     try {
-      if (wochentag) {
+      if (wochentag && zeitraum && frage01 && frage02 && frage03 && frage04) {
         const { data, error } = await supabase.from("bachelor").insert({
           user_id: userId,
           wochentag: wochentag,
@@ -91,6 +104,9 @@ export default function Dashboard() {
           frage03: frage03,
           frage04: frage04,
         });
+        if(!wochentag && !zeitraum && !frage01 && !frage02 && !frage03 && !frage04) {
+          setMissing(true);
+        };
         if (error) throw error;
         console.log("data", data);
         if (datenset) {
@@ -101,6 +117,7 @@ export default function Dashboard() {
     } catch (error) {
       console.log("error", error);
     }
+  }
   };
 
   async function loginWithToken() {
@@ -392,9 +409,15 @@ export default function Dashboard() {
                 </h1>
               ) : null}
 
-              <section className="w-2/3 m-auto ">
-                <ul className="text-gray-400 border-b border-gray-400 ">
-                  <li className="pt-4 pb-2 border-gray-400 md:border-b-0">
+              {missing ? (
+                  <h1 className="w-2/3 px-2 pt-2 pb-2 m-auto mt-2 font-semibold text-white bg-red-500 rounded-lg ">
+                  Bitte alle Optionsfelder einzeln auswählen und danach erneut versuchen.
+                </h1>
+              ) : null}
+
+              <section className="w-2/3 m-auto mt-8 ">
+                <ul className="text-gray-400">
+                  <li className="pt-4 pb-2 border-gray-400 ">
                     Deine Einträge
                   </li>
                 </ul>
@@ -405,42 +428,42 @@ export default function Dashboard() {
                       return (
                         <ul
                           key={index}
-                          className="grid border-b border-gray-400"
+                          className="grid pl-4 pr-4 mt-4 text-black border border-teal-700 rounded-xl"
                         >
                           <dl className="pt-4 text-left border-gray-400 ">
-                            <dd className="pt-2 pb-2 text-center bg-gray-400">{object && object.created_at}</dd>
-                            <dd className="pt-2 pb-2 bg-gray-100">Wochentag</dd>
-                            <dt className="pt-2 pb-2 mb-4">
+                            <dd className="pt-2 pb-2 text-center ">{object && object.created_at}</dd>
+                            <dd className="pt-2 pb-2 font-bold">Wochentag</dd>
+                            <dt className="pt-2 pb-2 mb-4 border-b">
                               {object && object.wochentag}
                             </dt>
 
-                            <dd className="pt-2 pb-2 bg-gray-100">Zeitraum</dd>
+                            <dd className="pt-2 pb-2 ">Zeitraum</dd>
                             <dd className="pt-2 pb-2 mb-4">
                               {object && object.zeitraum}
                             </dd>
 
-                            <dd className="pt-2 pb-2 bg-gray-100">
+                            <dd className="pt-2 pb-2 ">
                               Wie fühlst du dich gerade?
                             </dd>
                             <dd className="pt-2 pb-2 mb-4">
                               {object && object.frage01}
                             </dd>
 
-                            <dd className="pt-2 pb-2 bg-gray-100">
+                            <dd className="pt-2 pb-2 ">
                               Wie fühlst du dich körperlich?
                             </dd>
                             <dd className="pt-2 pb-2 mb-4">
                               {object && object.frage02}
                             </dd>
 
-                            <dd className="pt-2 pb-2 bg-gray-100">
+                            <dd className="pt-2 pb-2 ">
                               Wie ist dein geistiger Zustand in diesem Moment?
                             </dd>
                             <dd className="pt-2 pb-2 mb-4">
                               {object && object.frage03}
                             </dd>
 
-                            <dd className="pt-2 pb-2 bg-gray-100">
+                            <dd className="pt-2 pb-2 ">
                               Wie gestresst bist du?
                             </dd>
                             <dd className="pt-2 pb-2 mb-4">
