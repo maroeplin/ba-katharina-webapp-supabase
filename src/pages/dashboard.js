@@ -412,40 +412,44 @@ export default function Dashboard() {
                         >
                           <dl className="pt-4 text-left border-gray-400 md:border-r">
                             <dd className="pt-2 pb-2 bg-gray-100">Wochentag</dd>
-                            <dd className="pt-2 pb-2">Zeitraum</dd>
+                            <dt className="pt-2 pb-2 ">
+                              {object && object.wochentag}
+                            </dt>
+                            
+                            <dd className="pt-2 pb-2 bg-gray-100">Zeitraum</dd>
+                            <dd className="pt-2 pb-2">
+                              {object && object.zeitraum}
+                            </dd>
+                            
                             <dd className="pt-2 pb-2 bg-gray-100">
                               Wie fühlst du dich gerade?
                             </dd>
                             <dd className="pt-2 pb-2">
-                              {" "}
-                              Wie fühlst du dich körperlich?
-                            </dd>
-                            <dd className="pt-2 pb-2 bg-gray-100">
-                              Wie ist dein geistiger Zustand in diesem Moment?
-                            </dd>
-                            <dd className="pt-2 pb-2">
-                              Wie gestresst bist du?
-                            </dd>
-                          </dl>
-                          <dl className="px-4 pt-4 pb-2 text-left border-gray-400 md:border-b-0">
-                            <dt className="pt-2 pb-2 ">
-                              {object && object.wochentag}
-                            </dt>
-                            <dd className="pt-2 pb-2">
-                              {object && object.zeitraum}
-                            </dd>
-                            <dd className="pt-2 pb-2">
                                {object && object.frage01}
+                            </dd>
+                            
+                            <dd className="pt-2 pb-2 bg-gray-100">
+                              Wie fühlst du dich körperlich?
                             </dd>
                             <dd className="pt-2 pb-2">
                               {object && object.frage02}
                             </dd>
+                            
+                            <dd className="pt-2 pb-2 bg-gray-100">
+                              Wie ist dein geistiger Zustand in diesem Moment?
+                            </dd>
                             <dd className="pt-2 pb-2">
                               {object && object.frage03}
                             </dd>
+                            
+                            <dd className="pt-2 pb-2">
+                              Wie gestresst bist du?
+                            </dd>      
                             <dd className="pt-2 pb-2">
                               {object && object.frage04}
                             </dd>
+                          </dl>
+                          <dl className="px-4 pt-4 pb-2 text-left border-gray-400 md:border-b-0">
                           </dl>
                         </ul>
                       );
