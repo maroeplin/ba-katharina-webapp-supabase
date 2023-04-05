@@ -394,11 +394,9 @@ export default function Dashboard() {
 
               <section className="w-2/3 m-auto ">
                 <ul className="grid pt-8 text-gray-400 border-b border-gray-400 md:grid-cols-2">
-                  <li className="pt-4 border-gray-400 md:border-r">
-                    Fragen
-                  </li>
+                
                   <li className="pt-4 pb-2 border-gray-400 md:border-b-0">
-                    Eingaben
+                    Deine Einträge
                   </li>
                 </ul>
 
@@ -449,8 +447,7 @@ export default function Dashboard() {
                               {object && object.frage04}
                             </dd>
                           </dl>
-                          <dl className="px-4 pt-4 pb-2 text-left border-gray-400 md:border-b-0">
-                          </dl>
+                        
                         </ul>
                       );
                     })}
