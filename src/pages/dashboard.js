@@ -393,8 +393,7 @@ export default function Dashboard() {
               ) : null}
 
               <section className="w-2/3 m-auto ">
-                <ul className="grid pt-8 text-gray-400 border-b border-gray-400 md:grid-cols-2">
-                
+                <ul className="text-gray-400 border-b border-gray-400 ">
                   <li className="pt-4 pb-2 border-gray-400 md:border-b-0">
                     Deine Einträge
                   </li>
@@ -408,46 +407,45 @@ export default function Dashboard() {
                           key={index}
                           className="grid border-b border-gray-400 md:grid-cols-2"
                         >
-                          <dl className="pt-4 text-left border-gray-400 md:border-r">
+                          <dl className="pt-4 text-left border-gray-400 ">
                             <dd className="pt-2 pb-2 bg-gray-100">Wochentag</dd>
                             <dt className="pt-2 pb-2 ">
                               {object && object.wochentag}
                             </dt>
-                            
+
                             <dd className="pt-2 pb-2 bg-gray-100">Zeitraum</dd>
                             <dd className="pt-2 pb-2">
                               {object && object.zeitraum}
                             </dd>
-                            
+
                             <dd className="pt-2 pb-2 bg-gray-100">
                               Wie fühlst du dich gerade?
                             </dd>
                             <dd className="pt-2 pb-2">
-                               {object && object.frage01}
+                              {object && object.frage01}
                             </dd>
-                            
+
                             <dd className="pt-2 pb-2 bg-gray-100">
                               Wie fühlst du dich körperlich?
                             </dd>
                             <dd className="pt-2 pb-2">
                               {object && object.frage02}
                             </dd>
-                            
+
                             <dd className="pt-2 pb-2 bg-gray-100">
                               Wie ist dein geistiger Zustand in diesem Moment?
                             </dd>
                             <dd className="pt-2 pb-2">
                               {object && object.frage03}
                             </dd>
-                            
+
                             <dd className="pt-2 pb-2">
                               Wie gestresst bist du?
-                            </dd>      
+                            </dd>
                             <dd className="pt-2 pb-2">
                               {object && object.frage04}
                             </dd>
                           </dl>
-                        
                         </ul>
                       );
                     })}
