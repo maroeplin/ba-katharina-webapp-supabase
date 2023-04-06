@@ -60,11 +60,11 @@ export default function Dashboard() {
     const getLinks = async () => {
       try {
         const { data, error } = await supabase
-          .from('bachelor')
+          .from("bachelor")
           .select(
-            'wochentag, zeitraum, frage01, frage02, frage03, frage04, bemerkung, created_at'
+            "wochentag, zeitraum, frage01, frage02, frage03, frage04, bemerkung, created_at"
           )
-          .eq('user_id', userId);
+          .eq("user_id", userId);
 
         if (error) throw error;
 
@@ -78,24 +78,38 @@ export default function Dashboard() {
       getLinks();
     }
     //sobald sich der Value in den brackets von useEffect ändert, wird der Code Block darüber ausgeführt (der Block wird jedes Mal recalled)
-  }, [userId, wochentag, zeitraum, frage01, frage02, frage03, frage04, bemerkung]);
-
+  }, [
+    userId,
+    wochentag,
+    zeitraum,
+    frage01,
+    frage02,
+    frage03,
+    frage04,
+    bemerkung,
+  ]);
 
   const validateForm = () => {
-    if(!wochentag || !zeitraum || !frage01 || !frage02 || !frage03 || !frage04) {
+    if (
+      !wochentag ||
+      !zeitraum ||
+      !frage01 ||
+      !frage02 ||
+      !frage03 ||
+      !frage04
+    ) {
       setMissing(true);
     } else {
       setMissing(false);
       return true;
     }
   };
-  
+
   const addNewLink = async (event) => {
     event.preventDefault();
     const isValid = validateForm();
-    if(isValid) {
-    try {
-
+    if (isValid) {
+      try {
         const { data, error } = await supabase.from("bachelor").insert({
           user_id: userId,
           wochentag: wochentag,
@@ -104,22 +118,28 @@ export default function Dashboard() {
           frage02: frage02,
           frage03: frage03,
           frage04: frage04,
-          bemerkung: bemerkung
+          bemerkung: bemerkung,
         });
-        if(!wochentag && !zeitraum && !frage01 && !frage02 && !frage03 && !frage04) {
+        if (
+          !wochentag &&
+          !zeitraum &&
+          !frage01 &&
+          !frage02 &&
+          !frage03 &&
+          !frage04
+        ) {
           setMissing(true);
-        };
+        }
         if (error) throw error;
         console.log("data", data);
         if (datenset) {
           setDatenset([data, ...datenset]);
           setFeedback(true);
         }
-      
-    } catch (error) {
-      console.log("error", error);
+      } catch (error) {
+        console.log("error", error);
+      }
     }
-  }
   };
 
   async function loginWithToken() {
@@ -144,8 +164,12 @@ export default function Dashboard() {
         <div className="w-auto max-w-md pt-24 m-auto text-center md:max-w-2xl">
           <h1 className="text-4xl font-light">Herzlich Willkommen!</h1>
           <div className="w-2/3 pt-8 pb-6 m-auto text-md md:text-lg">
-          Danke, dass du an meiner Befragung zu deinem Verfassungszustand teilnimmst. Nimm dir bitte die Zeit, um dich mit deiner Verfassung auseinanderzusetzen und beantworte alle Fragen ehrlich. <br/> <br/> Im letzten Feld hast du Raum für zusätzliche Anmerkungen. 
-Alle deine Einträge werden im unteren Bereich der Anwendung archiviert.
+            Danke, dass du an meiner Befragung zu deinem Verfassungszustand
+            teilnimmst. Nimm dir bitte die Zeit, um dich mit deiner Verfassung
+            auseinanderzusetzen und beantworte alle Fragen ehrlich. <br />{" "}
+            <br /> Im letzten Feld hast du Raum für zusätzliche Anmerkungen.
+            Alle deine Einträge werden im unteren Bereich der Anwendung
+            archiviert.
           </div>
           {currentUser && currentUser?.data?.user.phone > 0 && (
             <div className="w-2/3 m-auto mt-8 text-sm text-center">
@@ -216,7 +240,7 @@ Alle deine Einträge werden im unteren Bereich der Anwendung archiviert.
                     Wie fühlst du dich gerade?
                   </label>
 
-                  <div className="grid grid-cols-3 pb-2 text-gray-800">
+                  <div className="grid grid-cols-3 pb-2 text-sm text-gray-800">
                     <div>-10 = sehr traurig</div>
                     <div>0 = ausgeglichen</div>
                     <div>10 = sehr glücklich</div>
@@ -228,30 +252,28 @@ Alle deine Einträge werden im unteren Bereich der Anwendung archiviert.
                     className="w-full border-gray-300 rounded-md bg-gray-50 focus:ring-teal-600 focus:border-teal-500 "
                     onChange={(e) => setFrage01(e.target.value)}
                   >
-                    <option value="-10">-10</option>
-                    <option value="-9">-9</option>
-                    <option value="-8">-8</option>
-                    <option value="-7">-7</option>
-                    <option value="-6">-6</option>
-                    <option value="-5">-5</option>
-                    <option value="-4">-4</option>
-                    <option value="-3">-3</option>
-                    <option value="-2">-2</option>
-                    <option value="-1">-1</option>
-                    <option value="0">0</option>
-                    <option value="1"> 1</option>
-                    <option value="2"> 2</option>
-                    <option value="3"> 3</option>
-                    <option value="4"> 4</option>
-                    <option value="5"> 5</option>
-                    <option value="6"> 6</option>
-                    <option value="7"> 7</option>
-                    <option value="8"> 8</option>
-                    <option value="9"> 9</option>
-                    <option value="10"> 10</option>
+                    <option value="-10" className="text-right">-10</option>
+                    <option value="-9" className="text-right">-9</option>
+                    <option value="-8" className="text-right">-8</option>
+                    <option value="-7" className="text-right">-7</option>
+                    <option value="-6" className="text-right">-6</option>
+                    <option value="-5" className="text-right">-5</option>
+                    <option value="-4" className="text-right">-4</option>
+                    <option value="-3" className="text-right">-3</option>
+                    <option value="-2" className="text-right">-2</option>
+                    <option value="-1" className="text-right">-1</option>
+                    <option value="0" className="text-right">0</option>
+                    <option value="1" className="text-right">+1</option>
+                    <option value="2" className="text-right">+2</option>
+                    <option value="3" className="text-right">+3</option>
+                    <option value="4" className="text-right">+4</option>
+                    <option value="5" className="text-right">+5</option>
+                    <option value="6" className="text-right">+6</option>
+                    <option value="7" className="text-right">+7</option>
+                    <option value="8" className="text-right">+8</option>
+                    <option value="9" className="text-right">+9</option>
+                    <option value="10" className="text-right">+10</option>
                   </select>
-
-          
                 </div>
 
                 <div className="pb-12">
@@ -262,7 +284,7 @@ Alle deine Einträge werden im unteren Bereich der Anwendung archiviert.
                     Wie fühlst du dich körperlich?
                   </label>
 
-                  <div className="grid grid-cols-3 pb-2 text-gray-800">
+                  <div className="grid grid-cols-3 pb-2 text-sm text-gray-800">
                     <div>-10 = sehr erschöpft</div>
                     <div>0 = ausgeglichen</div>
                     <div>10 = sehr energiegeladen</div>
@@ -274,30 +296,28 @@ Alle deine Einträge werden im unteren Bereich der Anwendung archiviert.
                     className="w-full border-gray-300 rounded-md bg-gray-50 focus:ring-teal-600 focus:border-teal-500 "
                     onChange={(e) => setFrage02(e.target.value)}
                   >
-                    <option value="-10">-10</option>
-                    <option value="-9">-9</option>
-                    <option value="-8">-8</option>
-                    <option value="-7">-7</option>
-                    <option value="-6">-6</option>
-                    <option value="-5">-5</option>
-                    <option value="-4">-4</option>
-                    <option value="-3">-3</option>
-                    <option value="-2">-2</option>
-                    <option value="-1">-1</option>
-                    <option value="0">0</option>
-                    <option value="1"> 1</option>
-                    <option value="2"> 2</option>
-                    <option value="3"> 3</option>
-                    <option value="4"> 4</option>
-                    <option value="5"> 5</option>
-                    <option value="6"> 6</option>
-                    <option value="7"> 7</option>
-                    <option value="8"> 8</option>
-                    <option value="9"> 9</option>
-                    <option value="10"> 10</option>
+                    <option value="-10"  className="text-right">-10</option>
+                    <option value="-9"  className="text-right">-9</option>
+                    <option value="-8"  className="text-right">-8</option>
+                    <option value="-7"  className="text-right">-7</option>
+                    <option value="-6"  className="text-right">-6</option>
+                    <option value="-5"  className="text-right">-5</option>
+                    <option value="-4"  className="text-right">-4</option>
+                    <option value="-3"  className="text-right">-3</option>
+                    <option value="-2"  className="text-right">-2</option>
+                    <option value="-1"  className="text-right">-1</option>
+                    <option value="0"  className="text-right">0</option>
+                    <option value="1"  className="text-right">+1</option>
+                    <option value="2"  className="text-right">+2</option>
+                    <option value="3"  className="text-right">+3</option>
+                    <option value="4"  className="text-right">+4</option>
+                    <option value="5"  className="text-right">+5</option>
+                    <option value="6"  className="text-right">+6</option>
+                    <option value="7" className="text-right">+7</option>
+                    <option value="8" className="text-right">+8</option>
+                    <option value="9" className="text-right">+9</option>
+                    <option value="10" className="text-right">+10</option>
                   </select>
-
-
                 </div>
 
                 <div className="pb-12">
@@ -308,46 +328,42 @@ Alle deine Einträge werden im unteren Bereich der Anwendung archiviert.
                     Wie ist dein geistiger Zustand in diesem Moment?
                   </label>
 
-                  <div className="grid grid-cols-3 pb-2 text-gray-800">
+                  <div className="grid grid-cols-3 pb-2 text-sm text-gray-800">
                     <div>-10 = sehr ausgeglichen</div>
                     <div>0 = ausgeglichen</div>
                     <div>10 = sehr unkonzentriert</div>
                   </div>
 
-
                   <div className="grid grid-cols-3 text-gray-600"></div>
 
-               
                   <select
                     name="frage03"
                     id="frage03"
                     className="w-full border-gray-300 rounded-md bg-gray-50 focus:ring-teal-600 focus:border-teal-500 "
                     onChange={(e) => setFrage03(e.target.value)}
                   >
-                    <option value="-10">-10</option>
-                    <option value="-9">-9</option>
-                    <option value="-8">-8</option>
-                    <option value="-7">-7</option>
-                    <option value="-6">-6</option>
-                    <option value="-5">-5</option>
-                    <option value="-4">-4</option>
-                    <option value="-3">-3</option>
-                    <option value="-2">-2</option>
-                    <option value="-1">-1</option>
-                    <option value="0">0</option>
-                    <option value="1"> 1</option>
-                    <option value="2"> 2</option>
-                    <option value="3"> 3</option>
-                    <option value="4"> 4</option>
-                    <option value="5"> 5</option>
-                    <option value="6"> 6</option>
-                    <option value="7"> 7</option>
-                    <option value="8"> 8</option>
-                    <option value="9"> 9</option>
-                    <option value="10"> 10</option>
+                    <option value="-10"  className="text-right">-10</option>
+                    <option value="-9"  className="text-right">-9</option>
+                    <option value="-8"  className="text-right">-8</option>
+                    <option value="-7"  className="text-right">-7</option>
+                    <option value="-6"  className="text-right">-6</option>
+                    <option value="-5"  className="text-right">-5</option>
+                    <option value="-4"  className="text-right">-4</option>
+                    <option value="-3"  className="text-right">-3</option>
+                    <option value="-2"  className="text-right">-2</option>
+                    <option value="-1"  className="text-right">-1</option>
+                    <option value="0"  className="text-right">0</option>
+                    <option value="1"  className="text-right">+1</option>
+                    <option value="2"  className="text-right">+2</option>
+                    <option value="3"  className="text-right">+3</option>
+                    <option value="4"  className="text-right">+4</option>
+                    <option value="5"  className="text-right">+5</option>
+                    <option value="6"  className="text-right">+6</option>
+                    <option value="7" className="text-right">+7</option>
+                    <option value="8" className="text-right">+8</option>
+                    <option value="9" className="text-right">+9</option>
+                    <option value="10" className="text-right">+10</option>
                   </select>
-
-        
                 </div>
 
                 <div className="pb-12">
@@ -358,8 +374,7 @@ Alle deine Einträge werden im unteren Bereich der Anwendung archiviert.
                     Wie gestresst bist du?
                   </label>
 
-                  
-                  <div className="grid grid-cols-3 pb-2 text-gray-800">
+                  <div className="grid grid-cols-3 pb-2 text-sm text-gray-800">
                     <div>-10 = sehr gestresst</div>
                     <div>0 = ausgeglichen</div>
                     <div>10 = sehr entspannt</div>
@@ -371,52 +386,54 @@ Alle deine Einträge werden im unteren Bereich der Anwendung archiviert.
                     className="w-full border-gray-300 rounded-md bg-gray-50 focus:ring-teal-600 focus:border-teal-500 "
                     onChange={(e) => setFrage04(e.target.value)}
                   >
-                    <option value="-10">-10</option>
-                    <option value="-9">-9</option>
-                    <option value="-8">-8</option>
-                    <option value="-7">-7</option>
-                    <option value="-6">-6</option>
-                    <option value="-5">-5</option>
-                    <option value="-4">-4</option>
-                    <option value="-3">-3</option>
-                    <option value="-2">-2</option>
-                    <option value="-1">-1</option>
-                    <option value="0">0</option>
-                    <option value="1"> 1</option>
-                    <option value="2"> 2</option>
-                    <option value="3"> 3</option>
-                    <option value="4"> 4</option>
-                    <option value="5"> 5</option>
-                    <option value="6"> 6</option>
-                    <option value="7"> 7</option>
-                    <option value="8"> 8</option>
-                    <option value="9"> 9</option>
-                    <option value="10"> 10</option>
+                    <option value="-10"  className="text-right">-10</option>
+                    <option value="-9"  className="text-right">-9</option>
+                    <option value="-8"  className="text-right">-8</option>
+                    <option value="-7"  className="text-right">-7</option>
+                    <option value="-6"  className="text-right">-6</option>
+                    <option value="-5"  className="text-right">-5</option>
+                    <option value="-4"  className="text-right">-4</option>
+                    <option value="-3"  className="text-right">-3</option>
+                    <option value="-2"  className="text-right">-2</option>
+                    <option value="-1"  className="text-right">-1</option>
+                    <option value="0"  className="text-right">0</option>
+                    <option value="1"  className="text-right">+1</option>
+                    <option value="2"  className="text-right">+2</option>
+                    <option value="3"  className="text-right">+3</option>
+                    <option value="4"  className="text-right">+4</option>
+                    <option value="5"  className="text-right">+5</option>
+                    <option value="6"  className="text-right">+6</option>
+                    <option value="7" className="text-right">+7</option>
+                    <option value="8" className="text-right">+8</option>
+                    <option value="9" className="text-right">+9</option>
+                    <option value="10" className="text-right">+10</option>
                   </select>
-
                 </div>
 
                 <div className="pb-8">
-                <label
+                  <label
                     htmlFor="frage04"
                     className="block pb-2 mt-4 text-lg font-medium text-left text-black"
                   >
-                    Hier ist Platz für deine persönlichen Bemerkungen:
+                    Hier ist Platz für deine persönlichen Bemerkungen
+                    (optional):
                   </label>
-                  
-                  <textarea type="text" name="bemerkung"
+
+                  <textarea
+                    type="text"
+                    name="bemerkung"
                     id="frage04"
                     placeholder="Deine persönlichen Bemerkungen..."
                     className="block p-2.5 w-full text-md text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-teal-600 focus:border-teal-500   pb-12"
                     onChange={(e) => setBemerkung(e.target.value)}
-                    ></textarea>
+                  ></textarea>
                 </div>
-                
               </div>
-              
+
               {missing ? (
-                  <h1 className="w-2/3 px-2 pt-2 pb-2 m-auto mt-2 font-semibold text-white bg-red-500 rounded-lg ">
-                  Bitte alle Optionsfelder einzeln auswählen und danach erneut versuchen. Die persönlichen Bemerkungen sind nicht notwendig.
+                <h1 className="w-2/3 px-2 pt-2 pb-2 m-auto mt-2 font-semibold text-white bg-red-500 rounded-lg ">
+                  Bitte alle Optionsfelder einzeln auswählen und danach erneut
+                  versuchen. Die persönlichen Bemerkungen sind nicht notwendig.
                 </h1>
               ) : null}
 
@@ -426,7 +443,6 @@ Alle deine Einträge werden im unteren Bereich der Anwendung archiviert.
                 </h1>
               ) : null}
 
-              
               <div className="grid w-2/3 pb-8 m-auto md:grid-cols-2">
                 <button
                   type="button"
@@ -445,9 +461,6 @@ Alle deine Einträge werden im unteren Bereich der Anwendung archiviert.
                 </button>
               </div>
 
-          
-        
-
               <section className="w-2/3 m-auto mt-12 ">
                 <ul className="text-gray-400">
                   <li className="mb-8 text-xl font-bold leading-none text-gray-900">
@@ -459,121 +472,100 @@ Alle deine Einträge werden im unteren Bereich der Anwendung archiviert.
                   {datenset &&
                     datenset.map((object, index) => {
                       return (
-                        <div   key={index} className="flow-root w-full max-w-md p-4 mb-4 text-left bg-white border border-gray-200 shadow rounded-xl sm:p-8">
-                    
-        <ul role="list" className="divide-y divide-gray-300 ">
-        <li className="py-3 sm:py-8">
-                <div className="flex items-center space-x-4">
-                    <div className="flex-shrink-0">
-                     
-                    </div>
-                    <div className="flex-1 min-w-0">
-                        <p className="font-medium text-gray-900 truncate text-md ">
-                        Eintrag erstellt am:
-                        </p>
-                        <p className="text-sm text-gray-500 truncate dark:text-gray-400">
-                        {object && object.created_at}
-                        </p>
-                    </div>
-                    <div className="inline-flex items-center text-base font-semibold text-gray-900 ">
-                   
-                    </div>
-                </div>
-            </li>
-            
-            <li className="py-3 sm:py-8">
-                <div className="flex items-center space-x-4">
-                    <div className="flex-shrink-0">
-                     
-                    </div>
-                    <div className="flex-1 min-w-0">
-                        <p className="font-medium text-gray-900 truncate text-md ">
-                        Wochentag
-                        </p>
-                        <p className="text-sm text-gray-500 truncate dark:text-gray-400">
-                        {object && object.wochentag}
-                        </p>
-                    </div>
-                    <div className="inline-flex items-center text-base font-semibold text-gray-900 ">
-                   
-                    </div>
-                </div>
-            </li>
-            <li className="py-3 sm:py-4">
-                <div className="flex items-center space-x-4">
-                    <div className="flex-shrink-0">
-                    
-                    </div>
-                    <div className="flex-1 min-w-0">
-                        <p className="font-medium text-gray-900 truncate text-md ">
-                            Zeitraum
-                        </p>
-                        <p className="text-sm text-gray-500 truncate dark:text-gray-400">
-                        {object && object.zeitraum}
-                        </p>
-                    </div>
-                    <div className="inline-flex items-center text-base font-semibold text-gray-900 ">
-                      
-                    </div>
-                </div>
-            </li>
-            <li className="py-3 sm:py-4">
-                <div className="flex items-center space-x-4">
-                    <div className="flex-shrink-0">
-                      
-                    </div>
-                    <div className="flex-1 min-w-0">
-                        <p className="font-medium text-gray-900 truncate text-md ">
-                        Wie fühlst du dich gerade?
-                        </p>
-                        <p className="text-sm text-gray-500 truncate dark:text-gray-400">
-                        {object && object.frage01}
-                        </p>
-                    </div>
-                    <div className="inline-flex items-center text-base font-semibold text-gray-900 ">
-                        
-                    </div>
-                </div>
-            </li>
-            <li className="py-3 sm:py-4">
-                <div className="flex items-center space-x-4">
-                    <div className="flex-shrink-0">
-                       
-                    </div>
-                    <div className="flex-1 min-w-0">
-                        <p className="font-medium text-gray-900 truncate text-md ">
-                           Wie fühlst du dich körperlich?
-                        </p>
-                        <p className="text-sm text-gray-500 truncate dark:text-gray-400">
-                        {object && object.frage02}
-                        </p>
-                    </div>
-                    <div className="inline-flex items-center text-base font-semibold text-gray-900 ">
-                       
-                    </div>
-                </div>
-            </li>
-            <li className="pt-3 pb-0 sm:pt-4">
-                <div className="flex items-center space-x-4">
-                    <div className="flex-shrink-0">
-                     
-                    </div>
-                    <div className="flex-1 min-w-0">
-                        <p className="font-medium text-gray-900 truncate text-mf ">
-                        Wie ist dein geistiger Zustand in diesem Moment?
-                        </p>
-                        <p className="text-sm text-gray-500 truncate dark:text-gray-400">
-                        {object && object.frage03}
-                        </p>
-                    </div>
-                    <div className="inline-flex items-center text-base font-semibold text-gray-900 ">
-                        
-                    </div>
-                </div>
-            </li>
-        </ul>
-   </div>
-                        );
+                        <div
+                          key={index}
+                          className="flow-root w-full max-w-md p-4 mb-4 text-left bg-white border border-gray-200 shadow rounded-xl sm:p-8"
+                        >
+                          <ul role="list" className="divide-y divide-gray-300 ">
+                            <li className="py-3 sm:py-8">
+                              <div className="flex items-center space-x-4">
+                                <div className="flex-shrink-0"></div>
+                                <div className="flex-1 min-w-0">
+                                  <p className="font-medium text-gray-900 truncate text-md ">
+                                    Eintrag erstellt am:
+                                  </p>
+                                  <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+                                    {object && object.created_at}
+                                  </p>
+                                </div>
+                                <div className="inline-flex items-center text-base font-semibold text-gray-900 "></div>
+                              </div>
+                            </li>
+
+                            <li className="py-3 sm:py-8">
+                              <div className="flex items-center space-x-4">
+                                <div className="flex-shrink-0"></div>
+                                <div className="flex-1 min-w-0">
+                                  <p className="font-medium text-gray-900 truncate text-md ">
+                                    Wochentag
+                                  </p>
+                                  <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+                                    {object && object.wochentag}
+                                  </p>
+                                </div>
+                                <div className="inline-flex items-center text-base font-semibold text-gray-900 "></div>
+                              </div>
+                            </li>
+                            <li className="py-3 sm:py-4">
+                              <div className="flex items-center space-x-4">
+                                <div className="flex-shrink-0"></div>
+                                <div className="flex-1 min-w-0">
+                                  <p className="font-medium text-gray-900 truncate text-md ">
+                                    Zeitraum
+                                  </p>
+                                  <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+                                    {object && object.zeitraum}
+                                  </p>
+                                </div>
+                                <div className="inline-flex items-center text-base font-semibold text-gray-900 "></div>
+                              </div>
+                            </li>
+                            <li className="py-3 sm:py-4">
+                              <div className="flex items-center space-x-4">
+                                <div className="flex-shrink-0"></div>
+                                <div className="flex-1 min-w-0">
+                                  <p className="font-medium text-gray-900 truncate text-md ">
+                                    Wie fühlst du dich gerade?
+                                  </p>
+                                  <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+                                    {object && object.frage01}
+                                  </p>
+                                </div>
+                                <div className="inline-flex items-center text-base font-semibold text-gray-900 "></div>
+                              </div>
+                            </li>
+                            <li className="py-3 sm:py-4">
+                              <div className="flex items-center space-x-4">
+                                <div className="flex-shrink-0"></div>
+                                <div className="flex-1 min-w-0">
+                                  <p className="font-medium text-gray-900 truncate text-md ">
+                                    Wie fühlst du dich körperlich?
+                                  </p>
+                                  <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+                                    {object && object.frage02}
+                                  </p>
+                                </div>
+                                <div className="inline-flex items-center text-base font-semibold text-gray-900 "></div>
+                              </div>
+                            </li>
+                            <li className="pt-3 pb-0 sm:pt-4">
+                              <div className="flex items-center space-x-4">
+                                <div className="flex-shrink-0"></div>
+                                <div className="flex-1 min-w-0">
+                                  <p className="font-medium text-gray-900 truncate text-mf ">
+                                    Wie ist dein geistiger Zustand in diesem
+                                    Moment?
+                                  </p>
+                                  <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+                                    {object && object.frage03}
+                                  </p>
+                                </div>
+                                <div className="inline-flex items-center text-base font-semibold text-gray-900 "></div>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      );
                     })}
                 </div>
               </section>
