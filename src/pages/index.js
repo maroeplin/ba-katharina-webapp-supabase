@@ -101,9 +101,9 @@ export default function Home() {
       </Head>
       <main>
         <div className="w-auto pt-48 m-auto text-center">
-          <h1 className="text-3xl font-light text-center md:text-4xl ">Herzlich Willkommen! </h1>
+          <h1 className="text-3xl font-light text-center md:text-4xl ">Herzlich Willkommen!</h1>
           <div>
-          <h2 className="w-9/12 pt-8 m-auto text-lg text-center md:w-1/3"> Logge dich ein, um an der Befragung teilzunehmen. Falls du noch kein Konto erstellt hast, registriere dich.</h2>
+          <h2 className="w-9/12 pt-8 m-auto text-lg text-center md:w-1/3"> Logge dich ein, um an der Befragung teilzunehmen. Falls du noch kein Konto erstellt hast, registriere dich bitte.</h2>
             
           </div>
          

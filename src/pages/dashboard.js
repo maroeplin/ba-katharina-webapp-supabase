@@ -413,6 +413,20 @@ Alle deine Einträge werden im unteren Bereich der Anwendung archiviert.
                 </div>
                 
               </div>
+              
+              {missing ? (
+                  <h1 className="w-2/3 px-2 pt-2 pb-2 m-auto mt-2 font-semibold text-white bg-red-500 rounded-lg ">
+                  Bitte alle Optionsfelder einzeln auswählen und danach erneut versuchen. Die persönlichen Bemerkungen sind nicht notwendig.
+                </h1>
+              ) : null}
+
+              {feedback ? (
+                <h1 className="w-2/3 pt-2 pb-2 m-auto mt-2 font-semibold text-white rounded-lg bg-lime-500">
+                  Der Eintrag wurde erstellt.
+                </h1>
+              ) : null}
+
+              
               <div className="grid w-2/3 pb-8 m-auto md:grid-cols-2">
                 <button
                   type="button"
@@ -431,17 +445,8 @@ Alle deine Einträge werden im unteren Bereich der Anwendung archiviert.
                 </button>
               </div>
 
-              {feedback ? (
-                <h1 className="w-2/3 pt-2 pb-2 m-auto mt-2 font-semibold text-white rounded-lg bg-lime-500">
-                  Der Eintrag wurde erstellt
-                </h1>
-              ) : null}
-
-              {missing ? (
-                  <h1 className="w-2/3 px-2 pt-2 pb-2 m-auto mt-2 font-semibold text-white bg-red-500 rounded-lg ">
-                  Bitte alle Optionsfelder einzeln auswählen und danach erneut versuchen.
-                </h1>
-              ) : null}
+          
+        
 
               <section className="w-2/3 m-auto mt-8 ">
                 <ul className="text-gray-400">
