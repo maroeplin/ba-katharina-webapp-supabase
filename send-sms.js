@@ -2,8 +2,8 @@ const twilio = require("twilio");
 const moment = require("moment-timezone");
 
 exports.handler = function (event, context, callback) {
-  const accountSid = 'AC5d373a62a3bd2ab0eab5c1728238938f';
-  const authToken = 'eee54b3ead680db216086f242b8b5e57';
+  const accountSid = process.env.NEXT_PUBLIC_TWILIO_SID;
+  const authToken = process.env.NEXT_PUBLIC_TWILIO_AUTH_TOKEN;
 
   //twilio-account initalisieren
   const client = new twilio(accountSid, authToken);
