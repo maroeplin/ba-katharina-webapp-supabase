@@ -15,9 +15,6 @@ export default function Home() {
   const [stimmung, setStimmung] = useState("");
   const [beschreibung, setBeschreibung] = useState("");
 
-  //in den folgenden Hook kommt das object aus der Datenbank
-  const [datenset, setDatenset] = useState([]);
-
   const [currentUser, setCurrentUser] = useState([]);
 
   /*hier soll gecheckt werden, ob der User eingelogged ist und zwar, wenn die Page geladen wurde (sofort, wenn das component geladen wurde)
@@ -44,46 +41,8 @@ export default function Home() {
     getUser();
   }, []);
 
-  useEffect(() => {
-    const getLinks = async () => {
-      try {
-        const { data, error } = await supabase
-          .from("datenset")
-          .select("beschreibung, stimmung")
-          .eq("user_id", userId);
 
-        if (error) throw error;
 
-        console.log("data: ", data);
-        setDatenset(data);
-      } catch (error) {
-        console.log("error: ", error);
-      }
-    };
-    if (userId) {
-      getLinks();
-    }
-    //sobald sich der Value in den brackets von useEffect ändert, wird der Code Block darüber ausgeführt (der Block wird jedes Mal recalled)
-  }, [userId, beschreibung]);
-
-  const addNewLink = async () => {
-    try {
-      if (beschreibung) {
-        const { data, error } = await supabase.from("datenset").insert({
-          user_id: userId,
-          beschreibung: beschreibung,
-          stimmung: stimmung,
-        });
-        if (error) throw error;
-        console.log("data", data);
-        if (datenset) {
-          setDatenset([...datenset, data]);
-        }
-      }
-    } catch (error) {
-      console.log("error", error);
-    }
-  };
 
   async function loginWithToken() {
     setIsAuthenticated(false);

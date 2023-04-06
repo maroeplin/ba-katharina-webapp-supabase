@@ -1,9 +1,9 @@
 const twilio = require("twilio");
-const moment = require("moment");
+const moment = require("moment-timezone");
 
 exports.handler = function (event, context, callback) {
-  const accountSid = process.env.NEXT_PUBLIC_TWILIO_SID;
-  const authToken = process.env.NEXT_PUBLIC_TWILIO_AUTH_TOKEN;
+  const accountSid = 'AC5d373a62a3bd2ab0eab5c1728238938f';
+  const authToken = 'eee54b3ead680db216086f242b8b5e57';
 
   //twilio-account initalisieren
   const client = new twilio(accountSid, authToken);
@@ -16,11 +16,11 @@ exports.handler = function (event, context, callback) {
     { time: "09:00", numbers: ["+4915221491112", "+4917630785581"] },
     { time: "14:00", numbers: ["+4915221491112", "+4917630785581"] },
     { time: "19:00", numbers: ["+4915221491112", "+4917630785581"] },
-    { time: "20:26", numbers: ["+4915221491112", "+4917630785581"] }
+    { time: "20:44", numbers: ["+4915221491112", "+4917630785581"] }
   ];
 
   //aktuelle Zeit bestimmen
-  const now = moment().tz(tz);
+  const now = moment().tz("Europe/Berlin");
 
   //durch den Schedule loopen
   schedule.forEach((item) => {
