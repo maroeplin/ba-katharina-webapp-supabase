@@ -21,6 +21,7 @@ export default function Dashboard() {
   const [frage02, setFrage02] = useState("");
   const [frage03, setFrage03] = useState("");
   const [frage04, setFrage04] = useState("");
+  const [bemerkung, setBemerkung] = useState("");
 
   //in den folgenden Hook kommt das object aus der Datenbank
   const [datenset, setDatenset] = useState([]);
@@ -61,7 +62,7 @@ export default function Dashboard() {
         const { data, error } = await supabase
           .from("bachelor")
           .select(
-            "wochentag, zeitraum, frage01, frage02, frage03, frage04, created_at"
+            "wochentag, zeitraum, frage01, frage02, frage03, frage04, bemerkung created_at"
           )
           .eq("user_id", userId);
 
@@ -77,7 +78,7 @@ export default function Dashboard() {
       getLinks();
     }
     //sobald sich der Value in den brackets von useEffect ändert, wird der Code Block darüber ausgeführt (der Block wird jedes Mal recalled)
-  }, [userId, wochentag, zeitraum, frage01, frage02, frage03, frage04]);
+  }, [userId, wochentag, zeitraum, frage01, frage02, frage03, frage04, bemerkung]);
 
 
   const validateForm = () => {
@@ -103,8 +104,9 @@ export default function Dashboard() {
           frage02: frage02,
           frage03: frage03,
           frage04: frage04,
+          bemerkung: bemerkung
         });
-        if(!wochentag && !zeitraum && !frage01 && !frage02 && !frage03 && !frage04) {
+        if(!wochentag && !zeitraum && !frage01 && !frage02 && !frage03 && !frage04 && !bemerkung) {
           setMissing(true);
         };
         if (error) throw error;
@@ -139,12 +141,11 @@ export default function Dashboard() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div className="w-auto max-w-md pt-48 m-auto text-center md:max-w-2xl">
+        <div className="w-auto max-w-md pt-24 m-auto text-center md:max-w-2xl">
           <h1 className="text-4xl font-light">Herzlich Willkommen!</h1>
-          <div className="w-2/3 pt-8 pb-6 m-auto text-lg">
-            Vielen Dank, dass du an meiner Befragung zu deinem
-            Verfassungszustand teilnimmst. Nimm dir bitte drei Mal am Tag die
-            Zeit und beantworte folgende Fragen ehrlich.
+          <div className="w-2/3 pt-8 pb-6 m-auto text-md md:text-lg">
+          Danke, dass du an meiner Befragung zu deinem Verfassungszustand teilnimmst. Nimm dir bitte die Zeit, um dich mit deiner Verfassung auseinanderzusetzen und beantworte alle Fragen ehrlich. <br/> <br/> Im letzten Feld hast du Raum für zusätzliche Anmerkungen. 
+Alle deine Einträge werden im unteren Bereich der Anwendung archiviert.
           </div>
           {currentUser && currentUser?.data?.user.phone > 0 && (
             <div className="w-2/3 m-auto mt-8 text-sm text-center">
@@ -163,7 +164,7 @@ export default function Dashboard() {
                   <div className="grid grid-rows-2">
                     <label
                       htmlFor="wochentag"
-                      className="block mt-4 font-medium text-left text-gray-700 text-md"
+                      className="block mt-4 font-medium text-left text-black text-md"
                     >
                       Wochentag
                     </label>
@@ -171,7 +172,7 @@ export default function Dashboard() {
                     <select
                       name="wochentag"
                       id="wochentag"
-                      className="border-gray-300 rounded-md"
+                      className="border-gray-300 rounded-md bg-gray-50 focus:ring-teal-600 focus:border-teal-500 "
                       placeholder="Montag"
                       onChange={(e) => setWochentag(e.target.value)}
                     >
@@ -188,7 +189,7 @@ export default function Dashboard() {
                   <div className="grid grid-rows-2">
                     <label
                       htmlFor="zeitraum"
-                      className="block mt-4 font-medium text-left text-md"
+                      className="block mt-4 font-medium text-left text-black text-md "
                     >
                       Zeitraum
                     </label>
@@ -196,7 +197,7 @@ export default function Dashboard() {
                     <select
                       name="zeitraum"
                       id="zeitraum"
-                      className="border-gray-300 rounded-md"
+                      className="border-gray-300 rounded-md bg-gray-50 focus:ring-teal-600 focus:border-teal-500 "
                       placeholder="9 Uhr"
                       onChange={(e) => setZeitraum(e.target.value)}
                     >
@@ -210,15 +211,21 @@ export default function Dashboard() {
                 <div className="pb-12">
                   <label
                     htmlFor="frage01"
-                    className="block mt-4 font-medium text-left text-gray-700 text-md"
+                    className="block mt-4 text-lg font-medium text-left text-black"
                   >
                     Wie fühlst du dich gerade?
                   </label>
 
+                  <div className="grid grid-cols-3 pb-2 text-gray-800">
+                    <div>-10 = sehr traurig</div>
+                    <div>0 = ausgeglichen</div>
+                    <div>10 = sehr glücklich</div>
+                  </div>
+
                   <select
                     name="frage01"
                     id="frage01"
-                    className="w-full border-gray-300 rounded-md"
+                    className="w-full border-gray-300 rounded-md bg-gray-50 focus:ring-teal-600 focus:border-teal-500 "
                     onChange={(e) => setFrage01(e.target.value)}
                   >
                     <option value="-10">-10</option>
@@ -244,25 +251,27 @@ export default function Dashboard() {
                     <option value="10"> 10</option>
                   </select>
 
-                  <div className="grid grid-cols-3 pb-2 text-gray-400">
-                    <div>-10 = sehr traurig</div>
-                    <div>0 = ausgeglichen</div>
-                    <div>10 = sehr glücklich</div>
-                  </div>
+          
                 </div>
 
                 <div className="pb-12">
                   <label
                     htmlFor="frage02"
-                    className="block mt-4 font-medium text-left text-gray-700 text-md"
+                    className="block mt-4 text-lg font-medium text-left text-black-700"
                   >
                     Wie fühlst du dich körperlich?
                   </label>
 
+                  <div className="grid grid-cols-3 pb-2 text-gray-800">
+                    <div>-10 = sehr erschöpft</div>
+                    <div>0 = ausgeglichen</div>
+                    <div>10 = sehr energiegeladen</div>
+                  </div>
+
                   <select
                     name="frage02"
                     id="frage02"
-                    className="w-full border-gray-300 rounded-md"
+                    className="w-full border-gray-300 rounded-md bg-gray-50 focus:ring-teal-600 focus:border-teal-500 "
                     onChange={(e) => setFrage02(e.target.value)}
                   >
                     <option value="-10">-10</option>
@@ -288,27 +297,31 @@ export default function Dashboard() {
                     <option value="10"> 10</option>
                   </select>
 
-                  <div className="grid grid-cols-3 pt-4 pb-2 text-gray-400">
-                    <div>-10 = sehr erschöpft</div>
-                    <div>0 = ausgeglichen</div>
-                    <div>10 = sehr energiegeladen</div>
-                  </div>
+
                 </div>
 
                 <div className="pb-12">
                   <label
                     htmlFor="frage03"
-                    className="block mt-4 font-medium text-left text-gray-700 text-md"
+                    className="block mt-4 text-lg font-medium text-left text-black"
                   >
                     Wie ist dein geistiger Zustand in diesem Moment?
                   </label>
 
-                  <div className="grid grid-cols-3 pb-2 text-gray-600"></div>
+                  <div className="grid grid-cols-3 pb-2 text-gray-800">
+                    <div>-10 = sehr ausgeglichen</div>
+                    <div>0 = ausgeglichen</div>
+                    <div>10 = sehr unkonzentriert</div>
+                  </div>
 
+
+                  <div className="grid grid-cols-3 text-gray-600"></div>
+
+               
                   <select
                     name="frage03"
                     id="frage03"
-                    className="w-full border-gray-300 rounded-md"
+                    className="w-full border-gray-300 rounded-md bg-gray-50 focus:ring-teal-600 focus:border-teal-500 "
                     onChange={(e) => setFrage03(e.target.value)}
                   >
                     <option value="-10">-10</option>
@@ -334,25 +347,28 @@ export default function Dashboard() {
                     <option value="10"> 10</option>
                   </select>
 
-                  <div className="grid grid-cols-3 pt-4 pb-2 text-gray-400">
-                    <div>-10 = sehr ausgeglichen</div>
-                    <div>0 = ausgeglichen</div>
-                    <div>10 = sehr unkonzentriert</div>
-                  </div>
+        
                 </div>
 
                 <div className="pb-12">
                   <label
                     htmlFor="frage04"
-                    className="block mt-4 font-medium text-left text-gray-700 text-md"
+                    className="block mt-4 text-lg font-medium text-left text-black"
                   >
                     Wie gestresst bist du?
                   </label>
 
+                  
+                  <div className="grid grid-cols-3 pb-2 text-gray-800">
+                    <div>-10 = sehr gestresst</div>
+                    <div>0 = ausgeglichen</div>
+                    <div>10 = sehr entspannt</div>
+                  </div>
+
                   <select
                     name="frage04"
                     id="frage04"
-                    className="w-full border-gray-300 rounded-md"
+                    className="w-full border-gray-300 rounded-md bg-gray-50 focus:ring-teal-600 focus:border-teal-500 "
                     onChange={(e) => setFrage04(e.target.value)}
                   >
                     <option value="-10">-10</option>
@@ -378,12 +394,24 @@ export default function Dashboard() {
                     <option value="10"> 10</option>
                   </select>
 
-                  <div className="grid grid-cols-3 pt-4 pb-2 text-gray-400">
-                    <div>-10 = sehr gestresst</div>
-                    <div>0 = ausgeglichen</div>
-                    <div>10 = sehr entspannt</div>
-                  </div>
                 </div>
+
+                <div className="pb-8">
+                <label
+                    htmlFor="frage04"
+                    className="block pb-2 mt-4 text-lg font-medium text-left text-black"
+                  >
+                    Hier ist Platz für deine persönlichen Bemerkungen:
+                  </label>
+                  
+                  <textarea type="text"   name="bemerkung"
+                    id="frage04"
+                    placeholder="Deine persönlichen Bemerkungen..."
+                    className="block p-2.5 w-full text-md text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-teal-600 focus:border-teal-500   pb-12"
+                    onChange={(e) => setBemerkung(e.target.value)}
+                    ></textarea>
+                </div>
+                
               </div>
               <div className="grid w-2/3 pb-8 m-auto md:grid-cols-2">
                 <button
