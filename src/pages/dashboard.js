@@ -13,15 +13,15 @@ export default function Dashboard() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userId, setUserId] = useState("");
 
-  const [wochentag, setWochentag] = useState("");
-  const [zeitraum, setZeitraum] = useState("");
+  const [wochentag, setWochentag] = useState(null);
+  const [zeitraum, setZeitraum] = useState(null);
 
   //Fragen
-  const [frage01, setFrage01] = useState("");
-  const [frage02, setFrage02] = useState("");
-  const [frage03, setFrage03] = useState("");
-  const [frage04, setFrage04] = useState("");
-  const [bemerkung, setBemerkung] = useState("");
+  const [frage01, setFrage01] = useState(null);
+  const [frage02, setFrage02] = useState(null);
+  const [frage03, setFrage03] = useState(null);
+  const [frage04, setFrage04] = useState(null);
+  const [bemerkung, setBemerkung] = useState(null);
 
   //in den folgenden Hook kommt das object aus der Datenbank
   const [datenset, setDatenset] = useState([]);
@@ -59,12 +59,12 @@ export default function Dashboard() {
   useEffect(() => {
     const getLinks = async () => {
       try {
-        const { data, error } = await supabase
-          .from("bachelor")
+        const { data: bachelor, error } = await supabase
+          .from('bachelor')
           .select(
-            "wochentag, zeitraum, frage01, frage02, frage03, frage04, bemerkung created_at"
+            'wochentag, zeitraum, frage01, frage02, frage03, frage04, bemerkung, created_at'
           )
-          .eq("user_id", userId);
+          .eq('user_id', userId);
 
         if (error) throw error;
 
@@ -95,7 +95,7 @@ export default function Dashboard() {
     const isValid = validateForm();
     if(isValid) {
     try {
-      if (wochentag && zeitraum && frage01 && frage02 && frage03 && frage04) {
+
         const { data, error } = await supabase.from("bachelor").insert({
           user_id: userId,
           wochentag: wochentag,
@@ -106,7 +106,7 @@ export default function Dashboard() {
           frage04: frage04,
           bemerkung: bemerkung
         });
-        if(!wochentag && !zeitraum && !frage01 && !frage02 && !frage03 && !frage04 && !bemerkung) {
+        if(!wochentag && !zeitraum && !frage01 && !frage02 && !frage03 && !frage04) {
           setMissing(true);
         };
         if (error) throw error;
@@ -115,7 +115,7 @@ export default function Dashboard() {
           setDatenset([data, ...datenset]);
           setFeedback(true);
         }
-      }
+      
     } catch (error) {
       console.log("error", error);
     }
@@ -404,7 +404,7 @@ Alle deine Einträge werden im unteren Bereich der Anwendung archiviert.
                     Hier ist Platz für deine persönlichen Bemerkungen:
                   </label>
                   
-                  <textarea type="text"   name="bemerkung"
+                  <textarea type="text" name="bemerkung"
                     id="frage04"
                     placeholder="Deine persönlichen Bemerkungen..."
                     className="block p-2.5 w-full text-md text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-teal-600 focus:border-teal-500   pb-12"
