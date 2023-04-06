@@ -13,10 +13,10 @@ exports.handler = function (event, context, callback) {
 
   //Zeiten, zu denen eine SMS gesendet werden soll
   const schedule = [
-    { time: "09:00", numbers: ["+4915221491112", "+49 176 30785581"] },
-    { time: "14:00", numbers: ["+4915221491112", "+49 176 30785581"] },
-    { time: "19:00", numbers: ["+4915221491112", "+49 176 30785581"] },
-    { time: "20:26", numbers: ["+4915221491112", "+49 176 30785581"] }
+    { time: "09:00", numbers: ["+4915221491112", "+4917630785581"] },
+    { time: "14:00", numbers: ["+4915221491112", "+4917630785581"] },
+    { time: "19:00", numbers: ["+4915221491112", "+4917630785581"] },
+    { time: "20:26", numbers: ["+4915221491112", "+4917630785581"] }
   ];
 
   //aktuelle Zeit bestimmen
