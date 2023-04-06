@@ -448,9 +448,9 @@ Alle deine Einträge werden im unteren Bereich der Anwendung archiviert.
           
         
 
-              <section className="w-2/3 m-auto mt-8 ">
+              <section className="w-2/3 m-auto mt-12 ">
                 <ul className="text-gray-400">
-                  <li className="pt-4 pb-2 border-gray-400 ">
+                  <li className="mb-8 text-xl font-bold leading-none text-gray-900">
                     Deine Einträge
                   </li>
                 </ul>
@@ -459,52 +459,102 @@ Alle deine Einträge werden im unteren Bereich der Anwendung archiviert.
                   {datenset &&
                     datenset.map((object, index) => {
                       return (
-                        <ul
-                          key={index}
-                          className="grid pl-4 pr-4 mt-4 text-black border border-teal-700 rounded-xl"
-                        >
-                          <dl className="pt-4 text-left border-gray-400 ">
-                            <dd className="pt-2 pb-2 text-center ">{object && object.created_at}</dd>
-                            <dd className="pt-2 pb-2 font-bold">Wochentag</dd>
-                            <dt className="pt-2 pb-2 mb-4 border-b">
-                              {object && object.wochentag}
-                            </dt>
-
-                            <dd className="pt-2 pb-2 ">Zeitraum</dd>
-                            <dd className="pt-2 pb-2 mb-4">
-                              {object && object.zeitraum}
-                            </dd>
-
-                            <dd className="pt-2 pb-2 ">
-                              Wie fühlst du dich gerade?
-                            </dd>
-                            <dd className="pt-2 pb-2 mb-4">
-                              {object && object.frage01}
-                            </dd>
-
-                            <dd className="pt-2 pb-2 ">
-                              Wie fühlst du dich körperlich?
-                            </dd>
-                            <dd className="pt-2 pb-2 mb-4">
-                              {object && object.frage02}
-                            </dd>
-
-                            <dd className="pt-2 pb-2 ">
-                              Wie ist dein geistiger Zustand in diesem Moment?
-                            </dd>
-                            <dd className="pt-2 pb-2 mb-4">
-                              {object && object.frage03}
-                            </dd>
-
-                            <dd className="pt-2 pb-2 ">
-                              Wie gestresst bist du?
-                            </dd>
-                            <dd className="pt-2 pb-2 mb-4">
-                              {object && object.frage04}
-                            </dd>
-                          </dl>
-                        </ul>
-                      );
+                        <div   key={index} className="flow-root w-full max-w-md p-4 mb-4 text-left bg-white border border-gray-200 shadow rounded-xl sm:p-8">
+                    
+        <ul role="list" className="divide-y divide-gray-300 ">
+            <li className="py-3 sm:py-8">
+                <div className="flex items-center space-x-4">
+                    <div className="flex-shrink-0">
+                     
+                    </div>
+                    <div className="flex-1 min-w-0">
+                        <p className="font-medium text-gray-900 truncate text-md ">
+                        Wochentag
+                        </p>
+                        <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+                        {object && object.wochentag}
+                        </p>
+                    </div>
+                    <div className="inline-flex items-center text-base font-semibold text-gray-900 ">
+                   
+                    </div>
+                </div>
+            </li>
+            <li className="py-3 sm:py-4">
+                <div className="flex items-center space-x-4">
+                    <div className="flex-shrink-0">
+                    
+                    </div>
+                    <div className="flex-1 min-w-0">
+                        <p className="font-medium text-gray-900 truncate text-md ">
+                            Zeitraum
+                        </p>
+                        <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+                        {object && object.zeitraum}
+                        </p>
+                    </div>
+                    <div className="inline-flex items-center text-base font-semibold text-gray-900 ">
+                      
+                    </div>
+                </div>
+            </li>
+            <li className="py-3 sm:py-4">
+                <div className="flex items-center space-x-4">
+                    <div className="flex-shrink-0">
+                      
+                    </div>
+                    <div className="flex-1 min-w-0">
+                        <p className="font-medium text-gray-900 truncate text-md ">
+                        Wie fühlst du dich gerade?
+                        </p>
+                        <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+                        {object && object.frage01}
+                        </p>
+                    </div>
+                    <div className="inline-flex items-center text-base font-semibold text-gray-900 ">
+                        
+                    </div>
+                </div>
+            </li>
+            <li className="py-3 sm:py-4">
+                <div className="flex items-center space-x-4">
+                    <div className="flex-shrink-0">
+                       
+                    </div>
+                    <div className="flex-1 min-w-0">
+                        <p className="font-medium text-gray-900 truncate text-md ">
+                           Wie fühlst du dich körperlich?
+                        </p>
+                        <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+                        {object && object.frage02}
+                        </p>
+                    </div>
+                    <div className="inline-flex items-center text-base font-semibold text-gray-900 ">
+                       
+                    </div>
+                </div>
+            </li>
+            <li className="pt-3 pb-0 sm:pt-4">
+                <div className="flex items-center space-x-4">
+                    <div className="flex-shrink-0">
+                     
+                    </div>
+                    <div className="flex-1 min-w-0">
+                        <p className="font-medium text-gray-900 truncate text-mf ">
+                        Wie ist dein geistiger Zustand in diesem Moment?
+                        </p>
+                        <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+                        {object && object.frage03}
+                        </p>
+                    </div>
+                    <div className="inline-flex items-center text-base font-semibold text-gray-900 ">
+                        
+                    </div>
+                </div>
+            </li>
+        </ul>
+   </div>
+                        );
                     })}
                 </div>
               </section>
