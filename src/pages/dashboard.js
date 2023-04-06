@@ -200,6 +200,7 @@ export default function Dashboard() {
                       placeholder="bitte auswählen"
                       onChange={(e) => setWochentag(e.target.value)}
                     >
+                      <option value="Platzhalter"></option>
                       <option value="Montag">Montag</option>
                       <option value="Dienstag">Dienstag</option>
                       <option value="Mittwoch">Mittwoch</option>
@@ -225,6 +226,7 @@ export default function Dashboard() {
                       placeholder="9 Uhr"
                       onChange={(e) => setZeitraum(e.target.value)}
                     >
+                      <option value="Platzhalter"></option>
                       <option value="9 Uhr">9 Uhr</option>
                       <option value="14 Uhr">14 Uhr</option>
                       <option value="19 Uhr">19 Uhr</option>
@@ -256,6 +258,7 @@ export default function Dashboard() {
                     {frage01 ? ("w-full border-teal-300 rounded-md bg-gray-50 focus:ring-teal-600 focus:border-teal-500") : ("w-full border-red-500 rounded-md bg-gray-50 focus:ring-teal-600 focus:border-teal-500")}
                     onChange={(e) => setFrage01(e.target.value)}
                   >
+                    <option value="Platzhalter"></option>
                     <option value="-10" className="text-right">-10</option>
                     <option value="-9" className="text-right">-9</option>
                     <option value="-8" className="text-right">-8</option>
@@ -300,6 +303,7 @@ export default function Dashboard() {
                     className={frage02 ? ("w-full border-teal-300 rounded-md bg-gray-50 focus:ring-teal-600 focus:border-teal-500") : ("w-full border-red-500 rounded-md bg-gray-50 focus:ring-teal-600 focus:border-teal-500 ")}
                     onChange={(e) => setFrage02(e.target.value)}
                   >
+                    <option value="Platzhalter"></option>
                     <option value="-10"  className="text-right">-10</option>
                     <option value="-9"  className="text-right">-9</option>
                     <option value="-8"  className="text-right">-8</option>
@@ -346,6 +350,7 @@ export default function Dashboard() {
                     className= {frage03 ? ("w-full border-teal-300 rounded-md bg-gray-50 focus:ring-teal-600 focus:border-teal-500") : ("w-full border-red-500 rounded-md bg-gray-50 focus:ring-teal-600 focus:border-teal-500 ")}
                     onChange={(e) => setFrage03(e.target.value)}
                   >
+                    <option value="Platzhalter"></option>
                     <option value="-10"  className="text-right">-10</option>
                     <option value="-9"  className="text-right">-9</option>
                     <option value="-8"  className="text-right">-8</option>
@@ -390,6 +395,7 @@ export default function Dashboard() {
                     className={frage04 ? ("w-full border-teal-300 rounded-md bg-gray-50 focus:ring-teal-600 focus:border-teal-500 ") : ("w-full border-red-500 rounded-md bg-gray-50 focus:ring-teal-600 focus:border-teal-500 ")}
                     onChange={(e) => setFrage04(e.target.value)}
                   >
+                    <option value="Platzhalter"></option>
                     <option value="-10"  className="text-right">-10</option>
                     <option value="-9"  className="text-right">-9</option>
                     <option value="-8"  className="text-right">-8</option>
