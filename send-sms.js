@@ -16,9 +16,9 @@ exports.handler = function (event, context, callback) {
     { time: "09:00", numbers: ["+4915221491112", "+4917630785581"] },
     { time: "14:00", numbers: ["+4915221491112", "+4917630785581"] },
     { time: "19:00", numbers: ["+4915221491112", "+4917630785581"] },
-    { time: "21:50", numbers: ["+4915221491112", "+4917630785581"] },
     { time: "20:50", numbers: ["+4915221491112", "+4917630785581"] },
-    { time: "21:50", numbers: ["+4915221491112", "+4917630785581"] }
+    { time: "21:13", numbers: ["+4915221491112", "+4917630785581"] },
+    { time: "21:14", numbers: ["+4915221491112", "+4917630785581"] }
   ];
 
   //aktuelle Zeit bestimmen
@@ -33,8 +33,8 @@ exports.handler = function (event, context, callback) {
         //Nachricht erstellen
         item.numbers.forEach(number => {
             client.messages.create({
-                body: 'https://ba-23-webapp-supabase.netlify.app',
-                from: '+15855952499',
+                body: 'Der Link zur Befragung: https://ba-23-webapp-supabase.netlify.app',
+                from: process.env.NEXT_PUBLIC_TWILIO_NUMBER,
                 to: number,
             }).then(message => {
                 console.log(`Nachricht gesendet an ${message.to}`);
