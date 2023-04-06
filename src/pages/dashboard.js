@@ -59,7 +59,7 @@ export default function Dashboard() {
   useEffect(() => {
     const getLinks = async () => {
       try {
-        const { data: bachelor, error } = await supabase
+        const { data, error } = await supabase
           .from('bachelor')
           .select(
             'wochentag, zeitraum, frage01, frage02, frage03, frage04, bemerkung, created_at'
