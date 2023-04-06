@@ -462,6 +462,25 @@ Alle deine Einträge werden im unteren Bereich der Anwendung archiviert.
                         <div   key={index} className="flow-root w-full max-w-md p-4 mb-4 text-left bg-white border border-gray-200 shadow rounded-xl sm:p-8">
                     
         <ul role="list" className="divide-y divide-gray-300 ">
+        <li className="py-3 sm:py-8">
+                <div className="flex items-center space-x-4">
+                    <div className="flex-shrink-0">
+                     
+                    </div>
+                    <div className="flex-1 min-w-0">
+                        <p className="font-medium text-gray-900 truncate text-md ">
+                        Eintrag erstellt am:
+                        </p>
+                        <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+                        {object && object.created_at}
+                        </p>
+                    </div>
+                    <div className="inline-flex items-center text-base font-semibold text-gray-900 ">
+                   
+                    </div>
+                </div>
+            </li>
+            
             <li className="py-3 sm:py-8">
                 <div className="flex items-center space-x-4">
                     <div className="flex-shrink-0">
