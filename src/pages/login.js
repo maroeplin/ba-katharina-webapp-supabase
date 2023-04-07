@@ -3,8 +3,8 @@ import { useState } from "react";
 import supabase from "@/utils/supabase-client";
 
 export default function Login() {
-  const [password, setPassword] = useState("");
-  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState(null);
+  const [phone, setPhone] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   //error check for password
@@ -90,9 +90,9 @@ export default function Login() {
               id="password"
               title="Das Passwort sollte mindestens 6 Zeichen lang sein."
               required
-              minLength="6"
+              minLength="5"
               className={
-                password?.length <= 6
+                password?.length <= 5
                   ? "block w-full border border-gray-200 rounded-md shadow-sm focus:border-red-500 focus:ring-red-500"
                   : "block w-full border border-teal-400 rounded-md shadow-sm focus:border-teal-500 focus:ring-teal-500"
               }
