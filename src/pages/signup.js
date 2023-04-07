@@ -57,7 +57,7 @@ export default function Signup() {
         setIsRegistered(true);
         setIsAuthenticated(true);
         //zurück zur Startseite
-        router.push("/login");
+        router.push("/");
       }
     } catch {}
   }
@@ -72,7 +72,7 @@ export default function Signup() {
     {!isRegistered ? (
       <>
 
-      <h1 className="pb-8 text-2xl text-center">Vielen Dank, dass du an meiner Befragung teilnimmst. <span className="font-bold">XYZ</span>
+      <h1 className="pb-8 text-2xl text-center">Vielen Dank, dass du bei dem Versuch <span className="font-bold">XYZ</span> teilnehmen möchtest.
       </h1>
       
       <h2 className="pb-8 text-center">Mit deiner Mobilnummer und einem Passwort kannst du dich registrieren.</h2>
