@@ -245,7 +245,7 @@ export default function Dashboard() {
                     Wie fühlst du dich gerade?
                   </label>
 
-                  <div className="grid grid-cols-3 pb-2 text-sm text-gray-800">
+                  <div className="grid grid-cols-3 gap-4 pb-2 text-sm text-gray-800">
                     <div>-10 = sehr traurig</div>
                     <div>0 = ausgeglichen</div>
                     <div>+10 = sehr glücklich</div>
@@ -291,7 +291,7 @@ export default function Dashboard() {
                     Wie fühlst du dich körperlich?
                   </label>
 
-                  <div className="grid grid-cols-3 pb-2 text-sm text-gray-800">
+                  <div className="grid grid-cols-3 gap-4 pb-2 text-sm text-gray-800">
                     <div>-10 = sehr erschöpft</div>
                     <div>0 = ausgeglichen</div>
                     <div>+10 = sehr energiegeladen</div>
@@ -336,7 +336,7 @@ export default function Dashboard() {
                     Wie ist dein geistiger Zustand in diesem Moment?
                   </label>
 
-                  <div className="grid grid-cols-3 pb-2 text-sm text-gray-800">
+                  <div className="grid grid-cols-3 gap-4 pb-2 text-sm text-gray-800">
                     <div>-10 = sehr unkonzentriert</div>
                     <div>0 = ausgeglichen</div>
                     <div>+10 = sehr fokussiert</div>
@@ -383,7 +383,7 @@ export default function Dashboard() {
                     Wie gestresst bist du?
                   </label>
 
-                  <div className="grid grid-cols-3 pb-2 text-sm text-gray-800">
+                  <div className="grid grid-cols-3 gap-4 pb-2 text-sm text-gray-800">
                     <div>-10 = sehr gestresst</div>
                     <div>0 = ausgeglichen</div>
                     <div>+10 = sehr entspannt</div>
