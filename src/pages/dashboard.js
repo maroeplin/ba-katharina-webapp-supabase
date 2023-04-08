@@ -248,7 +248,7 @@ export default function Dashboard() {
                   <div className="grid grid-cols-3 pb-2 text-sm text-gray-800">
                     <div>-10 = sehr traurig</div>
                     <div>0 = ausgeglichen</div>
-                    <div>10 = sehr glücklich</div>
+                    <div>+10 = sehr glücklich</div>
                   </div>
 
                   <select
@@ -294,7 +294,7 @@ export default function Dashboard() {
                   <div className="grid grid-cols-3 pb-2 text-sm text-gray-800">
                     <div>-10 = sehr erschöpft</div>
                     <div>0 = ausgeglichen</div>
-                    <div>10 = sehr energiegeladen</div>
+                    <div>+10 = sehr energiegeladen</div>
                   </div>
 
                   <select
@@ -337,9 +337,9 @@ export default function Dashboard() {
                   </label>
 
                   <div className="grid grid-cols-3 pb-2 text-sm text-gray-800">
-                    <div>-10 = sehr ausgeglichen</div>
+                    <div>-10 = sehr unkonzentriert</div>
                     <div>0 = ausgeglichen</div>
-                    <div>10 = sehr unkonzentriert</div>
+                    <div>+10 = sehr fokussiert</div>
                   </div>
 
                   <div className="grid grid-cols-3 text-gray-600"></div>
@@ -386,7 +386,7 @@ export default function Dashboard() {
                   <div className="grid grid-cols-3 pb-2 text-sm text-gray-800">
                     <div>-10 = sehr gestresst</div>
                     <div>0 = ausgeglichen</div>
-                    <div>10 = sehr entspannt</div>
+                    <div>+10 = sehr entspannt</div>
                   </div>
 
                   <select
