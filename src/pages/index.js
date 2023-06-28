@@ -74,7 +74,7 @@ export default function Home() {
               <Link href="/signup">
                 <button
                   type="button"
-                  className="px-10 py-4 mt-4 mb-4 text-sm font-medium text-center text-white bg-teal-400 rounded-full hover:bg-teal-700 focus:outline-none focus:ring-4 focus:ring-teal-300 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-900"
+                  className="px-10 py-4 mt-4 mb-4 text-sm font-medium text-center text-white bg-black rounded-full hover:bg-black focus:outline-none focus:ring-4 focus:ring-teal-300 dark:bg-black dark:hover:bg-gray-800 dark:focus:ring-teal-900"
                 >
                   Registrieren
                 </button>
@@ -82,7 +82,7 @@ export default function Home() {
               <Link href="/login" className="mt-4 mb-2">
                 <button
                   type="button"
-                  className="px-10 py-4 text-sm font-medium text-white bg-teal-200 rounded-full hover:bg-teal-800 focus:outline-none focus:ring-4 focus:ring-teal-300 text-centerdark:bg-purple-400 dark:hover:bg-teal-700 dark:focus:ring-teal-900 "
+                  className="px-8 py-4 m-auto mb-4 text-sm font-medium text-center text-black border border-black rounded-full hover:bg-bg-black-700 focus:outline-none focus:ring-4 focus:ring-bg-black-200 dark:hover:bg-black-700 dark:focus:ring-bg-black-700 "
                 >
                   Login
                 </button>

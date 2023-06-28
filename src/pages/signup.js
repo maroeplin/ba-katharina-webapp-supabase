@@ -123,7 +123,7 @@ export default function Signup() {
       <div className="flex justify-center w-1/2 h-auto grid-cols-2 gap-8 m-auto felx-wrap">
       <button
         type="button"
-        className="px-8 py-4 mt-8 mb-4 text-sm font-medium text-center text-white bg-teal-400 rounded-full hover:bg-teal-700 focus:outline-none focus:ring-4 focus:ring-teal-300 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-900"
+        className="px-8 py-4 mt-8 mb-4 text-sm font-medium text-center text-white bg-black rounded-full hover:bg-gray-500 focus:outline-none focus:ring-4 dark:bg-black dark:hover:bg-black-700 "
         onClick={signUpWithPhone}
       >
         registrieren
@@ -131,7 +131,7 @@ export default function Signup() {
 
       <button
         type="button"
-        className="px-8 py-4 m-auto mb-4 text-sm font-medium text-center text-teal-400 border border-teal-400 rounded-full hover:bg-bg-teal-700 focus:outline-none focus:ring-4 focus:ring-bg-teal-200 dark:hover:bg-teal-700 dark:focus:ring-bg-teal-700 md:mt-8"
+        className="px-8 py-4 m-auto mb-4 text-sm font-medium text-center text-black border border-black rounded-full hover:bg-bg-black-700 focus:outline-none focus:ring-4 focus:ring-bg-black-200 dark:hover:bg-black-700 dark:focus:ring-bg-black-700 md:mt-8"
         onClick={backToHome}
       >
         home
@@ -160,7 +160,7 @@ export default function Signup() {
           </div>
           <button
             type="button"
-            className="px-10 py-4 m-auto mt-8 mb-4 text-sm font-medium text-center text-white bg-teal-400 rounded-full hover:bg-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-300 dark:bg-teal-400 dark:hover:bg-teal-700 dark:focus:ring-teal-400"
+            className="px-10 py-4 m-auto mt-8 mb-4 text-sm font-medium text-center text-white rounded-full bg-black-400 hover:bg-black-800 focus:outline-none focus:ring-2 focus:ring-teal-300 dark:bg-black-400 dark:hover:bg-black-700 dark:focus:ring-teal-400"
             onClick={loginWithToken}
           >
             Account aktivieren

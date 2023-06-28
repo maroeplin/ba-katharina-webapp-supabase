@@ -69,7 +69,7 @@ export default function Login() {
               className={
                 phone?.length <= 12
                   ? "block w-full border border-gray-200 rounded-md shadow-sm focus:border-red-500 focus:ring-red-500 p-2"
-                  : "block w-full border border-teal-400 rounded-md shadow-sm focus:border-teal-500 focus:ring-teal-500 p-2"
+                  : "block w-full border border-[#3d4477] rounded-md shadow-sm focus:border-[#3d4477] focus:ring-[#3d4477] p-2"
               }
               placeholder="+4911111111111"
               onChange={(e) => setPhone(e.target.value)}
@@ -94,7 +94,7 @@ export default function Login() {
               className={
                 password?.length <= 5
                   ? "block w-full border border-gray-200 rounded-md shadow-sm focus:border-red-500 focus:ring-red-500"
-                  : "block w-full border border-teal-400 rounded-md shadow-sm focus:border-teal-500 focus:ring-teal-500"
+                  : "block w-full border border-[#3d4477] rounded-md shadow-sm focus:border-[#3d4477] focus:ring-[#3d4477]"
               }
               placeholder="•••••••••"
               onChange={(e) => setPassword(e.target.value)}
@@ -109,7 +109,7 @@ export default function Login() {
           <div className="flex justify-center w-1/2 h-auto grid-cols-2 gap-8 m-auto felx-wrap">
             <button
               type="button"
-              className="px-8 py-4 m-auto mt-8 mb-4 font-medium text-center text-white bg-teal-400 rounded-full text-md hover:bg-bg-teal-700 focus:outline-none focus:ring-4 focus:ring-bg-teal-200 dark:bg-teal-400 dark:hover:bg-teal-700 dark:focus:ring-bg-teal-700"
+              className="px-8 py-4 m-auto mt-8 mb-4 font-medium text-center text-white hover:text-[#3d4477] bg-[#3d4477] rounded-full text-md hover:bg-white hover:border border-[#3d4477] focus:outline-none focus:ring-4 focus:ring-bg-teal-200 dark:bg-[#3d4477] dark:hover:bg--[#3d4477]dark:focus:ring-bg--[#3d4477]"
               onClick={loginWithPhone}
             >
               Login
@@ -117,7 +117,7 @@ export default function Login() {
 
             <button
               type="button"
-              className="px-8 py-4 m-auto mb-4 text-sm font-medium text-center text-teal-400 border border-teal-400 rounded-full hover:bg-bg-teal-700 focus:outline-none focus:ring-4 focus:ring-bg-teal-200 dark:hover:bg-teal-700 dark:focus:ring-bg-teal-700 md:mt-8"
+              className="px-8 py-4 m-auto mb-4 text-sm font-medium text-center text-[#3d4477] border border-[#3d4477] rounded-full hover:bg-bg-[#3d4477] focus:outline-none focus:ring-4 focus:ring-bg-teal-200 dark:hover:bg-[#3d4477] dark:focus:ring-bg-[#3d4477] md:mt-8 hover:text-white"
               onClick={backToHome}
             >
               Home

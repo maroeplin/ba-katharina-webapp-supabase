@@ -196,7 +196,7 @@ export default function Dashboard() {
                     <select
                       name="wochentag"
                       id="wochentag"
-                      className={wochentag ? ("border-teal-300 rounded-md bg-gray-50 focus:ring-teal-600 focus:border-teal-500") : (" rounded-md bg-gray-50 focus:ring-red-600 focus:border-red-500 border-red-500")} 
+                      className={wochentag ? ("border-[#3d4477] rounded-md bg-gray-50 focus:ring-[#3d4477] focus:border-[#3d4477]") : (" rounded-md bg-gray-50 focus:ring-red-600 focus:border-red-500 border-red-500")} 
                       placeholder="bitte auswählen"
                       onChange={(e) => setWochentag(e.target.value)}
                     >
@@ -222,7 +222,7 @@ export default function Dashboard() {
                     <select
                       name="zeitraum"
                       id="zeitraum"
-                      className={zeitraum ? ("border-teal-300 rounded-md bg-gray-50 focus:ring-teal-600 focus:border-teal-500") : ("border-red-500 rounded-md bg-gray-50 focus:ring-red-600 focus:border-red-500")}
+                      className={zeitraum ? ("border-[#3d4477] rounded-md bg-gray-50 focus:ring-[#3d4477] focus:border-[#3d4477]") : ("border-red-500 rounded-md bg-gray-50 focus:ring-red-600 focus:border-red-500")}
                       placeholder="9 Uhr"
                       onChange={(e) => setZeitraum(e.target.value)}
                     >
@@ -255,7 +255,7 @@ export default function Dashboard() {
                     name="frage01"
                     id="frage01"
                     className=
-                    {frage01 ? ("w-full border-teal-300 rounded-md bg-gray-50 focus:ring-teal-600 focus:border-teal-500") : ("w-full border-red-500 rounded-md bg-gray-50 focus:ring-teal-600 focus:border-teal-500")}
+                    {frage01 ? ("w-full border-[#3d4477] rounded-md bg-gray-50 focus:ring-[#3d4477] focus:border-[#3d4477]") : ("w-full border-red-500 rounded-md bg-gray-50 focus:ring-[#3d4477] focus:border-[#3d4477]")}
                     onChange={(e) => setFrage01(e.target.value)}
                   >
                     <option value="Platzhalter"></option>
@@ -300,7 +300,7 @@ export default function Dashboard() {
                   <select
                     name="frage02"
                     id="frage02"
-                    className={frage02 ? ("w-full border-teal-300 rounded-md bg-gray-50 focus:ring-teal-600 focus:border-teal-500") : ("w-full border-red-500 rounded-md bg-gray-50 focus:ring-teal-600 focus:border-teal-500 ")}
+                    className={frage02 ? ("w-full border-[#3d4477] rounded-md bg-gray-50 focus:ring-[#3d4477] focus:border-[#3d4477]") : ("w-full border-red-500 rounded-md bg-gray-50 focus:ring-[#3d4477] focus:border-[#3d4477] ")}
                     onChange={(e) => setFrage02(e.target.value)}
                   >
                     <option value="Platzhalter"></option>
@@ -347,7 +347,7 @@ export default function Dashboard() {
                   <select
                     name="frage03"
                     id="frage03"
-                    className= {frage03 ? ("w-full border-teal-300 rounded-md bg-gray-50 focus:ring-teal-600 focus:border-teal-500") : ("w-full border-red-500 rounded-md bg-gray-50 focus:ring-teal-600 focus:border-teal-500 ")}
+                    className= {frage03 ? ("w-full border-[#3d4477] rounded-md bg-gray-50 focus:ring-[#3d4477] focus:border-[#3d4477]") : ("w-full border-red-500 rounded-md bg-gray-50 focus:ring-[#3d4477] focus:border-[#3d4477] ")}
                     onChange={(e) => setFrage03(e.target.value)}
                   >
                     <option value="Platzhalter"></option>
@@ -392,7 +392,7 @@ export default function Dashboard() {
                   <select
                     name="frage04"
                     id="frage04"
-                    className={frage04 ? ("w-full border-teal-300 rounded-md bg-gray-50 focus:ring-teal-600 focus:border-teal-500 ") : ("w-full border-red-500 rounded-md bg-gray-50 focus:ring-teal-600 focus:border-teal-500 ")}
+                    className={frage04 ? ("w-full border-[#3d4477] rounded-md bg-gray-50 focus:ring-[#3d4477] focus:border-[#3d4477] ") : ("w-full border-red-500 rounded-md bg-gray-50 focus:ring-[#3d4477] focus:border-[#3d4477] ")}
                     onChange={(e) => setFrage04(e.target.value)}
                   >
                     <option value="Platzhalter"></option>
@@ -434,7 +434,7 @@ export default function Dashboard() {
                     name="bemerkung"
                     id="frage04"
                     placeholder="Deine persönlichen Bemerkungen..."
-                    className="block p-2.5 w-full text-md text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-teal-600 focus:border-teal-500   pb-12"
+                    className="block p-2.5 w-full text-md text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-[#3d4477] focus:border-[#3d4477]   pb-12"
                     onChange={(e) => setBemerkung(e.target.value)}
                   ></textarea>
                 </div>
@@ -461,7 +461,7 @@ export default function Dashboard() {
                 <button
                   type="button"
                   className=
-                  {wochentag && zeitraum && frage01 && frage02 && frage03 && frage04 ? ("px-8 py-4 mt-8 mb-4 text-sm font-medium text-center text-white bg-teal-400 rounded-full hover:bg-teal-700 focus:outline-none focus:ring-4 focus:ring-teal-300 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-900") : ("px-8 py-4 mt-8 mb-4 text-sm font-medium text-center text-white bg-teal-400 rounded-full  focus:ring-4  dark:bg-teal-600 opacity-50 cursor-default")}
+                  {wochentag && zeitraum && frage01 && frage02 && frage03 && frage04 ? ("px-8 py-4 mt-8 mb-4 text-sm font-medium text-center text-white bg-[#3d4477] rounded-full hover:bg-[#3d4477] focus:outline-none focus:ring-4 focus:ring-[#3d4477] dark:bg-[#3d4477] dark:hover:bg-black dark:focus:ring-[#3d4477]") : ("px-8 py-4 mt-8 mb-4 text-sm font-medium text-center text-white bg-[#3d4477] rounded-full  focus:ring-4  dark:bg-[#3d4477] opacity-50 cursor-default")}
                  
                   onClick={addNewLink}
                 >
@@ -470,7 +470,7 @@ export default function Dashboard() {
 
                 <button
                   type="button"
-                  className="px-8 py-4 m-auto mt-8 mb-4 text-sm font-medium text-center text-teal-400 border border-teal-400 rounded-full hover:bg-bg-teal-700 focus:outline-none focus:ring-4 focus:ring-bg-teal-200 dark:hover:bg-teal-700 dark:focus:ring-bg-teal-700"
+                  className="px-8 py-4 m-auto mt-8 mb-4 text-sm font-medium text-center text-[#3d4477] border border-[#3d4477] hover:bg-[#3d4477] focus:outline-none focus:ring-4 focus:ring-[#3d4477] dark:hover:bg-[#3d4477] dark:focus:ring-[#3d4477] rounded-full hover:text-white"
                   onClick={backToHome}
                 >
                   Logout
